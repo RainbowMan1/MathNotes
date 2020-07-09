@@ -82,8 +82,7 @@ App to help students and researcher takes notes using photos that converts equat
 * Creation
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://i.imgur.com/EIO8qlG.png" width=800>
 
 ### [BONUS] Digital Wireframes & Mockups
 
