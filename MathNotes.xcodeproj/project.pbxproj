@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8DB05E7878B38212ACBE3EA /* Pods_MathNotesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A598F4C2EC6F95A1E1B18213 /* Pods_MathNotesTests.framework */; };
+		CDE404F6A5824D95EF610203 /* Pods_MathNotes_MathNotesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9703A58FF549D3A24211C2AA /* Pods_MathNotes_MathNotesUITests.framework */; };
 		DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */; };
 		DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */; };
 		DBAB6F1624BCBD2C00AEE9B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1524BCBD2C00AEE9B0 /* ViewController.m */; };
@@ -16,6 +18,9 @@
 		DBAB6F2124BCBD2D00AEE9B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F2024BCBD2D00AEE9B0 /* main.m */; };
 		DBAB6F2B24BCBD2D00AEE9B0 /* MathNotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F2A24BCBD2D00AEE9B0 /* MathNotesTests.m */; };
 		DBAB6F3624BCBD2D00AEE9B0 /* MathNotesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F3524BCBD2D00AEE9B0 /* MathNotesUITests.m */; };
+		DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F4624BCD47300AEE9B0 /* Note.m */; };
+		DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F4924BCD87000AEE9B0 /* EquationSnip.m */; };
+		E20A8A2DBE6E87C39486D3D4 /* Pods_MathNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0872DC9D4E6F43A10EDC0B1A /* Pods-MathNotesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotesTests.release.xcconfig"; path = "Target Support Files/Pods-MathNotesTests/Pods-MathNotesTests.release.xcconfig"; sourceTree = "<group>"; };
+		09D7390585B3F0F00130134E /* Pods-MathNotes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes.debug.xcconfig"; path = "Target Support Files/Pods-MathNotes/Pods-MathNotes.debug.xcconfig"; sourceTree = "<group>"; };
+		215790706375391CEA61D3AD /* Pods-MathNotes-MathNotesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes-MathNotesUITests.debug.xcconfig"; path = "Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9703A58FF549D3A24211C2AA /* Pods_MathNotes_MathNotesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathNotes_MathNotesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A171FBE293FD0B589D6F7800 /* Pods-MathNotesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotesTests.debug.xcconfig"; path = "Target Support Files/Pods-MathNotesTests/Pods-MathNotesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A598F4C2EC6F95A1E1B18213 /* Pods_MathNotesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathNotesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathNotes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D32AA873E18E4F6B343342FC /* Pods-MathNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes.release.xcconfig"; path = "Target Support Files/Pods-MathNotes/Pods-MathNotes.release.xcconfig"; sourceTree = "<group>"; };
 		DBAB6F0B24BCBD2C00AEE9B0 /* MathNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBAB6F0E24BCBD2C00AEE9B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +67,11 @@
 		DBAB6F3124BCBD2D00AEE9B0 /* MathNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBAB6F3524BCBD2D00AEE9B0 /* MathNotesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathNotesUITests.m; sourceTree = "<group>"; };
 		DBAB6F3724BCBD2D00AEE9B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBAB6F4624BCD47300AEE9B0 /* Note.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		DBAB6F4824BCD47D00AEE9B0 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		DBAB6F4924BCD87000AEE9B0 /* EquationSnip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnip.m; sourceTree = "<group>"; };
+		DBAB6F4B24BCD88200AEE9B0 /* EquationSnip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationSnip.h; sourceTree = "<group>"; };
+		DF5F15AAB76FC3711DFCEABF /* Pods-MathNotes-MathNotesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes-MathNotesUITests.release.xcconfig"; path = "Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E20A8A2DBE6E87C39486D3D4 /* Pods_MathNotes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DB05E7878B38212ACBE3EA /* Pods_MathNotesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +95,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE404F6A5824D95EF610203 /* Pods_MathNotes_MathNotesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78B8A4FDB75FC55C2095FD81 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				09D7390585B3F0F00130134E /* Pods-MathNotes.debug.xcconfig */,
+				D32AA873E18E4F6B343342FC /* Pods-MathNotes.release.xcconfig */,
+				215790706375391CEA61D3AD /* Pods-MathNotes-MathNotesUITests.debug.xcconfig */,
+				DF5F15AAB76FC3711DFCEABF /* Pods-MathNotes-MathNotesUITests.release.xcconfig */,
+				A171FBE293FD0B589D6F7800 /* Pods-MathNotesTests.debug.xcconfig */,
+				0872DC9D4E6F43A10EDC0B1A /* Pods-MathNotesTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DBAB6F0224BCBD2C00AEE9B0 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +122,8 @@
 				DBAB6F2924BCBD2D00AEE9B0 /* MathNotesTests */,
 				DBAB6F3424BCBD2D00AEE9B0 /* MathNotesUITests */,
 				DBAB6F0C24BCBD2C00AEE9B0 /* Products */,
+				78B8A4FDB75FC55C2095FD81 /* Pods */,
+				F19393F82DB3CC3FBEB058F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,12 +140,13 @@
 		DBAB6F0D24BCBD2C00AEE9B0 /* MathNotes */ = {
 			isa = PBXGroup;
 			children = (
+				DBAB6F4524BCCE4700AEE9B0 /* Models */,
+				DBAB6F4424BCCE3F00AEE9B0 /* Views */,
+				DBAB6F4324BCCE3500AEE9B0 /* ViewControllers */,
 				DBAB6F0E24BCBD2C00AEE9B0 /* AppDelegate.h */,
 				DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */,
 				DBAB6F1124BCBD2C00AEE9B0 /* SceneDelegate.h */,
 				DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */,
-				DBAB6F1424BCBD2C00AEE9B0 /* ViewController.h */,
-				DBAB6F1524BCBD2C00AEE9B0 /* ViewController.m */,
 				DBAB6F1724BCBD2C00AEE9B0 /* Main.storyboard */,
 				DBAB6F1A24BCBD2D00AEE9B0 /* Assets.xcassets */,
 				DBAB6F1C24BCBD2D00AEE9B0 /* LaunchScreen.storyboard */,
@@ -137,6 +174,43 @@
 			path = MathNotesUITests;
 			sourceTree = "<group>";
 		};
+		DBAB6F4324BCCE3500AEE9B0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DBAB6F1424BCBD2C00AEE9B0 /* ViewController.h */,
+				DBAB6F1524BCBD2C00AEE9B0 /* ViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DBAB6F4424BCCE3F00AEE9B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DBAB6F4524BCCE4700AEE9B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DBAB6F4824BCD47D00AEE9B0 /* Note.h */,
+				DBAB6F4624BCD47300AEE9B0 /* Note.m */,
+				DBAB6F4B24BCD88200AEE9B0 /* EquationSnip.h */,
+				DBAB6F4924BCD87000AEE9B0 /* EquationSnip.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F19393F82DB3CC3FBEB058F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */,
+				9703A58FF549D3A24211C2AA /* Pods_MathNotes_MathNotesUITests.framework */,
+				A598F4C2EC6F95A1E1B18213 /* Pods_MathNotesTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +218,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBAB6F3A24BCBD2D00AEE9B0 /* Build configuration list for PBXNativeTarget "MathNotes" */;
 			buildPhases = (
+				4588A4EF884C256F2984F248 /* [CP] Check Pods Manifest.lock */,
 				DBAB6F0724BCBD2C00AEE9B0 /* Sources */,
 				DBAB6F0824BCBD2C00AEE9B0 /* Frameworks */,
 				DBAB6F0924BCBD2C00AEE9B0 /* Resources */,
+				E4E265427DB972184E41C2BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +237,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBAB6F3D24BCBD2D00AEE9B0 /* Build configuration list for PBXNativeTarget "MathNotesTests" */;
 			buildPhases = (
+				75C0C63110006DED52705575 /* [CP] Check Pods Manifest.lock */,
 				DBAB6F2224BCBD2D00AEE9B0 /* Sources */,
 				DBAB6F2324BCBD2D00AEE9B0 /* Frameworks */,
 				DBAB6F2424BCBD2D00AEE9B0 /* Resources */,
@@ -179,9 +256,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBAB6F4024BCBD2D00AEE9B0 /* Build configuration list for PBXNativeTarget "MathNotesUITests" */;
 			buildPhases = (
+				99965E9FCE656BE64B0F401F /* [CP] Check Pods Manifest.lock */,
 				DBAB6F2D24BCBD2D00AEE9B0 /* Sources */,
 				DBAB6F2E24BCBD2D00AEE9B0 /* Frameworks */,
 				DBAB6F2F24BCBD2D00AEE9B0 /* Resources */,
+				2DE6FE4F5745F4EDDEF551B6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,12 +341,117 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2DE6FE4F5745F4EDDEF551B6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4588A4EF884C256F2984F248 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MathNotes-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75C0C63110006DED52705575 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MathNotesTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99965E9FCE656BE64B0F401F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MathNotes-MathNotesUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4E265427DB972184E41C2BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MathNotes/Pods-MathNotes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MathNotes/Pods-MathNotes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MathNotes/Pods-MathNotes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DBAB6F0724BCBD2C00AEE9B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DBAB6F1624BCBD2C00AEE9B0 /* ViewController.m in Sources */,
+				DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */,
+				DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */,
 				DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */,
 				DBAB6F2124BCBD2D00AEE9B0 /* main.m in Sources */,
 				DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */,
@@ -437,6 +621,7 @@
 		};
 		DBAB6F3B24BCBD2D00AEE9B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09D7390585B3F0F00130134E /* Pods-MathNotes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +639,7 @@
 		};
 		DBAB6F3C24BCBD2D00AEE9B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D32AA873E18E4F6B343342FC /* Pods-MathNotes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -471,6 +657,7 @@
 		};
 		DBAB6F3E24BCBD2D00AEE9B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A171FBE293FD0B589D6F7800 /* Pods-MathNotesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -490,6 +677,7 @@
 		};
 		DBAB6F3F24BCBD2D00AEE9B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0872DC9D4E6F43A10EDC0B1A /* Pods-MathNotesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -509,6 +697,7 @@
 		};
 		DBAB6F4124BCBD2D00AEE9B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 215790706375391CEA61D3AD /* Pods-MathNotes-MathNotesUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MathNotesUITests/Info.plist;
@@ -526,6 +715,7 @@
 		};
 		DBAB6F4224BCBD2D00AEE9B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF5F15AAB76FC3711DFCEABF /* Pods-MathNotes-MathNotesUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MathNotesUITests/Info.plist;

@@ -1,0 +1,27 @@
+//
+//  Note.h
+//  MathNotes
+//
+//  Created by Nikesh Subedi on 7/13/20.
+//  Copyright © 2020 Nikesh Subedi. All rights reserved.
+//
+
+#ifndef Note_h
+#define Note_h
+
+#import <Foundation/Foundation.h>
+#import "Parse/Parse.h"
+@interface Note : PFObject<PFSubclassing>
+
+@property (nonatomic, strong) NSString * _Nonnull noteID;
+@property (nonatomic, strong) PFUser * _Nonnull author;
+@property (nonatomic, strong) NSString * _Nullable text;
+@property (nonatomic, strong, readonly) NSDate * _Nonnull createdAt;
+@property (nonatomic, strong, readonly) NSDate * _Nonnull updatedAt;
+
++ (void) postNote: ( NSString * _Nullable )text withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+
+@end
+
+
+#endif /* Note_h */
