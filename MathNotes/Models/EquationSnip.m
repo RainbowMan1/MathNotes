@@ -11,6 +11,7 @@
 @implementation EquationSnip
 
 @dynamic equationSnipID;
+@dynamic equationSnipName;
 @dynamic author;
 @dynamic equationImage;
 @dynamic laTeXcode;

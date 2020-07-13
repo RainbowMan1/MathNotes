@@ -13,6 +13,7 @@
 @interface EquationSnip : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString * _Nonnull equationSnipID;
+@property (nonatomic, strong) NSString * _Nonnull equationSnipName;
 @property (nonatomic, strong) PFUser * _Nonnull author;
 @property (nonatomic, strong) PFFileObject * _Nonnull equationImage;
 @property (nonatomic, strong) NSString * _Nullable laTeXcode;
