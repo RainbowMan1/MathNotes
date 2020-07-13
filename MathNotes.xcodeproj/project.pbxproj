@@ -23,6 +23,7 @@
 		DBAB6F4E24BCE7A800AEE9B0 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F4D24BCE7A800AEE9B0 /* NoteCell.m */; };
 		DBAB6F5124BCEFE200AEE9B0 /* NotesDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */; };
 		DBAB6F5424BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */; };
+		DBAB6F5724BCFF1700AEE9B0 /* EquationSnipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */; };
 		E20A8A2DBE6E87C39486D3D4 /* Pods_MathNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,8 @@
 		DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotesDashboardViewController.m; sourceTree = "<group>"; };
 		DBAB6F5224BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationSnipDashboardViewController.h; sourceTree = "<group>"; };
 		DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnipDashboardViewController.m; sourceTree = "<group>"; };
+		DBAB6F5524BCFF1700AEE9B0 /* EquationSnipCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationSnipCell.h; sourceTree = "<group>"; };
+		DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnipCell.m; sourceTree = "<group>"; };
 		DF5F15AAB76FC3711DFCEABF /* Pods-MathNotes-MathNotesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes-MathNotesUITests.release.xcconfig"; path = "Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +204,8 @@
 			children = (
 				DBAB6F4C24BCE7A800AEE9B0 /* NoteCell.h */,
 				DBAB6F4D24BCE7A800AEE9B0 /* NoteCell.m */,
+				DBAB6F5524BCFF1700AEE9B0 /* EquationSnipCell.h */,
+				DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,6 +476,7 @@
 				DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */,
 				DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */,
 				DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */,
+				DBAB6F5724BCFF1700AEE9B0 /* EquationSnipCell.m in Sources */,
 				DBAB6F2124BCBD2D00AEE9B0 /* main.m in Sources */,
 				DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */,
 			);
