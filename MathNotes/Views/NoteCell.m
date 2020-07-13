@@ -31,7 +31,7 @@
     self.noteNameLabel.text =  self.note.noteName;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM-dd-yyyy HH:mm"];
-    self.timeLabel.text = [formatter  stringFromDate:self.note.updatedAt];
+    self.lastUpdatedTimeLabel.text = [formatter  stringFromDate:self.note.updatedAt];
 }
 
 @end
