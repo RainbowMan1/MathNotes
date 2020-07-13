@@ -16,6 +16,7 @@
 
 
 #import "Note.h"
+#import "Parse/Parse.h"
 
 @implementation Note
 
@@ -32,6 +33,7 @@
 
 + (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)text withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Note *newNote = [Note new];
+    newNote.author = [PFUser currentUser];
     newNote.noteName = name;
     newNote.text = text;
     
