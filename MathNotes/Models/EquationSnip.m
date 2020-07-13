@@ -22,8 +22,9 @@
     return @"EquationSnips";
 }
 
-+ (void) postEquationSnip:(UIImage * _Nonnull) image withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postEquationSnip:(NSString * _Nonnull)name withImage:(UIImage * _Nonnull) image withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     EquationSnip *newEquationSnip = [EquationSnip new];
+    newEquationSnip.equationSnipName = name;
     newEquationSnip.equationImage = [self getPFFileFromImage:image];
     
     [newEquationSnip saveInBackgroundWithBlock: completion];

@@ -20,7 +20,7 @@
 @property (nonatomic, strong, readonly) NSDate * _Nonnull createdAt;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull updatedAt;
 
-+ (void) postEquationSnip: (NSString * _Nonnull)text withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postEquationSnip:(NSString * _Nonnull)name withImage:(UIImage * _Nonnull) image withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 
