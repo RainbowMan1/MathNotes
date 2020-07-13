@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {        ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
             
             configuration.applicationId = @"mathsnote";
-            configuration.server = @"http://mathsnote.herokuapp.com/parse";
+            configuration.server = @"https://mathsnote.herokuapp.com/parse";
         }];
         
         [Parse initializeWithConfiguration:config];
