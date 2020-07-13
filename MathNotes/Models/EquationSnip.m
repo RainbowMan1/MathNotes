@@ -18,7 +18,7 @@
 @dynamic updatedAt;
 
 + (nonnull NSString *)parseClassName {
-    return @"Notes";
+    return @"EquationSnips";
 }
 
 + (void) postEquationSnip:(UIImage * _Nonnull) image withCompletion: (PFBooleanResultBlock  _Nullable)completion {

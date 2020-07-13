@@ -11,7 +11,7 @@
 		CDE404F6A5824D95EF610203 /* Pods_MathNotes_MathNotesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9703A58FF549D3A24211C2AA /* Pods_MathNotes_MathNotesUITests.framework */; };
 		DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */; };
 		DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */; };
-		DBAB6F1624BCBD2C00AEE9B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1524BCBD2C00AEE9B0 /* ViewController.m */; };
+		DBAB6F1624BCBD2C00AEE9B0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */; };
 		DBAB6F1924BCBD2C00AEE9B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBAB6F1724BCBD2C00AEE9B0 /* Main.storyboard */; };
 		DBAB6F1B24BCBD2D00AEE9B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAB6F1A24BCBD2D00AEE9B0 /* Assets.xcassets */; };
 		DBAB6F1E24BCBD2D00AEE9B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBAB6F1C24BCBD2D00AEE9B0 /* LaunchScreen.storyboard */; };
@@ -20,6 +20,9 @@
 		DBAB6F3624BCBD2D00AEE9B0 /* MathNotesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F3524BCBD2D00AEE9B0 /* MathNotesUITests.m */; };
 		DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F4624BCD47300AEE9B0 /* Note.m */; };
 		DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F4924BCD87000AEE9B0 /* EquationSnip.m */; };
+		DBAB6F4E24BCE7A800AEE9B0 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F4D24BCE7A800AEE9B0 /* NoteCell.m */; };
+		DBAB6F5124BCEFE200AEE9B0 /* NotesDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */; };
+		DBAB6F5424BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */; };
 		E20A8A2DBE6E87C39486D3D4 /* Pods_MathNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +57,8 @@
 		DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DBAB6F1124BCBD2C00AEE9B0 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		DBAB6F1424BCBD2C00AEE9B0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DBAB6F1524BCBD2C00AEE9B0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DBAB6F1424BCBD2C00AEE9B0 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DBAB6F1824BCBD2C00AEE9B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBAB6F1A24BCBD2D00AEE9B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBAB6F1D24BCBD2D00AEE9B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -71,6 +74,12 @@
 		DBAB6F4824BCD47D00AEE9B0 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		DBAB6F4924BCD87000AEE9B0 /* EquationSnip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnip.m; sourceTree = "<group>"; };
 		DBAB6F4B24BCD88200AEE9B0 /* EquationSnip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationSnip.h; sourceTree = "<group>"; };
+		DBAB6F4C24BCE7A800AEE9B0 /* NoteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
+		DBAB6F4D24BCE7A800AEE9B0 /* NoteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		DBAB6F4F24BCEFE200AEE9B0 /* NotesDashboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotesDashboardViewController.h; sourceTree = "<group>"; };
+		DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotesDashboardViewController.m; sourceTree = "<group>"; };
+		DBAB6F5224BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationSnipDashboardViewController.h; sourceTree = "<group>"; };
+		DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnipDashboardViewController.m; sourceTree = "<group>"; };
 		DF5F15AAB76FC3711DFCEABF /* Pods-MathNotes-MathNotesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes-MathNotesUITests.release.xcconfig"; path = "Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,8 +186,12 @@
 		DBAB6F4324BCCE3500AEE9B0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DBAB6F1424BCBD2C00AEE9B0 /* ViewController.h */,
-				DBAB6F1524BCBD2C00AEE9B0 /* ViewController.m */,
+				DBAB6F1424BCBD2C00AEE9B0 /* LoginViewController.h */,
+				DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */,
+				DBAB6F4F24BCEFE200AEE9B0 /* NotesDashboardViewController.h */,
+				DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */,
+				DBAB6F5224BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.h */,
+				DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -186,6 +199,8 @@
 		DBAB6F4424BCCE3F00AEE9B0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DBAB6F4C24BCE7A800AEE9B0 /* NoteCell.h */,
+				DBAB6F4D24BCE7A800AEE9B0 /* NoteCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -449,7 +464,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBAB6F1624BCBD2C00AEE9B0 /* ViewController.m in Sources */,
+				DBAB6F5424BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m in Sources */,
+				DBAB6F1624BCBD2C00AEE9B0 /* LoginViewController.m in Sources */,
+				DBAB6F5124BCEFE200AEE9B0 /* NotesDashboardViewController.m in Sources */,
+				DBAB6F4E24BCE7A800AEE9B0 /* NoteCell.m in Sources */,
 				DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */,
 				DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */,
 				DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */,
