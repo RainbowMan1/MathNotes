@@ -16,11 +16,11 @@
 @property (nonatomic, strong) NSString * _Nonnull noteID;
 @property (nonatomic, strong) NSString * _Nonnull noteName;
 @property (nonatomic, strong) PFUser * _Nonnull author;
-@property (nonatomic, strong) NSString * _Nullable text;
+@property (nonatomic, strong) NSString * _Nullable htmlText;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull createdAt;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull updatedAt;
 
-+ (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)text withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)html withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

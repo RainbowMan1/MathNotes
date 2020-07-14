@@ -23,7 +23,7 @@
 @dynamic noteID;
 @dynamic noteName;
 @dynamic author;
-@dynamic text;
+@dynamic htmlText;
 @dynamic createdAt;
 @dynamic updatedAt;
 
@@ -31,11 +31,11 @@
     return @"Notes";
 }
 
-+ (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)text withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)html withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Note *newNote = [Note new];
     newNote.author = [PFUser currentUser];
     newNote.noteName = name;
-    newNote.text = text;
+    newNote.htmlText = html;
     
     [newNote saveInBackgroundWithBlock: completion];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "EquationSnipDashboardViewController.h"
+#import "EquationSnip.h"
 
 @interface EquationSnipDashboardViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -16,7 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -37,6 +39,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     //UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    [EquationSnip postEquationSnip:@"dummy" withImage:editedImage withCompletion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

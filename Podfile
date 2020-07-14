@@ -7,7 +7,7 @@ target 'MathNotes' do
 
   # Pods for MathNotes
   pod 'Parse'
-  pod 'Parse/UI'
+  pod 'Parse/UI' 
   target 'MathNotesTests' do
     inherit! :search_paths
     # Pods for testing

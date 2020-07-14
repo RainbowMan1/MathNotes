@@ -150,7 +150,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKl-le-bM0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2760.8695652173915" y="-557.14285714285711"/>
+            <point key="canvasLocation" x="2825" y="-557"/>
+        </scene>
+        <!--Notes Editor View Controller-->
+        <scene sceneID="rt2-fE-E95">
+            <objects>
+                <viewController id="cnM-Kh-K9T" customClass="NotesEditorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TFM-3o-4U0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="QOY-cb-gbS"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wg8-aX-Lk1">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="ASk-B3-TDD">
+                            <connections>
+                                <action selector="saveProgess:" destination="cnM-Kh-K9T" id="dxR-wq-BNX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BUa-dk-7Dg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2846" y="138"/>
         </scene>
         <!--Your Notes-->
         <scene sceneID="6hc-Rf-HsJ">
@@ -191,6 +213,7 @@
                                         <connections>
                                             <outlet property="lastUpdatedTimeLabel" destination="R4I-S4-zvF" id="EYQ-kz-AQf"/>
                                             <outlet property="noteNameLabel" destination="DfX-oo-2Xw" id="UTM-Sg-O0W"/>
+                                            <segue destination="cnM-Kh-K9T" kind="show" identifier="EditNote" id="jtP-Yg-0jg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -209,7 +232,7 @@
                         <leftBarButtonItems>
                             <barButtonItem title="NewNote" id="j3K-YS-35f">
                                 <connections>
-                                    <segue destination="uAS-AP-eXd" kind="show" id="aOM-7H-CnW"/>
+                                    <segue destination="cnM-Kh-K9T" kind="show" identifier="NewNote" id="iDN-jq-zjb"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="EQ" id="XBM-iV-30J">
@@ -220,7 +243,7 @@
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="laL-J7-WIn">
                             <connections>
-                                <action selector="logOutPressed:" destination="oXO-tj-qTe" id="CP6-4N-bAs"/>
+                                <action selector="logOut:" destination="oXO-tj-qTe" id="HmK-nq-e8f"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -231,33 +254,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E3L-uG-18s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1850.7246376811595" y="137.94642857142856"/>
-        </scene>
-        <!--Notes Editor-->
-        <scene sceneID="oIE-rx-YpN">
-            <objects>
-                <viewController id="uAS-AP-eXd" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="K0K-bR-d4p">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FpU-o8-OdY">
-                                <rect key="frame" x="0.0" y="78" width="414" height="818"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="xGL-UZ-Jpr"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Notes Editor" id="fVd-nJ-cGz"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rg9-ns-yUN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2824.6376811594205" y="137.94642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z2K-gi-NoE">
@@ -297,4 +293,7 @@
             <point key="canvasLocation" x="1851" y="-557"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jtP-Yg-0jg"/>
+    </inferredMetricsTieBreakers>
 </document>
