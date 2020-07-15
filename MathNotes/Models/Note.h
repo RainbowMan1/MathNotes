@@ -21,7 +21,7 @@
 @property (nonatomic, strong, readonly) NSDate * _Nonnull updatedAt;
 
 + (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)html withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
++ (void) updateNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 @end
 
 

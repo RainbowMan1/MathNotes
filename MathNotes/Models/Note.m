@@ -40,4 +40,9 @@
     [newNote saveInBackgroundWithBlock: completion];
 }
 
++ (void) updateNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    note.author = [PFUser currentUser];
+    [note saveInBackgroundWithBlock:completion];
+}
+
 @end

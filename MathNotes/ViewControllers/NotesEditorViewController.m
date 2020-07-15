@@ -16,8 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // HTML Content to set in the editor
-    self.formatHTML = YES;
-    [self setHTML:self.note.htmlText];
+    self.formatHTML = NO;
     
     UIButton *noteNamebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     [noteNamebutton setTitle:self.note.noteName forState:UIControlStateNormal];
@@ -25,11 +24,14 @@
     [noteNamebutton addTarget:self action:@selector(changeNoteName) forControlEvents:UIControlEventTouchUpInside];
     noteNamebutton.frame = CGRectMake(0, 0, self.view.frame.size.width, 64.0);
     self.navigationItem.titleView =noteNamebutton;
+    
+    [self setHTML:self.note.htmlText];
 }
 
 - (IBAction)saveProgess:(id)sender {
     [self getHTML:^(NSString *result, NSError * _Nullable error) {
-        [Note postNote:@"dummy" withText:result withCompletion:nil];
+        self.note.htmlText = result;
+        [Note updateNote:self.note withCompletion:nil];
     }];
 }
 

@@ -99,10 +99,12 @@
     if ([segue.identifier isEqualToString:@"NewNote"]){
         NotesEditorViewController *noteEditor = [segue destinationViewController];
         noteEditor.note = [Note new];
+        noteEditor.note.noteName = @"Untitled Note";
     }
     else if ([segue.identifier isEqualToString:@"EditNote"]){
         NotesEditorViewController *noteEditor = [segue destinationViewController];
         NoteCell *selectedcell = (NoteCell*) sender;
+        NSLog(@"%@",selectedcell.note.htmlText);
         noteEditor.note = selectedcell.note;
     }
 }

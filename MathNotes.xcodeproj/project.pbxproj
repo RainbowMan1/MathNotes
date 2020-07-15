@@ -341,8 +341,8 @@
 				DB759B9124BE1CBF007932E9 /* editor.html */,
 				DB759BE024BE1CC0007932E9 /* jQuery.js */,
 				DB759BE624BE1CC0007932E9 /* JSBeautifier.js */,
-				DB759BE124BE1CC0007932E9 /* ZSSRichTextEditor.h */,
 				DB759B8F24BE1CBF007932E9 /* ZSSRichTextEditor.js */,
+				DB759BE124BE1CC0007932E9 /* ZSSRichTextEditor.h */,
 				DB759BE424BE1CC0007932E9 /* ZSSRichTextEditor.m */,
 			);
 			path = TextEditor;

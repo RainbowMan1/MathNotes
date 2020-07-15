@@ -165,7 +165,7 @@
                     <navigationItem key="navigationItem" id="wg8-aX-Lk1">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="ASk-B3-TDD">
                             <connections>
-                                <action selector="saveProgess:" destination="cnM-Kh-K9T" id="dxR-wq-BNX"/>
+                                <action selector="saveProgess:" destination="cnM-Kh-K9T" id="LJO-h6-dtf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
