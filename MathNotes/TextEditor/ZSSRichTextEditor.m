@@ -1091,7 +1091,7 @@ static CGFloat kDefaultScale = 0.5;
     NSString *cleanedHTML = [self removeQuotesFromHTML:self.sourceView.text];
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.setHTML(\"%@\");", cleanedHTML];
     [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
-
+        NSLog(@"%@",error.description);
     }];
 
     
@@ -1107,14 +1107,7 @@ static CGFloat kDefaultScale = 0.5;
         }
         
         NSLog(@"%@", result);
-     
-        NSString *html = [self removeQuotesFromHTML:result];
-        
-        NSLog(@"%@", html);
-        
-        [self tidyHTML:html completionHandler:^(NSString *result, NSError *error) {
-            completionHandler(result, error);
-        }];
+        completionHandler(result, error);
 
     }];
 }
@@ -1807,7 +1800,7 @@ static CGFloat kDefaultScale = 0.5;
 - (void)insertImage:(NSString *)url alt:(NSString *)alt {
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertImage(\"%@\", \"%@\");", url, alt];
     [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
-     
+        NSLog(@"%@",error.description);
     }];
 }
 
@@ -1941,9 +1934,9 @@ static CGFloat kDefaultScale = 0.5;
 
     decisionHandler(WKNavigationActionPolicyAllow);
 
-    NSLog(@"web request");
-    NSLog(@"%@", urlString);
-    NSLog(@"%@", query);
+    //NSLog(@"web request");
+    //NSLog(@"%@", urlString);
+    //NSLog(@"%@", query);
 
     
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
@@ -2310,8 +2303,8 @@ static CGFloat kDefaultScale = 0.5;
 
 - (NSString *)removeQuotesFromHTML:(NSString *)html {
     html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    html = [html stringByReplacingOccurrencesOfString:@"“" withString:@"&quot;"];
-    html = [html stringByReplacingOccurrencesOfString:@"”" withString:@"&quot;"];
+    html = [html stringByReplacingOccurrencesOfString:@"“" withString:@"\\\""];
+    html = [html stringByReplacingOccurrencesOfString:@"”" withString:@"\\\""];
     html = [html stringByReplacingOccurrencesOfString:@"\r"  withString:@"\\r"];
     html = [html stringByReplacingOccurrencesOfString:@"\n"  withString:@"\\n"];
     return html;
