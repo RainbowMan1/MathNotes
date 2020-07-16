@@ -20,5 +20,16 @@
 
     // Configure the view for the selected state
 }
+- (void)setEquationSnip:(EquationSnip *)equationSnip {
+    (_equationSnip) = equationSnip;
+    [self updateCell];
+}
+
+- (void)updateCell {
+    self.equationSnipName.text =  self.equationSnip.equationSnipName;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd-yyyy HH:mm"];
+    self.lastUpdatedTimeLabel.text = [formatter  stringFromDate:self.equationSnip.updatedAt];
+}
 
 @end

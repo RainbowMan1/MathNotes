@@ -1053,6 +1053,10 @@ static CGFloat kDefaultScale = 0.5;
 
 #pragma mark - Editor Interaction
 
+- (void) prepareInsertWithCompletion:(void (^)(NSString *result, NSError *error))completion{
+    [self.editorView evaluateJavaScript:@"zss_editor.prepareInsert();" completionHandler:completion];
+}
+
 - (void)focusTextEditor {
     
     //TODO: Is this behavior correct? Is it the right replacement?
@@ -1126,8 +1130,7 @@ static CGFloat kDefaultScale = 0.5;
 - (void)getText:(void (^ _Nullable)(_Nullable id, NSError * _Nullable error))completionHandler {
     
     [self.editorView evaluateJavaScript:ZSSEditorText completionHandler:^(NSString *result, NSError *error) {
-        
-        if (error != NULL) {
+            if (error != NULL) {
             NSLog(@"Text Parsing Error: %@", error);
         }
         
@@ -1808,21 +1811,21 @@ static CGFloat kDefaultScale = 0.5;
 - (void)updateImage:(NSString *)url alt:(NSString *)alt {
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.updateImage(\"%@\", \"%@\");", url, alt];
     [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
-     
+        [self updateEditor];
     }];
 }
 
 - (void)insertImageBase64String:(NSString *)imageBase64String alt:(NSString *)alt {
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertImageBase64String(\"%@\", \"%@\");", imageBase64String, alt];
     [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
-     
+        [self updateEditor];
     }];
 }
 
 - (void)updateImageBase64String:(NSString *)imageBase64String alt:(NSString *)alt {
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.updateImageBase64String(\"%@\", \"%@\");", imageBase64String, alt];
     [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
-     
+        [self updateEditor];
     }];
 }
 
@@ -1926,46 +1929,50 @@ static CGFloat kDefaultScale = 0.5;
 #pragma mark - WKNavigationDelegate Delegate
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-       
     
     NSString *query = [navigationAction.request.URL query];
-    
+
     NSString *urlString = [navigationAction.request.URL absoluteString];
 
-    decisionHandler(WKNavigationActionPolicyAllow);
-
-    //NSLog(@"web request");
-    //NSLog(@"%@", urlString);
-    //NSLog(@"%@", query);
-
+    NSLog(@"web request");
+    NSLog(@"%@", urlString);
+    NSLog(@"%@", query);
     
+
+
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
 
         //On the old UIWebView delegate it returned false Bool here
-        //TODO: what should we do now?
-        
+        //TODO: what should we do now
+        decisionHandler(WKNavigationActionPolicyCancel);
+
     } else if ([urlString rangeOfString:@"callback://0/"].location != NSNotFound) {
-        
+
         // We recieved the callback
         NSString *className = [urlString stringByReplacingOccurrencesOfString:@"callback://0/" withString:@""];
         [self updateToolBarWithButtonName:className];
         
+        decisionHandler(WKNavigationActionPolicyCancel);
     } else if ([urlString rangeOfString:@"debug://"].location != NSNotFound) {
-        
+
         NSLog(@"Debug Found");
-        
+
         // We recieved the callback
         NSString *debug = [urlString stringByReplacingOccurrencesOfString:@"debug://" withString:@""];
-        debug = [debug stringByReplacingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy];
+        debug = [debug stringByRemovingPercentEncoding];
         NSLog(@"%@", debug);
-        
+        decisionHandler(WKNavigationActionPolicyCancel);
+
     } else if ([urlString rangeOfString:@"scroll://"].location != NSNotFound) {
-        
+
         NSInteger position = [[urlString stringByReplacingOccurrencesOfString:@"scroll://" withString:@""] integerValue];
         [self editorDidScrollWithPosition:position];
-        
+        decisionHandler(WKNavigationActionPolicyCancel);
+
     }
-        
+    else{
+    decisionHandler(WKNavigationActionPolicyAllow);
+    }
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {

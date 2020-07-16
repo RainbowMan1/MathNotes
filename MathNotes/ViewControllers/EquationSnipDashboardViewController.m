@@ -8,32 +8,68 @@
 
 #import "EquationSnipDashboardViewController.h"
 #import "EquationSnip.h"
+#import "EquationSnipCell.h"
 
 @interface EquationSnipDashboardViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UIImagePickerController *imagePicker;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) NSArray *equationSnips;
 @end
 
 @implementation EquationSnipDashboardViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.imagePicker =[UIImagePickerController new];
+    [self.imagePicker setDelegate:self];
+    self.imagePicker.allowsEditing = YES;
+    
+    self.refreshControl =[[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchEquationSnips) forControlEvents:UIControlEventValueChanged];
+    
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.tableView addSubview:self.refreshControl];
+       NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    [self fetchEquationSnips];
 }
-- (IBAction)newEquation:(id)sender {
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
 
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;//UIImagePickerControllerSourceTypeCamera;
-     
-        imagePickerVC.delegate = self;
-        imagePickerVC.allowsEditing = YES;
+- (IBAction)closeView:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
-        [self presentViewController:imagePickerVC animated:YES completion:nil];
+
+- (void)fetchEquationSnips{
+    PFQuery *query = [PFQuery queryWithClassName:@"EquationSnips"];
+       [query orderByDescending:@"updatedAt"];
+       [query whereKey:@"author" equalTo:[PFUser currentUser]];
+           // fetch data asynchronously
+           [query findObjectsInBackgroundWithBlock:^(NSArray *equationsArray, NSError *error) {
+               if (equationsArray != nil) {
+                   self.equationSnips = equationsArray;
+                   [self.tableView reloadData];
+                   [self.refreshControl endRefreshing];
+               } else {
+               }
+           }];
+}
+
+- (IBAction)equationFromCamera:(id)sender {
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+- (IBAction)equationFromPicker:(id)sender {
+    self.imagePicker.sourceType =UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -47,51 +83,15 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.equationSnips.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EquationSnipCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    EquationSnipCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EquationSnipCell" forIndexPath:indexPath];
+    cell.equationSnip = self.equationSnips[indexPath.row];
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

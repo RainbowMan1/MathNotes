@@ -7,8 +7,9 @@
 //
 
 #import "NotesEditorViewController.h"
+#import "EquationPickerViewController.h"
 
-@interface NotesEditorViewController ()
+@interface NotesEditorViewController ()<EquationPickerDelegate>
 @end
 
 @implementation NotesEditorViewController
@@ -44,5 +45,27 @@
     noteNamebutton.frame = CGRectMake(0, 0, self.view.frame.size.width, 64.0);
     self.navigationItem.titleView =noteNamebutton;
 }
+- (IBAction)addEquation:(id)sender {
+}
+
+- (void)didPickEquationSnip:(nonnull EquationSnip *)equationSnip {
+    NSLog(@"%@",[equationSnip.equationImage url]);
+    [self prepareInsertWithCompletion:^(NSString *result, NSError *error) {
+        if (error==nil){
+            [self insertImage:[equationSnip.equationImage url]alt:@"Equation"];
+        }
+    }];
+}
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    EquationPickerViewController *equationPickerVC = [segue destinationViewController];
+    equationPickerVC.delegate = self;
+}
+
+
 
 @end

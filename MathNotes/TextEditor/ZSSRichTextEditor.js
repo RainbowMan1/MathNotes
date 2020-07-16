@@ -113,17 +113,17 @@ zss_editor.setPlaceholder = function(placeholder) {
     var editor = $('#zss_editor_content');
     
     //set placeHolder
-	editor.attr("placeholder",placeholder);
-	
-    //set focus			 
-	editor.focusout(function(){
-        var element = $(this);        
+    editor.attr("placeholder",placeholder);
+    
+    //set focus
+    editor.focusout(function(){
+        var element = $(this);
         if (!element.text().trim().length) {
             element.empty();
         }
     });
-	
-	
+    
+    
     
 }
 
@@ -147,7 +147,7 @@ zss_editor.getCaretYPosition = function() {
 
 zss_editor.calculateEditorHeightWithCaretPosition = function() {
     
-    var padding = 50;
+    var padding =160;
     var c = zss_editor.getCaretYPosition();
     
     var editor = $('#zss_editor_content');
@@ -329,23 +329,23 @@ zss_editor.setOutdent = function() {
 
 zss_editor.setFontFamily = function(fontFamily) {
 
-	zss_editor.restorerange();
-	document.execCommand("styleWithCSS", null, true);
-	document.execCommand("fontName", false, fontFamily);
-	document.execCommand("styleWithCSS", null, false);
-	zss_editor.enabledEditingItems();
-		
+    zss_editor.restorerange();
+    document.execCommand("styleWithCSS", null, true);
+    document.execCommand("fontName", false, fontFamily);
+    document.execCommand("styleWithCSS", null, false);
+    zss_editor.enabledEditingItems();
+        
 }
 
 zss_editor.setTextColor = function(color) {
-		
+        
     zss_editor.restorerange();
     document.execCommand("styleWithCSS", null, true);
     document.execCommand('foreColor', false, color);
     document.execCommand("styleWithCSS", null, false);
     zss_editor.enabledEditingItems();
     // document.execCommand("removeFormat", false, "foreColor"); // Removes just foreColor
-	
+    
 }
 
 zss_editor.setBackgroundColor = function(color) {
@@ -479,7 +479,7 @@ zss_editor.insertImage = function(url, alt) {
 
 zss_editor.insertImageBase64String = function(imageBase64String, alt) {
     zss_editor.restorerange();
-    var html ="<img src=\"data:image/jpeg;base64,"+imageBase64String+"\" alt=""+alt+"" />";
+    var html = '<img src="data:image/jpeg;base64,'+imageBase64String+'" alt="'+alt+'" />';
     zss_editor.insertHTML(html);
     zss_editor.enabledEditingItems();
 }
@@ -610,13 +610,13 @@ zss_editor.enabledEditingItems = function(e) {
         if (textColor.length != 0 && textColor != 'rgba(0, 0, 0, 0)' && textColor != 'rgb(0, 0, 0)' && textColor != 'transparent') {
             items.push('textColor');
         }
-		
-		//Fonts
-		var font = t.css('font-family');
-		if (font.length != 0 && font != 'Arial, Helvetica, sans-serif') {
-			items.push('fonts');	
-		}
-		
+        
+        //Fonts
+        var font = t.css('font-family');
+        if (font.length != 0 && font != 'Arial, Helvetica, sans-serif') {
+            items.push('fonts');
+        }
+        
         // Link
         if (nodeName == 'a') {
             zss_editor.currentEditingLink = t;
@@ -669,6 +669,7 @@ zss_editor.focusEditor = function() {
     // the following was taken from http://stackoverflow.com/questions/1125292/how-to-move-cursor-to-end-of-contenteditable-entity/3866442#3866442
     // and ensures we move the cursor to the end of the editor
     var editor = $('#zss_editor_content');
+    zss_editor.debug('we are here');
     var range = document.createRange();
     range.selectNodeContents(editor.get(0));
     range.collapse(false);

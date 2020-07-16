@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		B8DB05E7878B38212ACBE3EA /* Pods_MathNotesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A598F4C2EC6F95A1E1B18213 /* Pods_MathNotesTests.framework */; };
 		CDE404F6A5824D95EF610203 /* Pods_MathNotes_MathNotesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9703A58FF549D3A24211C2AA /* Pods_MathNotes_MathNotesUITests.framework */; };
+		DB388CA324C0BC6C009F0046 /* EquationPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB388CA224C0BC6C009F0046 /* EquationPickerViewController.m */; };
 		DB759BE724BE1CC0007932E9 /* ZSSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB759BE224BE1CC0007932E9 /* ZSSTextView.m */; };
 		DB759BE824BE1CC0007932E9 /* jQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759BE024BE1CC0007932E9 /* jQuery.js */; };
 		DB759BE924BE1CC0007932E9 /* JSBeautifier.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759BE624BE1CC0007932E9 /* JSBeautifier.js */; };
 		DB759BEA24BE1CC0007932E9 /* ZSSRichTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = DB759BE424BE1CC0007932E9 /* ZSSRichTextEditor.m */; };
 		DB759BEB24BE1CC0007932E9 /* ZSSFontsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB759B7824BE1CBF007932E9 /* ZSSFontsViewController.m */; };
-		DB759BEC24BE1CC0007932E9 /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759B8F24BE1CBF007932E9 /* ZSSRichTextEditor.js */; };
 		DB759BED24BE1CC0007932E9 /* ZSSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB759BE324BE1CC0007932E9 /* ZSSBarButtonItem.m */; };
 		DB759BEE24BE1E14007932E9 /* CYRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DB759B8224BE1CBF007932E9 /* CYRToken.m */; };
 		DB759BEF24BE1E14007932E9 /* CYRTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = DB759B8324BE1CBF007932E9 /* CYRTextStorage.m */; };
@@ -103,6 +103,7 @@
 		DB759C4624BE352A007932E9 /* ZSSredo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB759BDE24BE1CC0007932E9 /* ZSSredo@2x.png */; };
 		DB759C4724BE352A007932E9 /* ZSSimage.png in Resources */ = {isa = PBXBuildFile; fileRef = DB759BDF24BE1CC0007932E9 /* ZSSimage.png */; };
 		DB759C4824BE353F007932E9 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = DB759B9124BE1CBF007932E9 /* editor.html */; };
+		DBA65ECD24BFA42D00429B7D /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759B8F24BE1CBF007932E9 /* ZSSRichTextEditor.js */; };
 		DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */; };
 		DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */; };
 		DBAB6F1624BCBD2C00AEE9B0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */; };
@@ -148,6 +149,8 @@
 		A598F4C2EC6F95A1E1B18213 /* Pods_MathNotesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathNotesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathNotes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32AA873E18E4F6B343342FC /* Pods-MathNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes.release.xcconfig"; path = "Target Support Files/Pods-MathNotes/Pods-MathNotes.release.xcconfig"; sourceTree = "<group>"; };
+		DB388CA124C0BC6C009F0046 /* EquationPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationPickerViewController.h; sourceTree = "<group>"; };
+		DB388CA224C0BC6C009F0046 /* EquationPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationPickerViewController.m; sourceTree = "<group>"; };
 		DB759B7824BE1CBF007932E9 /* ZSSFontsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZSSFontsViewController.m; sourceTree = "<group>"; };
 		DB759B7A24BE1CBF007932E9 /* HRColorCursor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRColorCursor.h; sourceTree = "<group>"; };
 		DB759B7B24BE1CBF007932E9 /* HRColorUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRColorUtil.h; sourceTree = "<group>"; };
@@ -544,6 +547,8 @@
 				DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */,
 				DBAB6F5824BD060000AEE9B0 /* NotesEditorViewController.h */,
 				DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */,
+				DB388CA124C0BC6C009F0046 /* EquationPickerViewController.h */,
+				DB388CA224C0BC6C009F0046 /* EquationPickerViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA65ECD24BFA42D00429B7D /* ZSSRichTextEditor.js in Resources */,
 				DB759C4824BE353F007932E9 /* editor.html in Resources */,
 				DB759BFC24BE352A007932E9 /* ZSStable@2x.png in Resources */,
 				DB759BFD24BE352A007932E9 /* ZSSoutdent@2x.png in Resources */,
@@ -766,7 +772,6 @@
 				DB759C4624BE352A007932E9 /* ZSSredo@2x.png in Resources */,
 				DB759C4724BE352A007932E9 /* ZSSimage.png in Resources */,
 				DBAB6F1E24BCBD2D00AEE9B0 /* LaunchScreen.storyboard in Resources */,
-				DB759BEC24BE1CC0007932E9 /* ZSSRichTextEditor.js in Resources */,
 				DB759BE924BE1CC0007932E9 /* JSBeautifier.js in Resources */,
 				DB759BE824BE1CC0007932E9 /* jQuery.js in Resources */,
 				DBAB6F1B24BCBD2D00AEE9B0 /* Assets.xcassets in Resources */,
@@ -912,6 +917,7 @@
 				DBAB6F5124BCEFE200AEE9B0 /* NotesDashboardViewController.m in Sources */,
 				DBAB6F4E24BCE7A800AEE9B0 /* NoteCell.m in Sources */,
 				DB759BF524BE1E14007932E9 /* HRBrightnessCursor.m in Sources */,
+				DB388CA324C0BC6C009F0046 /* EquationPickerViewController.m in Sources */,
 				DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */,
 				DB759BEF24BE1E14007932E9 /* CYRTextStorage.m in Sources */,
 				DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */,

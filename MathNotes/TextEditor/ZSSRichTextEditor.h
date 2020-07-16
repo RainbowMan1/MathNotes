@@ -155,6 +155,9 @@ static NSString * _Nonnull const ZSSEditorContent = @"document.activeElement.id=
  */
 - (void)showInsertImageDialogWithLink:(NSString *)url alt:(NSString *)alt;
 
+
+- (void) prepareInsertWithCompletion:(void (^)(NSString *result, NSError *error))completion;
+    
 /**
  *  Inserts an image
  *
