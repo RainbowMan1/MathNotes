@@ -6,20 +6,24 @@ PODS:
     - Bolts/Tasks (= 1.9.1)
   - Parse/UI (1.18.0):
     - Parse/Core
+  - SideMenu (6.4.8)
 
 DEPENDENCIES:
   - Parse
   - Parse/UI
+  - SideMenu
 
 SPEC REPOS:
   trunk:
     - Bolts
     - Parse
+    - SideMenu
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
+  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
 
-PODFILE CHECKSUM: 12b0c5f59a097c69e3ef79a6c6b64a06a9c66089
+PODFILE CHECKSUM: 0b1759a79dcb4c56db479fe17cb3fce91cea8f12
 
 COCOAPODS: 1.9.3

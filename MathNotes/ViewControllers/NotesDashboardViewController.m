@@ -12,6 +12,7 @@
 #import "SceneDelegate.h"
 #import "NotesEditorViewController.h"
 #import "ZSSDemoViewController.h"
+@import SideMenu;
 
 @interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,6 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setUpSideMenu];
+    
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
     [self fetchNotes];
@@ -32,31 +36,14 @@
     [self.tableView addSubview:self.refreshControl];
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
+    
+    
 }
 
-- (IBAction)logOut:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you Sure?"
-                                                                       message:@"Do you want to log out?"
-                                                                preferredStyle:(UIAlertControllerStyleActionSheet)];
-        UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Log Out"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-            [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {}];
-            
-             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController *loginNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            sceneDelegate.window.rootViewController = loginNavigationController;
-        }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No"
-      style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction * _Nonnull action) {}];
-    
-    [yesAction setValue:[UIColor redColor] forKey:@"titleTextColor"];
-        
-        [alert addAction:cancelAction];
-    [alert addAction:yesAction];
-        [self presentViewController:alert animated:YES completion:^{}];
+- (void)setUpSideMenu{
+    SideMenuManager.defaultManager.leftMenuNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MenuNavigationController"];
+    [SideMenuManager.defaultManager addPanGestureToPresentToView:self.navigationController.navigationBar];
+    [SideMenuManager.defaultManager addScreenEdgePanGesturesToPresentToView:self.tableView forMenu:PresentDirectionLeft];
 }
 
 - (void)fetchNotes {

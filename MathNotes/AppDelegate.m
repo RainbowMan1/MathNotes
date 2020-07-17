@@ -23,8 +23,9 @@
         }];
         
         [Parse initializeWithConfiguration:config];
+    
+    return YES;
         
-        return YES;
 }
 
 

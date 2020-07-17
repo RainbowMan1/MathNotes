@@ -9,6 +9,7 @@
 #import "EquationSnipDashboardViewController.h"
 #import "EquationSnip.h"
 #import "EquationSnipCell.h"
+@import SideMenu;
 
 @interface EquationSnipDashboardViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpSideMenu];
+    
     self.imagePicker =[UIImagePickerController new];
     [self.imagePicker setDelegate:self];
     self.imagePicker.allowsEditing = YES;
@@ -36,13 +39,13 @@
        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
     
-    
-    
     [self fetchEquationSnips];
 }
 
-- (IBAction)closeView:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)setUpSideMenu{
+    SideMenuManager.defaultManager.leftMenuNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MenuNavigationController"];
+    [SideMenuManager.defaultManager addPanGestureToPresentToView:self.navigationController.navigationBar];
+    [SideMenuManager.defaultManager addScreenEdgePanGesturesToPresentToView:self.tableView forMenu:PresentDirectionLeft];
 }
 
 
@@ -68,7 +71,6 @@
 
 - (IBAction)equationFromPicker:(id)sender {
     self.imagePicker.sourceType =UIImagePickerControllerSourceTypeCamera;
-    
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
@@ -102,5 +104,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 @end
