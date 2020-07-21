@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - Bolts/Tasks (1.9.1)
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
@@ -7,23 +22,30 @@ PODS:
   - Parse/UI (1.18.0):
     - Parse/Core
   - SideMenu (6.4.8)
+  - TOCropViewController (2.5.4)
 
 DEPENDENCIES:
+  - AFNetworking
   - Parse
   - Parse/UI
   - SideMenu
+  - TOCropViewController
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - Bolts
     - Parse
     - SideMenu
+    - TOCropViewController
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
+  TOCropViewController: 2a1ae1242600b1f2d996fd91a5268b2309a33b5c
 
-PODFILE CHECKSUM: 0b1759a79dcb4c56db479fe17cb3fce91cea8f12
+PODFILE CHECKSUM: 9b3233bf48bc610a133cb3a5eb297f88193ffa65
 
 COCOAPODS: 1.9.3
