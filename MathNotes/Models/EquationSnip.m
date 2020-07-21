@@ -7,6 +7,7 @@
 //
 
 #import "EquationSnip.h"
+#import "APIManager.h"
 
 @implementation EquationSnip
 
@@ -15,6 +16,7 @@
 @dynamic author;
 @dynamic equationImage;
 @dynamic laTeXcode;
+@dynamic confidence;
 @dynamic createdAt;
 @dynamic updatedAt;
 
@@ -27,8 +29,17 @@
     newEquationSnip.author = [PFUser currentUser];
     newEquationSnip.equationSnipName = name;
     newEquationSnip.equationImage = [self getPFFileFromImage:image];
+    [APIManager getLatexCodeForImage:image withSuccessCompletion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject[@"text"]);
+        NSLog(@"%@",responseObject[@"latex_styled"]);
+        
+        NSLog(@"%@",responseObject[@"confidence"]);
+        NSLog(@"%@",[responseObject[@"confidence"] class]);
+        newEquationSnip.laTeXcode = responseObject[@"text"];
+        newEquationSnip.confidence = responseObject[@"confidence"];
+        [newEquationSnip saveInBackgroundWithBlock: completion];
+    }];
     
-    [newEquationSnip saveInBackgroundWithBlock: completion];
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {

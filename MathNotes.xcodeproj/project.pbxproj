@@ -123,6 +123,7 @@
 		DBE2CD8024C2021F0028EFDE /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD7F24C2021F0028EFDE /* APIManager.m */; };
 		DBE2CD8324C20E640028EFDE /* EquationSnipsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */; };
 		DBE2CD8624C21D670028EFDE /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD8524C21D670028EFDE /* MenuViewController.m */; };
+		DBF3270024C5F2960087F542 /* APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF326FF24C5F2960087F542 /* APIKeys.m */; };
 		E20A8A2DBE6E87C39486D3D4 /* Pods_MathNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */; };
 /* End PBXBuildFile section */
 
@@ -301,6 +302,8 @@
 		DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnipsDetailViewController.m; sourceTree = "<group>"; };
 		DBE2CD8424C21D670028EFDE /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		DBE2CD8524C21D670028EFDE /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		DBF326FE24C5F21F0087F542 /* APIKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIKeys.h; sourceTree = "<group>"; };
+		DBF326FF24C5F2960087F542 /* APIKeys.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIKeys.m; sourceTree = "<group>"; };
 		DF5F15AAB76FC3711DFCEABF /* Pods-MathNotes-MathNotesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes-MathNotesUITests.release.xcconfig"; path = "Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -520,6 +523,8 @@
 				DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */,
 				DBE2CD7E24C202110028EFDE /* APIManager.h */,
 				DBE2CD7F24C2021F0028EFDE /* APIManager.m */,
+				DBF326FE24C5F21F0087F542 /* APIKeys.h */,
+				DBF326FF24C5F2960087F542 /* APIKeys.m */,
 				DBAB6F1724BCBD2C00AEE9B0 /* Main.storyboard */,
 				DBAB6F1A24BCBD2D00AEE9B0 /* Assets.xcassets */,
 				DBAB6F1C24BCBD2D00AEE9B0 /* LaunchScreen.storyboard */,
@@ -918,6 +923,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBF3270024C5F2960087F542 /* APIKeys.m in Sources */,
 				DBAB6F5424BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m in Sources */,
 				DB759BEA24BE1CC0007932E9 /* ZSSRichTextEditor.m in Sources */,
 				DBAB6F1624BCBD2C00AEE9B0 /* LoginViewController.m in Sources */,

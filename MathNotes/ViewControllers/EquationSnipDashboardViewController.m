@@ -9,9 +9,10 @@
 #import "EquationSnipDashboardViewController.h"
 #import "EquationSnip.h"
 #import "EquationSnipCell.h"
+#import "TOCropViewController.h"
 @import SideMenu;
 
-@interface EquationSnipDashboardViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface EquationSnipDashboardViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, TOCropViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -28,7 +29,7 @@
     
     self.imagePicker =[UIImagePickerController new];
     [self.imagePicker setDelegate:self];
-    self.imagePicker.allowsEditing = YES;
+    self.imagePicker.allowsEditing = NO;
     
     self.refreshControl =[[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchEquationSnips) forControlEvents:UIControlEventValueChanged];
@@ -75,11 +76,25 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    //UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     
-    [EquationSnip postEquationSnip:@"dummy" withImage:editedImage withCompletion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self presentCropViewController:originalImage];
+    
+}
+
+- (void)presentCropViewController:(UIImage*)image {
+  
+  TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
+  cropViewController.delegate = self;
+  [self presentViewController:cropViewController animated:YES completion:nil];
+}
+
+- (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
+{
+    [EquationSnip postEquationSnip:@"dummy" withImage:image withCompletion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 #pragma mark - Table view data source
