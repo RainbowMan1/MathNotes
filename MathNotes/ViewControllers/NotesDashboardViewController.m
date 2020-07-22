@@ -11,12 +11,12 @@
 #import "NoteCell.h"
 #import "SceneDelegate.h"
 #import "NotesEditorViewController.h"
+#import "CreateNewNoteViewController.h"
 #import "ZSSDemoViewController.h"
-@import SideMenu;
 
-@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCreatorDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *notes;
+@property (strong, nonatomic) NSMutableArray *notes;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
@@ -26,24 +26,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setUpSideMenu];
-    
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
+    
     [self fetchNotes];
+    
     self.refreshControl =[[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchNotes) forControlEvents:UIControlEventValueChanged];
+    
     [self.tableView addSubview:self.refreshControl];
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
     
-    
 }
 
-- (void)setUpSideMenu{
-    SideMenuManager.defaultManager.leftMenuNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MenuNavigationController"];
-    [SideMenuManager.defaultManager addPanGestureToPresentToView:self.navigationController.navigationBar];
-    [SideMenuManager.defaultManager addScreenEdgePanGesturesToPresentToView:self.tableView forMenu:PresentDirectionLeft];
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 - (void)fetchNotes {
@@ -53,7 +51,7 @@
         // fetch data asynchronously
         [query findObjectsInBackgroundWithBlock:^(NSArray *notesArray, NSError *error) {
             if (notesArray != nil) {
-                self.notes = notesArray;
+                self.notes = [notesArray mutableCopy];
                 [self.tableView reloadData];
                 [self.refreshControl endRefreshing];
             } else {
@@ -78,15 +76,16 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"NewNote"]){
+    if ([segue.identifier isEqualToString:@"NewNote"]) {
         NotesEditorViewController *noteEditor = [segue destinationViewController];
-        noteEditor.note = [Note new];
-        noteEditor.note.noteName = @"Untitled Note";
+        Note *newNote = [Note new];
+        newNote.noteName = @"Untitled Note";
+        noteEditor.note = newNote;
     }
-    else if ([segue.identifier isEqualToString:@"EditNote"]){
+    else if ([segue.identifier isEqualToString:@"EditNote"]) {
         NotesEditorViewController *noteEditor = [segue destinationViewController];
         NoteCell *selectedcell = (NoteCell*) sender;
-        NSLog(@"%@",selectedcell.note.htmlText);
+        //NSLog(@"%@",selectedcell.note.htmlText);
         noteEditor.note = selectedcell.note;
     }
 }

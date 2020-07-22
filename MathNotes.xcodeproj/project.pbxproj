@@ -103,6 +103,7 @@
 		DB759C4624BE352A007932E9 /* ZSSredo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB759BDE24BE1CC0007932E9 /* ZSSredo@2x.png */; };
 		DB759C4724BE352A007932E9 /* ZSSimage.png in Resources */ = {isa = PBXBuildFile; fileRef = DB759BDF24BE1CC0007932E9 /* ZSSimage.png */; };
 		DB759C4824BE353F007932E9 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = DB759B9124BE1CBF007932E9 /* editor.html */; };
+		DB9C101F24C744BC0093F66C /* CreateNewEquationSnipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9C101E24C744BC0093F66C /* CreateNewEquationSnipViewController.m */; };
 		DBA65ECD24BFA42D00429B7D /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759B8F24BE1CBF007932E9 /* ZSSRichTextEditor.js */; };
 		DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */; };
 		DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */; };
@@ -122,7 +123,6 @@
 		DBAB6F5A24BD060000AEE9B0 /* NotesEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */; };
 		DBE2CD8024C2021F0028EFDE /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD7F24C2021F0028EFDE /* APIManager.m */; };
 		DBE2CD8324C20E640028EFDE /* EquationSnipsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */; };
-		DBE2CD8624C21D670028EFDE /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD8524C21D670028EFDE /* MenuViewController.m */; };
 		DBF3270024C5F2960087F542 /* APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF326FF24C5F2960087F542 /* APIKeys.m */; };
 		E20A8A2DBE6E87C39486D3D4 /* Pods_MathNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */; };
 /* End PBXBuildFile section */
@@ -264,6 +264,8 @@
 		DB759BE424BE1CC0007932E9 /* ZSSRichTextEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZSSRichTextEditor.m; sourceTree = "<group>"; };
 		DB759BE524BE1CC0007932E9 /* ZSSBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZSSBarButtonItem.h; sourceTree = "<group>"; };
 		DB759BE624BE1CC0007932E9 /* JSBeautifier.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JSBeautifier.js; sourceTree = "<group>"; };
+		DB9C101D24C744BC0093F66C /* CreateNewEquationSnipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateNewEquationSnipViewController.h; sourceTree = "<group>"; };
+		DB9C101E24C744BC0093F66C /* CreateNewEquationSnipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateNewEquationSnipViewController.m; sourceTree = "<group>"; };
 		DBAB6F0B24BCBD2C00AEE9B0 /* MathNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBAB6F0E24BCBD2C00AEE9B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -300,8 +302,6 @@
 		DBE2CD7F24C2021F0028EFDE /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		DBE2CD8124C20E640028EFDE /* EquationSnipsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationSnipsDetailViewController.h; sourceTree = "<group>"; };
 		DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnipsDetailViewController.m; sourceTree = "<group>"; };
-		DBE2CD8424C21D670028EFDE /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		DBE2CD8524C21D670028EFDE /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		DBF326FE24C5F21F0087F542 /* APIKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIKeys.h; sourceTree = "<group>"; };
 		DBF326FF24C5F2960087F542 /* APIKeys.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIKeys.m; sourceTree = "<group>"; };
 		DF5F15AAB76FC3711DFCEABF /* Pods-MathNotes-MathNotesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes-MathNotesUITests.release.xcconfig"; path = "Target Support Files/Pods-MathNotes-MathNotesUITests/Pods-MathNotes-MathNotesUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -488,6 +488,20 @@
 			path = "Third Party";
 			sourceTree = "<group>";
 		};
+		DB9C102224C7575D0093F66C /* EquationSnips */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = EquationSnips;
+			sourceTree = "<group>";
+		};
+		DB9C102324C7577C0093F66C /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
 		DBAB6F0224BCBD2C00AEE9B0 = {
 			isa = PBXGroup;
 			children = (
@@ -555,20 +569,22 @@
 		DBAB6F4324BCCE3500AEE9B0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DBAB6F1424BCBD2C00AEE9B0 /* LoginViewController.h */,
-				DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */,
+				DB9C102324C7577C0093F66C /* Notes */,
 				DBAB6F4F24BCEFE200AEE9B0 /* NotesDashboardViewController.h */,
 				DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */,
-				DBAB6F5224BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.h */,
-				DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */,
 				DBAB6F5824BD060000AEE9B0 /* NotesEditorViewController.h */,
 				DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */,
 				DB388CA124C0BC6C009F0046 /* EquationPickerViewController.h */,
 				DB388CA224C0BC6C009F0046 /* EquationPickerViewController.m */,
+				DB9C102224C7575D0093F66C /* EquationSnips */,
+				DBAB6F5224BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.h */,
+				DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */,
 				DBE2CD8124C20E640028EFDE /* EquationSnipsDetailViewController.h */,
 				DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */,
-				DBE2CD8424C21D670028EFDE /* MenuViewController.h */,
-				DBE2CD8524C21D670028EFDE /* MenuViewController.m */,
+				DB9C101D24C744BC0093F66C /* CreateNewEquationSnipViewController.h */,
+				DB9C101E24C744BC0093F66C /* CreateNewEquationSnipViewController.m */,
+				DBAB6F1424BCBD2C00AEE9B0 /* LoginViewController.h */,
+				DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -946,11 +962,11 @@
 				DB759BF324BE1E14007932E9 /* HRColorPickerView.m in Sources */,
 				DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */,
 				DBAB6F5724BCFF1700AEE9B0 /* EquationSnipCell.m in Sources */,
-				DBE2CD8624C21D670028EFDE /* MenuViewController.m in Sources */,
 				DBE2CD8324C20E640028EFDE /* EquationSnipsDetailViewController.m in Sources */,
 				DBAB6F2124BCBD2D00AEE9B0 /* main.m in Sources */,
 				DB759BE724BE1CC0007932E9 /* ZSSTextView.m in Sources */,
 				DB759BED24BE1CC0007932E9 /* ZSSBarButtonItem.m in Sources */,
+				DB9C101F24C744BC0093F66C /* CreateNewEquationSnipViewController.m in Sources */,
 				DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */,
 				DBAB6F5A24BD060000AEE9B0 /* NotesEditorViewController.m in Sources */,
 			);

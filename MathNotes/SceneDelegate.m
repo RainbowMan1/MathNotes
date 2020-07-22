@@ -20,7 +20,7 @@
     PFUser *user = [PFUser currentUser];
     if (user != nil) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UINavigationController *notesDashboardNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"NotesDashboardNavigationController"];
+        UINavigationController *notesDashboardNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"DashboardNavigationController"];
         self.window.rootViewController = notesDashboardNavigationController;
     }
 }

@@ -8,9 +8,9 @@ target 'MathNotes' do
   # Pods for MathNotes
   pod 'Parse'
   pod 'Parse/UI'
-  pod 'SideMenu'
   pod 'AFNetworking'
   pod 'TOCropViewController'
+  pod 'iosMath'  
   target 'MathNotesTests' do
     inherit! :search_paths
     # Pods for testing

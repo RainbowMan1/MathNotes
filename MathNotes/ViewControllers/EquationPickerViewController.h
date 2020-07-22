@@ -16,8 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didPickEquationSnip:(EquationSnip *)equationSnip;
 
 @end
+
 @interface EquationPickerViewController : UIViewController
+
 @property (nonatomic, weak) id<EquationPickerDelegate> delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

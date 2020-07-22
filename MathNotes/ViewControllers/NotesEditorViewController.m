@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tabBarController.tabBar setHidden:YES];
     // HTML Content to set in the editor
     self.formatHTML = NO;
     
@@ -24,7 +25,7 @@
     [self.noteNameButton setTitle:self.note.noteName forState:UIControlStateNormal];
     [self.noteNameButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.noteNameButton addTarget:self action:@selector(changeNoteName) forControlEvents:UIControlEventTouchUpInside];
-    self.noteNameButton.frame = CGRectMake(0, 0, self.view.frame.size.width, 64.0);
+    self.noteNameButton.frame = CGRectMake(0, 0, self.view.frame.size.width/2, 64.0);
     self.navigationItem.titleView =self.noteNameButton;
     
     [self setHTML:self.note.htmlText];

@@ -9,10 +9,9 @@
 #import "EquationSnipDashboardViewController.h"
 #import "EquationSnip.h"
 #import "EquationSnipCell.h"
-#import "TOCropViewController.h"
-@import SideMenu;
+#import "EquationSnipsDetailViewController.h"
 
-@interface EquationSnipDashboardViewController ()<UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, TOCropViewControllerDelegate>
+@interface EquationSnipDashboardViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -25,11 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setUpSideMenu];
     
-    self.imagePicker =[UIImagePickerController new];
-    [self.imagePicker setDelegate:self];
-    self.imagePicker.allowsEditing = NO;
     
     self.refreshControl =[[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchEquationSnips) forControlEvents:UIControlEventValueChanged];
@@ -43,12 +38,9 @@
     [self fetchEquationSnips];
 }
 
-- (void)setUpSideMenu{
-    SideMenuManager.defaultManager.leftMenuNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MenuNavigationController"];
-    [SideMenuManager.defaultManager addPanGestureToPresentToView:self.navigationController.navigationBar];
-    [SideMenuManager.defaultManager addScreenEdgePanGesturesToPresentToView:self.tableView forMenu:PresentDirectionLeft];
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
 }
-
 
 - (void)fetchEquationSnips{
     PFQuery *query = [PFQuery queryWithClassName:@"EquationSnips"];
@@ -65,37 +57,6 @@
            }];
 }
 
-- (IBAction)equationFromCamera:(id)sender {
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:self.imagePicker animated:YES completion:nil];
-}
-
-- (IBAction)equationFromPicker:(id)sender {
-    self.imagePicker.sourceType =UIImagePickerControllerSourceTypeCamera;
-    [self presentViewController:self.imagePicker animated:YES completion:nil];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self presentCropViewController:originalImage];
-    
-}
-
-- (void)presentCropViewController:(UIImage*)image {
-  
-  TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
-  cropViewController.delegate = self;
-  [self presentViewController:cropViewController animated:YES completion:nil];
-}
-
-- (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
-{
-    [EquationSnip postEquationSnip:@"dummy" withImage:image withCompletion:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-}
 
 #pragma mark - Table view data source
 
@@ -110,13 +71,18 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"EquationDetail"]) {
+        EquationSnipCell *selectedCell = (EquationSnipCell*) sender;
+        EquationSnipsDetailViewController *destination = [segue destinationViewController];
+        destination.equationSnip = selectedCell.equationSnip;
+    }
 }
-*/
+
 @end
