@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString * _Nonnull equationSnipName;
 @property (nonatomic, strong) PFUser * _Nonnull author;
 @property (nonatomic, strong) PFFileObject * _Nonnull equationImage;
+@property (nonatomic, strong) NSString * _Nullable htmlcode;
 @property (nonatomic, strong) NSString * _Nullable laTeXcode;
 @property (nonatomic, strong) NSNumber * _Nullable confidence;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull createdAt;

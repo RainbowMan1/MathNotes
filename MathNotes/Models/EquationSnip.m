@@ -15,6 +15,7 @@
 @dynamic equationSnipName;
 @dynamic author;
 @dynamic equationImage;
+@dynamic htmlcode;
 @dynamic laTeXcode;
 @dynamic confidence;
 @dynamic createdAt;
@@ -32,10 +33,10 @@
     [APIManager getLatexCodeForImage:image withSuccessCompletion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject[@"text"]);
         NSLog(@"%@",responseObject[@"latex_styled"]);
-        
         NSLog(@"%@",responseObject[@"confidence"]);
-        NSLog(@"%@",[responseObject[@"confidence"] class]);
-        newEquationSnip.laTeXcode = responseObject[@"text"];
+        
+        newEquationSnip.htmlcode = responseObject[@"text"];
+        newEquationSnip.laTeXcode =responseObject[@"latex_styled"];
         newEquationSnip.confidence = responseObject[@"confidence"];
         [newEquationSnip saveInBackgroundWithBlock: completion];
     }];
