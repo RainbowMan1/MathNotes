@@ -77,22 +77,24 @@ zss_editor.init = function() {
 }//end
 
 zss_editor.updateEnd = function() {
-    var html =document.getElementById("zss_editor_content").innerHTML;
+    var editor =document.getElementById("zss_editor_content");
     zss_editor.backuprange();
-    const possibleClassnames = ["mi", "mo", "mn", "math"];
-    zss_editor.debug(zss_editor.currentSelection.startContainer.parentElement.className);
-    if (((html.substring(html.length - 15))!="<div><br></div>") && possibleClassnames.includes(zss_editor.currentSelection.startContainer.parentElement.className)){
-        html = html + "<div><br></div>";
-//        zss_editor.debug("if works");
-
-        zss_editor.setHTML(html);
-        var selection = window.getSelection();
-        var range = document.createRange();
-        zss_editor.debug(zss_editor.currentSelection.startContainer.parentElement.className);
-        range.setStartBefore(zss_editor.currentSelection.startContainer);
-        range.setEndBefore(zss_editor.currentSelection.endContainer);
-        selection.addRange(range);
-        zss_editor.focusEditor();
+    zss_editor.debug(editor.lastChild.lastChild.tagName);
+    if (editor.lastChild.tagName != "DIV" || editor.lastChild.lastChild.tagName != "BR"){
+    const possibleClassNames = ["mi", "mo", "mn", "math"];
+        if (possibleClassNames.includes(zss_editor.currentSelection.startContainer.parentElement.className)){
+            var div =document.createElement("div");
+            var breakLine = document.createElement("BR");
+            div.appendChild(breakLine);
+            editor.appendChild(div);
+            var selection = window.getSelection();
+            var range = document.createRange();
+            zss_editor.debug(zss_editor.currentSelection.startContainer.parentElement.className);
+            range.setStartBefore(zss_editor.currentSelection.startContainer);
+            range.setEndBefore(zss_editor.currentSelection.endContainer);
+            selection.addRange(range);
+            zss_editor.focusEditor();
+        }
     }
 }
 zss_editor.updateOffset = function() {
