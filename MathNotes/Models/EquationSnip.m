@@ -35,11 +35,12 @@
         NSLog(@"%@",responseObject[@"latex_styled"]);
         NSLog(@"%@",responseObject[@"confidence"]);
         
-        newEquationSnip.htmlcode = responseObject[@"text"];
-        newEquationSnip.laTeXcode =responseObject[@"latex_styled"];
+        newEquationSnip.htmlcode = [responseObject[@"text"] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+        newEquationSnip.laTeXcode =[responseObject[@"latex_styled"] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
         newEquationSnip.confidence = responseObject[@"confidence"];
         [newEquationSnip saveInBackgroundWithBlock: completion];
     }];
+    
     
 }
 

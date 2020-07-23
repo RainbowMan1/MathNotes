@@ -47,9 +47,10 @@ zss_editor.init = function() {
                                 });
     
     $(document).on('selectionchange',function(e){
-                   zss_editor.calculateEditorHeightWithCaretPosition();
-                   zss_editor.setScrollPosition();
-                   zss_editor.enabledEditingItems(e);
+                    zss_editor.calculateEditorHeightWithCaretPosition();
+                    zss_editor.setScrollPosition();
+                    zss_editor.enabledEditingItems(e);
+                    zss_editor.updateEnd();
                    });
     
     $(window).on('scroll', function(e) {
@@ -74,6 +75,15 @@ zss_editor.init = function() {
     
 }//end
 
+zss_editor.updateEnd = async function() {
+    await MathJax.typesetPromise();
+    var html =document.getElementById("zss_editor_content").innerHTML;
+//    zss_editor.debug(html);
+//    if ((html.substring(html.length - 21))!="</div><div><br></div>"){
+//        html = html.concat("</div><div><br></div>";
+//        zss_editor.setHTML(html);
+//    }
+}
 zss_editor.updateOffset = function() {
     
     if (!zss_editor.updateScrollOffset)
@@ -669,7 +679,6 @@ zss_editor.focusEditor = function() {
     // the following was taken from http://stackoverflow.com/questions/1125292/how-to-move-cursor-to-end-of-contenteditable-entity/3866442#3866442
     // and ensures we move the cursor to the end of the editor
     var editor = $('#zss_editor_content');
-    zss_editor.debug('we are here');
     var range = document.createRange();
     range.selectNodeContents(editor.get(0));
     range.collapse(false);

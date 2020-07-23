@@ -503,6 +503,11 @@ static CGFloat kDefaultScale = 0.5;
     NSData *htmlData = [NSData dataWithContentsOfFile:filePath];
     NSString *htmlString = [[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
     
+    //Add MathJax.js to the html file
+//    NSString *mathJax = [bundle pathForResource:@"MathJax" ofType:@"js"];
+//    NSString *mathJaxString = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:mathJax] encoding:NSUTF8StringEncoding];
+//    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"<!-- MathJax -->" withString:mathJaxString];
+
     //Add jQuery.js to the html file
     NSString *jquery = [bundle pathForResource:@"jQuery" ofType:@"js"];
     NSString *jqueryString = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:jquery] encoding:NSUTF8StringEncoding];
@@ -1170,20 +1175,21 @@ static CGFloat kDefaultScale = 0.5;
 }
 
 - (void)showHTMLSource:(ZSSBarButtonItem *)barButtonItem {
-    if (self.sourceView.hidden) {
+    ZSSTextView *sourceView = self.sourceView;
+    if (sourceView.hidden) {
         
         [self getHTML:^(NSString *result, NSError * _Nullable error) {
-            self.sourceView.text = result;
+            sourceView.text = result;
         }];
         
-        self.sourceView.hidden = NO;
+        sourceView.hidden = NO;
         barButtonItem.tintColor = [UIColor blackColor];
         self.editorView.hidden = YES;
         [self enableToolbarItems:NO];
     } else {
-        [self setHTML:self.sourceView.text];
+        [self setHTML:sourceView.text];
         barButtonItem.tintColor = [self barButtonItemDefaultColor];
-        self.sourceView.hidden = YES;
+        sourceView.hidden = YES;
         self.editorView.hidden = NO;
         [self enableToolbarItems:YES];
     }
@@ -2309,11 +2315,13 @@ static CGFloat kDefaultScale = 0.5;
 #pragma mark - Utilities
 
 - (NSString *)removeQuotesFromHTML:(NSString *)html {
-    html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    html = [html stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+//    html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
     html = [html stringByReplacingOccurrencesOfString:@"“" withString:@"\\\""];
     html = [html stringByReplacingOccurrencesOfString:@"”" withString:@"\\\""];
     html = [html stringByReplacingOccurrencesOfString:@"\r"  withString:@"\\r"];
     html = [html stringByReplacingOccurrencesOfString:@"\n"  withString:@"\\n"];
+    
     return html;
 }
 

@@ -11,10 +11,8 @@
 #import "NoteCell.h"
 #import "SceneDelegate.h"
 #import "NotesEditorViewController.h"
-#import "CreateNewNoteViewController.h"
-#import "ZSSDemoViewController.h"
 
-@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCreatorDelegate>
+@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *notes;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
