@@ -40,8 +40,11 @@
         newEquationSnip.confidence = responseObject[@"confidence"];
         [newEquationSnip saveInBackgroundWithBlock: completion];
     }];
-    
-    
+}
+
++ (void) updateEquationSnip:(EquationSnip * _Nonnull)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    equationSnip.author = [PFUser currentUser];
+    [equationSnip saveInBackgroundWithBlock:completion];
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {

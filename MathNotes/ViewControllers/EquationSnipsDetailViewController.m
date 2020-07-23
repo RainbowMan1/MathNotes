@@ -71,7 +71,9 @@
 }
 
 - (NSString *)preparedPreview:(NSString *)latex {
-    return [latex stringByReplacingOccurrencesOfString:@"\\text {" withString:@"\\text{"];
+    latex =  [latex stringByReplacingOccurrencesOfString:@"\\text {" withString:@"\\text{"];
+    latex = [latex stringByReplacingOccurrencesOfString:@"\\operatorname{" withString:@"\\text{"];
+    return latex;
 }
 
 
@@ -89,6 +91,7 @@
         NSArray * textfields = alertController.textFields;
         UITextField * namefield = textfields[0];
         self.equationSnip.equationSnipName = namefield.text;
+        [EquationSnip updateEquationSnip: self.equationSnip withCompletion:nil];
         [self.equationSnipNameButton setTitle:self.equationSnip.equationSnipName forState:UIControlStateNormal];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];

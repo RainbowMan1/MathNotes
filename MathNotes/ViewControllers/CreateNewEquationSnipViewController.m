@@ -113,7 +113,12 @@
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
 {
-    [EquationSnip postEquationSnip:self.snipNameField.text withImage:image withCompletion:nil];
+    if ( [self.snipNameField.text isEqualToString:@"" ]) {
+    [EquationSnip postEquationSnip:@"Untitled Snip" withImage:image withCompletion:nil];
+    }
+    else {
+        [EquationSnip postEquationSnip:self.snipNameField.text withImage:image withCompletion:nil];
+    }
     [self dismissViewControllerAnimated:YES completion:^{
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
