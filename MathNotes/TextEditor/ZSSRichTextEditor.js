@@ -50,7 +50,8 @@ zss_editor.init = function() {
                     zss_editor.calculateEditorHeightWithCaretPosition();
                     zss_editor.setScrollPosition();
                     zss_editor.enabledEditingItems(e);
-                    zss_editor.updateEnd();
+                    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+                    MathJax.Hub.Queue(zss_editor.updateEnd());
                    });
     
     $(window).on('scroll', function(e) {
@@ -75,14 +76,24 @@ zss_editor.init = function() {
     
 }//end
 
-zss_editor.updateEnd = async function() {
-    await MathJax.typesetPromise();
+zss_editor.updateEnd = function() {
     var html =document.getElementById("zss_editor_content").innerHTML;
-//    zss_editor.debug(html);
-//    if ((html.substring(html.length - 21))!="</div><div><br></div>"){
-//        html = html.concat("</div><div><br></div>";
-//        zss_editor.setHTML(html);
-//    }
+    zss_editor.backuprange();
+    const possibleClassnames = ["mi", "mo", "mn", "math"];
+    zss_editor.debug(zss_editor.currentSelection.startContainer.parentElement.className);
+    if (((html.substring(html.length - 15))!="<div><br></div>") && possibleClassnames.includes(zss_editor.currentSelection.startContainer.parentElement.className)){
+        html = html + "<div><br></div>";
+//        zss_editor.debug("if works");
+
+        zss_editor.setHTML(html);
+        var selection = window.getSelection();
+        var range = document.createRange();
+        zss_editor.debug(zss_editor.currentSelection.startContainer.parentElement.className);
+        range.setStartBefore(zss_editor.currentSelection.startContainer);
+        range.setEndBefore(zss_editor.currentSelection.endContainer);
+        selection.addRange(range);
+        zss_editor.focusEditor();
+    }
 }
 zss_editor.updateOffset = function() {
     
