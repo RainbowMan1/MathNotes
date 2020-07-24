@@ -48,6 +48,21 @@
          [previewButton addTarget:self action:@selector(alertPreviewMessage) forControlEvents:UIControlEventTouchUpInside];
          previewButton.frame = CGRectMake(0, 0, self.equationLabel.frame.size.width, self.equationLabel.frame.size.height);
     }
+    
+    CGRect frame = self.equationLabel.frame;
+    frame.origin.x = 300;
+    self.equationLabel.frame = frame;
+    
+    [UIView animateWithDuration:0.7f
+    animations:^ {
+        CGRect frame = self.equationLabel.frame;
+        frame.origin.x = 0;
+        self.equationLabel.frame = frame;
+        self.equationLabel.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+    }
+    completion:^(BOOL finished) {
+    }];
+    
     if ([self.equationSnip.confidence floatValue]<0.35){
         [self.confidenceBar setProgressTintColor:[UIColor redColor]];
     }
@@ -58,7 +73,13 @@
         [self.confidenceBar setProgressTintColor:[UIColor greenColor]];
     }
     
-    [self.confidenceBar setProgress:[self.equationSnip.confidence floatValue] animated:YES];
+    //[self.confidenceBar setProgress:[self.equationSnip.confidence floatValue] animated:YES];
+    
+    self.confidenceBar.transform = CGAffineTransformMakeScale(1,2.5);
+    
+    [UIView animateWithDuration:1 animations:^{
+        [self.confidenceBar setProgress:[self.equationSnip.confidence floatValue] animated:YES];
+    }];
     
     [self.imageView setFile:self.equationSnip.equationImage];
     [self.imageView loadInBackground];
