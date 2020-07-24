@@ -69,7 +69,39 @@
     
     return cell;
 }
+#pragma mark - Table view delete
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you Sure?"
+                                                                           message:@"Do you want to delete the note"
+                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                [self.tableView beginUpdates];
+                [self.notes[indexPath.row] deleteInBackground];
+                [self.notes removeObjectAtIndex:indexPath.row];
+                [self.tableView deleteRowsAtIndexPaths:[NSArray<NSIndexPath *> arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+            }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No"
+          style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {}];
+        
+        [yesAction setValue:[UIColor redColor] forKey:@"titleTextColor"];
+            
+            [alert addAction:cancelAction];
+        [alert addAction:yesAction];
+            [self presentViewController:alert animated:YES completion:^{}];
+        
+    }
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
