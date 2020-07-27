@@ -10,12 +10,15 @@
 #import "EquationPickerViewController.h"
 
 @interface NotesEditorViewController ()<EquationPickerDelegate>
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (strong, nonatomic) UIButton *noteNameButton;
 @end
 
 @implementation NotesEditorViewController
 
 - (void)viewDidLoad {
+    self.loadingIndicator.hidesWhenStopped = YES;
+    [self.loadingIndicator startAnimating];
     [super viewDidLoad];
     [self.tabBarController.tabBar setHidden:YES];
     // HTML Content to set in the editor
@@ -29,15 +32,7 @@
     self.navigationItem.titleView =self.noteNameButton;
     
     [self setHTML:self.note.htmlText];
-}
-
-- (IBAction)saveProgess:(id)sender {
-    [self getHTML:^(NSString *result, NSError * _Nullable error) {
-        if (error == nil){
-        self.note.htmlText = result;
-        [Note updateNote:self.note withCompletion:nil];
-        }
-    }];
+    [self.loadingIndicator stopAnimating];
 }
 
 - (void)changeNoteName {
@@ -68,6 +63,11 @@
             [self insertText:equationSnip.htmlcode];
         }
     }];
+}
+
+- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html{
+    self.note.htmlText = html;
+    [Note updateNote:self.note withCompletion:nil];
 }
 
 

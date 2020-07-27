@@ -2103,10 +2103,7 @@ static CGFloat kDefaultScale = 0.5;
 - (void)editorDidScrollWithPosition:(NSInteger)position {}
 
 //Blank implementation
-- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html  {
-    //NSLog(@"%@",text);
-    //NSLog(@"%@",html);
-}
+- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html  {}
 
 //Blank implementation
 - (void)hashtagRecognizedWithWord:(NSString *)word {}
