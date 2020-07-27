@@ -250,7 +250,7 @@ static CGFloat kDefaultScale = 0.5;
     
     //Initialise variables
     self.editorLoaded = NO;
-    self.receiveEditorDidChangeEvents = NO;
+    self.receiveEditorDidChangeEvents = YES;
     self.alwaysShowToolbar = NO;
     self.shouldShowKeyboard = YES;
     self.formatHTML = YES;
@@ -1806,6 +1806,13 @@ static CGFloat kDefaultScale = 0.5;
     
 }
 
+- (void)insertText:(NSString *)text {
+    NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertText(\"%@\");", [text stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"]];
+    [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
+        NSLog(@"%@",error.description);
+    }];
+}
+
 - (void)insertImage:(NSString *)url alt:(NSString *)alt {
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertImage(\"%@\", \"%@\");", url, alt];
     [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
@@ -1940,7 +1947,7 @@ static CGFloat kDefaultScale = 0.5;
 
     NSString *urlString = [navigationAction.request.URL absoluteString];
 
-    NSLog(@"web request");
+    //NSLog(@"web request");
     NSLog(@"%@", urlString);
     NSLog(@"%@", query);
     
@@ -2089,13 +2096,17 @@ static CGFloat kDefaultScale = 0.5;
     
 }
 
+
 #pragma mark - Callbacks
 
 //Blank implementation
 - (void)editorDidScrollWithPosition:(NSInteger)position {}
 
 //Blank implementation
-- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html  {}
+- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html  {
+    //NSLog(@"%@",text);
+    //NSLog(@"%@",html);
+}
 
 //Blank implementation
 - (void)hashtagRecognizedWithWord:(NSString *)word {}

@@ -77,25 +77,32 @@ zss_editor.init = function() {
 }//end
 
 zss_editor.updateEnd = function() {
+    
     var editor =document.getElementById("zss_editor_content");
-    zss_editor.backuprange();
-    zss_editor.debug(editor.lastChild.lastChild.tagName);
-    if (editor.lastChild.tagName != "DIV" || editor.lastChild.lastChild.tagName != "BR"){
-    const possibleClassNames = ["mi", "mo", "mn", "math"];
-        if (possibleClassNames.includes(zss_editor.currentSelection.startContainer.parentElement.className)){
-            var div =document.createElement("div");
-            var breakLine = document.createElement("BR");
-            div.appendChild(breakLine);
-            editor.appendChild(div);
-            var selection = window.getSelection();
-            var range = document.createRange();
-            zss_editor.debug(zss_editor.currentSelection.startContainer.parentElement.className);
-            range.setStartBefore(zss_editor.currentSelection.startContainer);
-            range.setEndBefore(zss_editor.currentSelection.endContainer);
-            selection.addRange(range);
-            zss_editor.focusEditor();
-        }
-    }
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var debug = "";
+    debug += range.startContainer.parentElement.parentElement.parentElementtagName + " | " + range.startContainer.parentElement.parentElement.parentElementclassName;
+//    if ((editor.lastChild.tagName === undefined) || (editor.lastChild.tagName != "DIV" && editor.lastChild.lastChild.tagName != "BR")){
+//    const possibleClassNames = ["mi", "mo", "mn", "math"];
+//        if (possibleClassNames.includes(range.startContainer.parentElement.className)){
+//            var div =document.createElement("div");
+//            var breakLine = document.createElement("BR");
+//            div.appendChild(breakLine);
+//            editor.appendChild(div);
+//        }
+//    }
+    zss_editor.debug(debug);
+}
+
+zss_editor.insertText = function(text) {
+    var sel, range;
+    sel = window.getSelection();
+    zss_editor.restorerange();
+    range = sel.getRangeAt(0);
+    range.deleteContents();
+    range.insertNode( document.createTextNode(text) );
+    zss_editor.enabledEditingItems();
 }
 zss_editor.updateOffset = function() {
     
@@ -549,9 +556,13 @@ zss_editor.getHTML = function() {
     }
     
     // Get the contents
-    var h = document.getElementById("zss_editor_content").innerHTML;
-    
-    return h;
+    editorContent = $("#zss_editor_content");
+    clonedContent = editorContent.clone();
+    clonedContent.find(".MathJax_Preview").remove();
+    clonedContent.find(".MathJax_Display").remove();
+    clonedContent.find(".MathJax").remove();
+    var html = clonedContent.html();
+    return html;
 }
 
 zss_editor.getText = function() {

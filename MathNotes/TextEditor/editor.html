@@ -15,6 +15,7 @@
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    skipStartupTypeset: true,
   CommonHTML: { linebreaks: { automatic: true } },
   "HTML-CSS": { linebreaks: { automatic: true } },
          SVG: { linebreaks: { automatic: true } }
@@ -24,12 +25,7 @@ MathJax.Hub.Config({
 <script type="text/javascript" id="MathJax-script" async
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default">
 </script>
-
-<!-- jQuery Source For ZSSRichTextEditor -->
-<script>
-<!-- jQuery -->
-</script>
-        
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <!-- JSBeautifier Source for ZSSRichTextEditor -->
 <script>
 <!-- jsbeautifier -->
@@ -103,7 +99,7 @@ img {
 <body onLoad="zss_editor.init();">
 
 	<!-- ZSSRichTextEditor Editable Content -->
-	<div id="zss_editor_content" class="zs_editor_content" contenteditable="true" placeholder=""><div><br></div></div>
+	<div id="zss_editor_content" class="zs_editor_content" contenteditable="true" placeholder=""></div>
     
 	<!-- Footer -->
 	<div id="zss_editor_footer"></div>

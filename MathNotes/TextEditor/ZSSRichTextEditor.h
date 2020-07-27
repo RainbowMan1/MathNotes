@@ -158,6 +158,7 @@ static NSString * _Nonnull const ZSSEditorContent = @"document.activeElement.id=
 
 - (void) prepareInsertWithCompletion:(void (^)(NSString *result, NSError *error))completion;
     
+- (void) insertText:(NSString *)text;
 /**
  *  Inserts an image
  *
