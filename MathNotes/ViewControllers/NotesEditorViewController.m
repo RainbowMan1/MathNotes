@@ -33,8 +33,10 @@
 
 - (IBAction)saveProgess:(id)sender {
     [self getHTML:^(NSString *result, NSError * _Nullable error) {
+        if (error == nil){
         self.note.htmlText = result;
         [Note updateNote:self.note withCompletion:nil];
+        }
     }];
 }
 
@@ -63,7 +65,7 @@
     NSLog(@"%@",[equationSnip.equationImage url]);
     [self prepareInsertWithCompletion:^(NSString *result, NSError *error) {
         if (error==nil){
-            [self insertImage:[equationSnip.equationImage url]alt:@"Equation"];
+            [self insertText:equationSnip.htmlcode];
         }
     }];
 }

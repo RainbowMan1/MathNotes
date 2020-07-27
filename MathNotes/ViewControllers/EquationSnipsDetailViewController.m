@@ -60,8 +60,7 @@
         self.equationLabel.frame = frame;
         self.equationLabel.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
     }
-    completion:^(BOOL finished) {
-    }];
+    completion:nil];
     
     if ([self.equationSnip.confidence floatValue]<0.35){
         [self.confidenceBar setProgressTintColor:[UIColor redColor]];
@@ -85,6 +84,17 @@
     [self.imageView loadInBackground];
     
     self.laTexCodeView.text = self.equationSnip.laTeXcode;
+    frame = self.laTexCodeView.frame;
+       frame.origin.x = -300;
+       self.laTexCodeView.frame = frame;
+    [UIView animateWithDuration:0.7f
+    animations:^ {
+        CGRect frame = self.laTexCodeView.frame;
+        frame.origin.x = 30;
+        self.laTexCodeView.frame = frame;
+        self.laTexCodeView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+    }
+    completion:nil];
 }
 
 -(void)alertPreviewMessage {

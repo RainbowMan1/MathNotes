@@ -15,12 +15,16 @@
 @interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *notes;
+@property (strong, nonatomic) NSMutableArray *currentNotes;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
 
 @end
 
 @implementation NotesDashboardViewController
 
+
+#pragma mark - View Config
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -36,11 +40,19 @@
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
     
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.tableView addGestureRecognizer:gestureRecognizer];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    
+    [self.searchField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
 }
+
+#pragma mark - fetch from database
 
 - (void)fetchNotes {
     PFQuery *query = [PFQuery queryWithClassName:@"Notes"];
@@ -50,6 +62,8 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *notesArray, NSError *error) {
             if (notesArray != nil) {
                 self.notes = [notesArray mutableCopy];
+                self.currentNotes = [notesArray mutableCopy];
+                [self textFieldDidChange:self.searchField];
                 [self.tableView reloadData];
                 [self.refreshControl endRefreshing];
             } else {
@@ -57,15 +71,33 @@
         }];
 }
 
+#pragma mark - Search bar
+
+-(void)textFieldDidChange :(UITextField *) textField{
+    [self.currentNotes removeAllObjects];
+    if ([self.searchField.text isEqualToString:@""]) {
+        self.currentNotes = [[NSMutableArray alloc]initWithArray:self.notes];
+    }
+    for (Note *note in self.notes){
+        if ([[note.noteName lowercaseString] rangeOfString:[self.searchField.text lowercaseString]].location != NSNotFound) {
+            [self.currentNotes addObject:note];
+        }
+    }
+    [self.tableView reloadData];
+}
+- (void)hideKeyboard {
+    [self.searchField endEditing:YES];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.notes.count;
+    return self.currentNotes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NoteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoteCell" forIndexPath:indexPath];
-    cell.note = self.notes[indexPath.row];
+    cell.note = self.currentNotes[indexPath.row];
     
     return cell;
 }
@@ -85,8 +117,10 @@
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction * _Nonnull action) {
                 [self.tableView beginUpdates];
-                [self.notes[indexPath.row] deleteInBackground];
-                [self.notes removeObjectAtIndex:indexPath.row];
+                [self.notes removeObject:self.currentNotes[indexPath.row]];
+                [self.currentNotes[indexPath.row] deleteInBackground];
+                [self.currentNotes removeObjectAtIndex:indexPath.row];
+                
                 [self.tableView deleteRowsAtIndexPaths:[NSArray<NSIndexPath *> arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 [self.tableView endUpdates];
             }];
