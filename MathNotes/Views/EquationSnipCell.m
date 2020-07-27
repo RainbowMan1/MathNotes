@@ -7,6 +7,7 @@
 //
 
 #import "EquationSnipCell.h"
+#import "NSDate+DateTools.h"
 
 @implementation EquationSnipCell
 
@@ -27,9 +28,11 @@
 
 - (void)updateCell {
     self.equationSnipName.text =  self.equationSnip.equationSnipName;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd-yyyy HH:mm"];
-    self.lastUpdatedTimeLabel.text = [formatter  stringFromDate:self.equationSnip.updatedAt];
+    self.lastUpdatedTimeLabel.text = [@"Modified: " stringByAppendingString:[self.equationSnip.updatedAt timeAgoSinceNow]];
+}
+- (IBAction)renameEquationSnip:(id)sender {
+    [self.delegate didTapRename:self.equationSnip];
+    [self updateCell];
 }
 
 @end

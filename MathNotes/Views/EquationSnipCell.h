@@ -10,11 +10,17 @@
 #import "EquationSnip.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol EquationSnipCellDelegate
+
+- (void) didTapRename:(EquationSnip *)equationSnip;
+
+@end
 
 @interface EquationSnipCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *equationSnipName;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedTimeLabel;
 @property (strong, nonatomic) EquationSnip *equationSnip;
+@property (weak, nonatomic) id<EquationSnipCellDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

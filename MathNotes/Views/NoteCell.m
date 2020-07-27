@@ -8,6 +8,7 @@
 
 #import "NoteCell.h"
 #import "Note.h"
+#import "NSDate+DateTools.h"
 
 @implementation NoteCell
 
@@ -29,9 +30,12 @@
 
 - (void)updateCell {
     self.noteNameLabel.text =  self.note.noteName;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd-yyyy HH:mm"];
-    self.lastUpdatedTimeLabel.text = [formatter  stringFromDate:self.note.updatedAt];
+    
+    self.lastUpdatedTimeLabel.text = [@"Modified: " stringByAppendingString:[self.note.updatedAt timeAgoSinceNow]];
+}
+- (IBAction)renameNote:(id)sender {
+    [self.delegate didTapRename:self.note];
+    [self updateCell];
 }
 
 @end

@@ -11,7 +11,7 @@
 #import "EquationSnipCell.h"
 #import "EquationSnipsDetailViewController.h"
 
-@interface EquationSnipDashboardViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface EquationSnipDashboardViewController ()<UITableViewDelegate, UITableViewDataSource,EquationSnipCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -101,6 +101,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EquationSnipCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EquationSnipCell" forIndexPath:indexPath];
+    cell.delegate = self;
     cell.equationSnip = self.currentEquationSnips[indexPath.row];
     return cell;
 }
@@ -139,6 +140,27 @@
         
     }
 }
+#pragma mark - EquationSnipCell delegate
+-(void)didTapRename:(EquationSnip *)equationSnip {
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: [@"Rename " stringByAppendingString:equationSnip.equationSnipName]
+                                                                                  message: @"Type new name for the note"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"name";
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.text = equationSnip.equationSnipName;
+        textField.clearsOnInsertion =YES;
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSArray * textfields = alertController.textFields;
+        UITextField * namefield = textfields[0];
+        NSLog(@"%@",namefield.text);
+        equationSnip.equationSnipName = namefield.text;
+        [EquationSnip updateEquationSnip:equationSnip withCompletion:nil];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

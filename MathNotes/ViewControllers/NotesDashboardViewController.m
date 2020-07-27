@@ -12,7 +12,7 @@
 #import "SceneDelegate.h"
 #import "NotesEditorViewController.h"
 
-@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *notes;
 @property (strong, nonatomic) NSMutableArray *currentNotes;
@@ -50,6 +50,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+    [self fetchNotes];
 }
 
 #pragma mark - fetch from database
@@ -97,6 +98,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NoteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoteCell" forIndexPath:indexPath];
+    cell.delegate = self;
     cell.note = self.currentNotes[indexPath.row];
     
     return cell;
@@ -136,6 +138,28 @@
         
     }
 }
+
+#pragma mark - NoteCell Delegate
+- (void) didTapRename:(Note *)note{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: [@"Rename " stringByAppendingString:note.noteName]
+                                                                                  message: @"Type new name for the note"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"name";
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.text = note.noteName;
+        textField.clearsOnInsertion =YES;
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSArray * textfields = alertController.textFields;
+        UITextField * namefield = textfields[0];
+        NSLog(@"%@",namefield.text);
+        note.noteName = namefield.text;
+        [Note updateNote:note withCompletion:nil];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

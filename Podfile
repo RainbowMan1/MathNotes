@@ -11,6 +11,7 @@ target 'MathNotes' do
   pod 'AFNetworking'
   pod 'TOCropViewController'
   pod 'iosMath'  
+  pod 'DateTools'
   target 'MathNotesTests' do
     inherit! :search_paths
     # Pods for testing
