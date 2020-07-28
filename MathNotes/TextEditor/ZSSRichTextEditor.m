@@ -1806,10 +1806,23 @@ static CGFloat kDefaultScale = 0.5;
     
 }
 
+- (void)disableEditing{
+    [self.editorView evaluateJavaScript:@"zss_editor.disableEditing();" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error!=nil){
+            [self disableEditing];
+        }
+        
+    }];
+}
+
 - (void)insertText:(NSString *)text {
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertText(\"%@\");", [text stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"]];
     [self.editorView evaluateJavaScript:trigger completionHandler:^(NSString *result, NSError *error) {
-        NSLog(@"%@",error.description);
+        if (error == nil){
+            if (self.receiveEditorDidChangeEvents) {
+                [self updateEditor];
+            }
+        }
     }];
 }
 
@@ -1989,7 +2002,7 @@ static CGFloat kDefaultScale = 0.5;
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    self.editorLoaded = YES;
+    
     
     if (!self.internalHTML) {
         self.internalHTML = @"";
@@ -2030,6 +2043,7 @@ static CGFloat kDefaultScale = 0.5;
             NSLog(@"%@", error);
         }
     }];
+    self.editorLoaded = YES;
 }
 
 #pragma mark - Mention & Hashtag Support Section

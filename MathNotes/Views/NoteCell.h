@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol NoteCellDelegate
 
 - (void) didTapRename:(Note *)note;
+- (void) didTapShare:(Note *)note;
 
 @end
 
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedTimeLabel;
 @property (strong, nonatomic) Note *note;
+@property (weak, nonatomic) IBOutlet UILabel *ownedByLabel;
 @property (weak, nonatomic) id<NoteCellDelegate> delegate;
 @end
 

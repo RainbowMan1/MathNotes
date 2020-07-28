@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B8DB05E7878B38212ACBE3EA /* Pods_MathNotesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A598F4C2EC6F95A1E1B18213 /* Pods_MathNotesTests.framework */; };
 		CDE404F6A5824D95EF610203 /* Pods_MathNotes_MathNotesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9703A58FF549D3A24211C2AA /* Pods_MathNotes_MathNotesUITests.framework */; };
+		DB0CE49E24D07DBB00FFBA2D /* SharedNote.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0CE49D24D07DBB00FFBA2D /* SharedNote.m */; };
 		DB388CA324C0BC6C009F0046 /* EquationPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB388CA224C0BC6C009F0046 /* EquationPickerViewController.m */; };
 		DB759BE724BE1CC0007932E9 /* ZSSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB759BE224BE1CC0007932E9 /* ZSSTextView.m */; };
 		DB759BE824BE1CC0007932E9 /* jQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759BE024BE1CC0007932E9 /* jQuery.js */; };
@@ -153,6 +154,8 @@
 		A598F4C2EC6F95A1E1B18213 /* Pods_MathNotesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathNotesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6E830A144E64AB6AAB8606 /* Pods_MathNotes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathNotes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32AA873E18E4F6B343342FC /* Pods-MathNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathNotes.release.xcconfig"; path = "Target Support Files/Pods-MathNotes/Pods-MathNotes.release.xcconfig"; sourceTree = "<group>"; };
+		DB0CE49C24D07D5800FFBA2D /* SharedNote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedNote.h; sourceTree = "<group>"; };
+		DB0CE49D24D07DBB00FFBA2D /* SharedNote.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedNote.m; sourceTree = "<group>"; };
 		DB388CA124C0BC6C009F0046 /* EquationPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationPickerViewController.h; sourceTree = "<group>"; };
 		DB388CA224C0BC6C009F0046 /* EquationPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationPickerViewController.m; sourceTree = "<group>"; };
 		DB759B7824BE1CBF007932E9 /* ZSSFontsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZSSFontsViewController.m; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 				DBAB6F4624BCD47300AEE9B0 /* Note.m */,
 				DBAB6F4B24BCD88200AEE9B0 /* EquationSnip.h */,
 				DBAB6F4924BCD87000AEE9B0 /* EquationSnip.m */,
+				DB0CE49C24D07D5800FFBA2D /* SharedNote.h */,
+				DB0CE49D24D07DBB00FFBA2D /* SharedNote.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -947,6 +952,7 @@
 				DB759BF024BE1E14007932E9 /* HRCgUtil.m in Sources */,
 				DB759BEB24BE1CC0007932E9 /* ZSSFontsViewController.m in Sources */,
 				DB759BF724BE1E14007932E9 /* HRColorCursor.m in Sources */,
+				DB0CE49E24D07DBB00FFBA2D /* SharedNote.m in Sources */,
 				DB759BF624BE1E14007932E9 /* HRColorPickerViewController.m in Sources */,
 				DB759BF424BE1E14007932E9 /* CYRLayoutManager.m in Sources */,
 				DB759BF224BE1E14007932E9 /* CYRTextView.m in Sources */,

@@ -72,7 +72,7 @@
                     <connections>
                         <outlet property="passwordField" destination="W6d-DF-tnk" id="CD4-fI-JLm"/>
                         <outlet property="usernameField" destination="ogt-kY-I0A" id="ZBL-IV-4uK"/>
-                        <segue destination="RPH-ZM-pVf" kind="presentation" id="z2D-Gp-fJY"/>
+                        <segue destination="RPH-ZM-pVf" kind="presentation" identifier="firstSegue" id="z2D-Gp-fJY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -101,8 +101,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EquationSnipName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABJ-WF-iC1">
-                                                    <rect key="frame" x="20" y="25" width="146" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="25" width="156.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -115,7 +115,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-yc-e6I">
                                                     <rect key="frame" x="239" y="68.5" width="78" height="30"/>
                                                     <state key="normal" title="Rename">
-                                                        <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="renameEquationSnip:" destination="nnd-7W-VoA" eventType="touchUpInside" id="oWL-sE-W33"/>
@@ -124,9 +124,15 @@
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0d-4g-fDh">
                                                     <rect key="frame" x="332" y="67.5" width="40" height="32.5"/>
                                                     <state key="normal" title="Share">
-                                                        <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owned By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcN-Al-DpS">
+                                                    <rect key="frame" x="20" y="76" width="70" height="15.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="NQC-Fe-rre" secondAttribute="trailing" constant="5" id="8dU-uq-Zf2"/>
@@ -135,12 +141,16 @@
                                                 <constraint firstItem="T0d-4g-fDh" firstAttribute="bottom" secondItem="PTx-0p-I4q" secondAttribute="bottomMargin" id="EJh-gt-b4r"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="T0d-4g-fDh" secondAttribute="trailing" constant="22" id="N7D-FC-Sdy"/>
                                                 <constraint firstItem="T0d-4g-fDh" firstAttribute="leading" secondItem="lXN-yc-e6I" secondAttribute="trailing" constant="15" id="UdL-5a-dNn"/>
+                                                <constraint firstItem="lXN-yc-e6I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AcN-Al-DpS" secondAttribute="trailing" constant="10" id="Vz9-TA-V0M"/>
                                                 <constraint firstItem="T0d-4g-fDh" firstAttribute="top" secondItem="NQC-Fe-rre" secondAttribute="bottom" constant="24" id="YzR-e8-2Bf"/>
                                                 <constraint firstItem="ABJ-WF-iC1" firstAttribute="top" secondItem="PTx-0p-I4q" secondAttribute="topMargin" constant="14" id="Za1-V2-7hT"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="NQC-Fe-rre" secondAttribute="trailing" constant="5" id="Zrv-jt-Dl5"/>
                                                 <constraint firstItem="ABJ-WF-iC1" firstAttribute="leading" secondItem="PTx-0p-I4q" secondAttribute="leadingMargin" id="cLu-Qz-BOS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="AcN-Al-DpS" secondAttribute="bottom" constant="8.5" id="gY0-IK-cC0"/>
                                                 <constraint firstItem="lXN-yc-e6I" firstAttribute="leading" secondItem="PTx-0p-I4q" secondAttribute="leadingMargin" constant="219" id="kr7-vj-yaV"/>
                                                 <constraint firstItem="T0d-4g-fDh" firstAttribute="centerY" secondItem="lXN-yc-e6I" secondAttribute="centerY" id="uFe-U6-H3t"/>
+                                                <constraint firstItem="lXN-yc-e6I" firstAttribute="centerY" secondItem="AcN-Al-DpS" secondAttribute="centerY" id="v4p-Ha-alt"/>
+                                                <constraint firstItem="AcN-Al-DpS" firstAttribute="leading" secondItem="PTx-0p-I4q" secondAttribute="leadingMargin" id="yPI-Kh-TAp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -405,28 +415,25 @@
                     <view key="view" contentMode="scaleToFill" id="TFM-3o-4U0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="4lR-Qg-7wJ">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                                <color key="color" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </activityIndicatorView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="4lR-Qg-7wJ" firstAttribute="centerY" secondItem="TFM-3o-4U0" secondAttribute="centerY" id="p3O-7I-Z1T"/>
-                            <constraint firstItem="4lR-Qg-7wJ" firstAttribute="centerX" secondItem="TFM-3o-4U0" secondAttribute="centerX" id="qJt-cN-R3p"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QOY-cb-gbS"/>
                     </view>
                     <navigationItem key="navigationItem" id="wg8-aX-Lk1">
-                        <barButtonItem key="rightBarButtonItem" title="Fn" id="db3-PA-TpC">
-                            <connections>
-                                <segue destination="v4h-EQ-AQv" kind="presentation" id="BEQ-Oh-1BF"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Fn" id="db3-PA-TpC">
+                                <connections>
+                                    <segue destination="v4h-EQ-AQv" kind="presentation" id="BEQ-Oh-1BF"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="1XE-W0-iNj">
+                                <connections>
+                                    <action selector="edit:" destination="cnM-Kh-K9T" id="TPD-lb-cdM"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="loadingIndicator" destination="4lR-Qg-7wJ" id="PVA-5W-PZj"/>
+                        <outlet property="addSnippetButton" destination="db3-PA-TpC" id="hyx-nI-SOJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUa-dk-7Dg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -477,19 +484,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notename" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfX-oo-2Xw">
-                                                    <rect key="frame" x="20" y="25" width="80" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="25" width="84.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03/11/2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4I-S4-zvF">
-                                                    <rect key="frame" x="307" y="27.5" width="67" height="16"/>
+                                                    <rect key="frame" x="317" y="27.5" width="67" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BU0-Et-i2q">
-                                                    <rect key="frame" x="241" y="83.5" width="56" height="30"/>
+                                                    <rect key="frame" x="278" y="87" width="56" height="30"/>
                                                     <state key="normal" title="Rename">
                                                         <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
@@ -498,29 +505,42 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gN4-oi-9OO">
-                                                    <rect key="frame" x="344" y="81" width="40" height="35"/>
+                                                    <rect key="frame" x="344" y="90" width="40" height="23.5"/>
                                                     <state key="normal" title="Share">
                                                         <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="shareNote:" destination="pEj-1n-2rm" eventType="touchUpInside" id="SRK-BH-PWa"/>
+                                                    </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owned by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sW-9q-Uh0">
+                                                    <rect key="frame" x="20" y="90" width="70" height="23.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="gN4-oi-9OO" firstAttribute="centerY" secondItem="BU0-Et-i2q" secondAttribute="centerY" id="0dq-Vr-03z"/>
-                                                <constraint firstItem="gN4-oi-9OO" firstAttribute="top" secondItem="R4I-S4-zvF" secondAttribute="bottom" constant="37.5" id="4bR-a2-0Ba"/>
                                                 <constraint firstItem="DfX-oo-2Xw" firstAttribute="top" secondItem="pyO-Vm-p5c" secondAttribute="topMargin" constant="14" id="9lO-uJ-Wmt"/>
-                                                <constraint firstItem="gN4-oi-9OO" firstAttribute="bottom" secondItem="pyO-Vm-p5c" secondAttribute="bottomMargin" constant="5" id="A4p-j6-kDn"/>
+                                                <constraint firstItem="gN4-oi-9OO" firstAttribute="leading" secondItem="BU0-Et-i2q" secondAttribute="trailing" constant="10" id="Bpe-Rr-zVR"/>
+                                                <constraint firstAttribute="bottom" secondItem="6sW-9q-Uh0" secondAttribute="bottom" constant="8.5" id="E4b-dp-bds"/>
                                                 <constraint firstItem="R4I-S4-zvF" firstAttribute="centerY" secondItem="DfX-oo-2Xw" secondAttribute="centerY" id="G6n-SD-bvD"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gN4-oi-9OO" secondAttribute="trailing" constant="10" id="KdK-4z-Waw"/>
-                                                <constraint firstItem="gN4-oi-9OO" firstAttribute="leading" secondItem="BU0-Et-i2q" secondAttribute="trailing" constant="47" id="SXz-LC-VIG"/>
+                                                <constraint firstItem="6sW-9q-Uh0" firstAttribute="leading" secondItem="pyO-Vm-p5c" secondAttribute="leadingMargin" id="Kdz-Xa-uTq"/>
+                                                <constraint firstItem="gN4-oi-9OO" firstAttribute="centerY" secondItem="6sW-9q-Uh0" secondAttribute="centerY" id="OLF-yg-yuh"/>
                                                 <constraint firstItem="R4I-S4-zvF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DfX-oo-2Xw" secondAttribute="trailing" constant="10" id="VcX-DV-lRO"/>
-                                                <constraint firstItem="BU0-Et-i2q" firstAttribute="leading" secondItem="pyO-Vm-p5c" secondAttribute="leadingMargin" constant="221" id="lvB-yk-1LL"/>
+                                                <constraint firstItem="6sW-9q-Uh0" firstAttribute="top" secondItem="DfX-oo-2Xw" secondAttribute="bottom" constant="44.5" id="WMS-Pk-kQI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gN4-oi-9OO" secondAttribute="trailing" constant="10" id="cPa-Bo-10x"/>
+                                                <constraint firstAttribute="bottom" secondItem="gN4-oi-9OO" secondAttribute="bottom" constant="8.5" id="dNy-Wt-Twf"/>
+                                                <constraint firstItem="BU0-Et-i2q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6sW-9q-Uh0" secondAttribute="trailing" constant="10" id="hvB-wK-TUJ"/>
                                                 <constraint firstItem="DfX-oo-2Xw" firstAttribute="leading" secondItem="pyO-Vm-p5c" secondAttribute="leadingMargin" id="oW2-lR-4ao"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="R4I-S4-zvF" secondAttribute="trailing" constant="20" id="ouO-BK-nds"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="R4I-S4-zvF" secondAttribute="trailing" constant="10" id="ouO-BK-nds"/>
+                                                <constraint firstItem="gN4-oi-9OO" firstAttribute="centerY" secondItem="BU0-Et-i2q" secondAttribute="centerY" id="ujU-Wd-tw7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lastUpdatedTimeLabel" destination="R4I-S4-zvF" id="EYQ-kz-AQf"/>
                                             <outlet property="noteNameLabel" destination="DfX-oo-2Xw" id="UTM-Sg-O0W"/>
+                                            <outlet property="ownedByLabel" destination="6sW-9q-Uh0" id="41A-n8-nMi"/>
                                             <segue destination="cnM-Kh-K9T" kind="show" identifier="EditNote" id="jtP-Yg-0jg"/>
                                         </connections>
                                     </tableViewCell>
@@ -541,7 +561,11 @@
                         <viewLayoutGuide key="safeArea" id="sKu-4j-d0G"/>
                     </view>
                     <navigationItem key="navigationItem" title="Your Notes" id="NeO-gg-gDV">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="AkK-Tj-6Td"/>
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="AkK-Tj-6Td">
+                            <connections>
+                                <action selector="logOut:" destination="oXO-tj-qTe" id="AGW-mq-fR1"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add Note" image="plus" catalog="system" id="j3K-YS-35f">
                             <connections>
                                 <segue destination="cnM-Kh-K9T" kind="show" identifier="NewNote" id="pwO-gb-9Ko"/>

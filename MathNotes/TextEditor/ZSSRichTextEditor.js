@@ -52,6 +52,7 @@ zss_editor.init = function() {
                     zss_editor.enabledEditingItems(e);
                     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                     MathJax.Hub.Queue(zss_editor.updateEnd());
+        
                    });
     
     $(window).on('scroll', function(e) {
@@ -75,6 +76,10 @@ zss_editor.init = function() {
                  });
     
 }//end
+
+zss_editor.disableEditing = function(){
+    $("#zss_editor_content").attr("contenteditable","false");
+}
 
 zss_editor.updateEnd = function() {
     

@@ -8,6 +8,7 @@
 
 #import "NotesDashboardViewController.h"
 #import "Parse/Parse.h"
+#import "SharedNote.h"
 #import "NoteCell.h"
 #import "SceneDelegate.h"
 #import "NotesEditorViewController.h"
@@ -56,20 +57,34 @@
 #pragma mark - fetch from database
 
 - (void)fetchNotes {
-    PFQuery *query = [PFQuery queryWithClassName:@"Notes"];
-    [query orderByDescending:@"updatedAt"];
-    [query whereKey:@"author" equalTo:[PFUser currentUser]];
+    [self.notes removeAllObjects];
+    PFQuery *notesQuery = [PFQuery queryWithClassName:@"Notes"];
+    [notesQuery includeKey:@"author"];
+    [notesQuery whereKey:@"author" equalTo:[PFUser currentUser]];
         // fetch data asynchronously
-        [query findObjectsInBackgroundWithBlock:^(NSArray *notesArray, NSError *error) {
+        [notesQuery findObjectsInBackgroundWithBlock:^(NSArray *notesArray, NSError *error) {
             if (notesArray != nil) {
                 self.notes = [notesArray mutableCopy];
-                self.currentNotes = [notesArray mutableCopy];
-                [self textFieldDidChange:self.searchField];
-                [self.tableView reloadData];
-                [self.refreshControl endRefreshing];
+                PFQuery *sharedNotesQuery = [PFQuery queryWithClassName:@"SharedNotes"];
+                [sharedNotesQuery includeKey:@"sharedNote"];
+                [sharedNotesQuery includeKey:@"sharedNote.author"];
+                [sharedNotesQuery includeKey:@"sharedUser"];
+                [sharedNotesQuery whereKey:@"sharedUser" equalTo:[PFUser currentUser]];
+                [sharedNotesQuery findObjectsInBackgroundWithBlock:^(NSArray *sharedNotesArray, NSError *error) {
+                if (sharedNotesArray != nil) {
+                    for (SharedNote *sharedNote in sharedNotesArray){
+                        [self.notes addObject:sharedNote.sharedNote];
+                    }
+                }
+                    [self.notes sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:NO]]];
+                    self.currentNotes = [[NSMutableArray alloc] initWithArray:self.notes];
+                    [self textFieldDidChange:self.searchField];
+                    [self.refreshControl endRefreshing];
+                }];
             } else {
             }
         }];
+    
 }
 
 #pragma mark - Search bar
@@ -120,7 +135,7 @@
                                                              handler:^(UIAlertAction * _Nonnull action) {
                 [self.tableView beginUpdates];
                 [self.notes removeObject:self.currentNotes[indexPath.row]];
-                [self.currentNotes[indexPath.row] deleteInBackground];
+                [Note deleteNote:self.currentNotes[indexPath.row] withCompletion:nil];
                 [self.currentNotes removeObjectAtIndex:indexPath.row];
                 
                 [self.tableView deleteRowsAtIndexPaths:[NSArray<NSIndexPath *> arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -159,6 +174,49 @@
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+- (IBAction)logOut:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you Sure?"
+                                                                       message:@"Do you want to log out?"
+                                                                preferredStyle:(UIAlertControllerStyleActionSheet)];
+        UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Log Out"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+            [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {}];
+            
+             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *loginNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            sceneDelegate.window.rootViewController = loginNavigationController;
+        }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No"
+      style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {}];
+    
+    [yesAction setValue:[UIColor redColor] forKey:@"titleTextColor"];
+        
+        [alert addAction:cancelAction];
+    [alert addAction:yesAction];
+        [self presentViewController:alert animated:YES completion:^{}];
+}
+
+- (void)didTapShare:(Note *)note{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Share Note"
+                                                                                  message: @"Type username of user to share note with them"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"username";
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.clearsOnInsertion =YES;
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSArray * textfields = alertController.textFields;
+        UITextField * namefield = textfields[0];
+        [SharedNote shareNote:note withUsername:namefield.text withCompletion:nil];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
+}
 
 #pragma mark - Navigation
 
@@ -166,9 +224,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"NewNote"]) {
         NotesEditorViewController *noteEditor = [segue destinationViewController];
-        Note *newNote = [Note new];
-        newNote.noteName = @"Untitled Note";
-        noteEditor.note = newNote;
+        noteEditor.note = [Note getNewNote] ;
     }
     else if ([segue.identifier isEqualToString:@"EditNote"]) {
         NotesEditorViewController *noteEditor = [segue destinationViewController];

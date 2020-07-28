@@ -22,6 +22,9 @@
 
 + (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)html withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (void) updateNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void)deleteNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (Note * _Nonnull)getNewNote;
+
 @end
 
 

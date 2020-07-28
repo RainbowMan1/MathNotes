@@ -9,6 +9,7 @@
 #import "NoteCell.h"
 #import "Note.h"
 #import "NSDate+DateTools.h"
+#import "Parse/Parse.h"
 
 @implementation NoteCell
 
@@ -32,10 +33,22 @@
     self.noteNameLabel.text =  self.note.noteName;
     
     self.lastUpdatedTimeLabel.text = [@"Modified: " stringByAppendingString:[self.note.updatedAt timeAgoSinceNow]];
+    if ([self.note.author.username isEqualToString:[PFUser currentUser].username]){
+        self.ownedByLabel.text =   @"Owned by: Me";
+    }
+    else{
+         self.ownedByLabel.text =[@"Owned by: " stringByAppendingString:self.note.author.username];
+    }
 }
 - (IBAction)renameNote:(id)sender {
     [self.delegate didTapRename:self.note];
     [self updateCell];
 }
+- (IBAction)shareNote:(id)sender {
+    [self.delegate didTapShare:self.note];
+    [self updateCell];
+}
+
+
 
 @end

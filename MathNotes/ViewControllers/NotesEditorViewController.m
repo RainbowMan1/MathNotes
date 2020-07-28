@@ -8,17 +8,16 @@
 
 #import "NotesEditorViewController.h"
 #import "EquationPickerViewController.h"
+#import "Parse/Parse.h"
 
 @interface NotesEditorViewController ()<EquationPickerDelegate>
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addSnippetButton;
 @property (strong, nonatomic) UIButton *noteNameButton;
 @end
 
 @implementation NotesEditorViewController
 
 - (void)viewDidLoad {
-    self.loadingIndicator.hidesWhenStopped = YES;
-    [self.loadingIndicator startAnimating];
     [super viewDidLoad];
     [self.tabBarController.tabBar setHidden:YES];
     // HTML Content to set in the editor
@@ -32,7 +31,15 @@
     self.navigationItem.titleView =self.noteNameButton;
     
     [self setHTML:self.note.htmlText];
-    [self.loadingIndicator stopAnimating];
+    
+    if (!([self.note.author.username isEqualToString:[PFUser currentUser].username])){
+        [self disableEditablity];
+    }
+}
+- (void) disableEditablity{
+    [self.addSnippetButton setEnabled:NO];
+    [self.addSnippetButton setTintColor: [UIColor clearColor]];
+    [self disableEditing];
 }
 
 - (void)changeNoteName {

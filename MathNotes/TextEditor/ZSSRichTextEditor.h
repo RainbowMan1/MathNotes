@@ -110,6 +110,11 @@ static NSString * _Nonnull const ZSSEditorContent = @"document.activeElement.id=
 @property (nonatomic, strong) UIColor *toolbarItemSelectedTintColor;
 
 /**
+ * Disables editing
+*/
+- (void)disableEditing;
+
+/**
  *  Sets the HTML for the entire editor
  *
  *  @param html  HTML string to set for the editor
@@ -155,9 +160,15 @@ static NSString * _Nonnull const ZSSEditorContent = @"document.activeElement.id=
  */
 - (void)showInsertImageDialogWithLink:(NSString *)url alt:(NSString *)alt;
 
-
+/**
+ * Prepares editor for insertion of html or text
+ */
 - (void) prepareInsertWithCompletion:(void (^)(NSString *result, NSError *error))completion;
-    
+/**
+ * Inserts text into the editor
+ *
+ * @param text The text to be inserted into the editor
+ */
 - (void) insertText:(NSString *)text;
 /**
  *  Inserts an image
