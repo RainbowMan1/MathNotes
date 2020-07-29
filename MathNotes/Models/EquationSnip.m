@@ -8,6 +8,7 @@
 
 #import "EquationSnip.h"
 #import "APIManager.h"
+#import "SharedEquationSnip.h"
 
 @implementation EquationSnip
 
@@ -44,6 +45,22 @@
 
 + (void) updateEquationSnip:(EquationSnip * _Nonnull)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     [equationSnip saveInBackgroundWithBlock:completion];
+}
+
++ (void)deleteEquationSnip:(EquationSnip * _Nonnull)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    if ([equationSnip.author.username isEqualToString:[PFUser currentUser].username]){
+        PFQuery *query = [PFQuery queryWithClassName:@"SharedEquationSnips"];
+        [query whereKey:@"sharedEquationSnip" equalTo:equationSnip];
+        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable sharedEquationSnips, NSError * _Nullable error) {
+            for (SharedEquationSnip *sharedEquationSnip in sharedEquationSnips){
+                [sharedEquationSnip deleteInBackground];
+            }
+            [equationSnip deleteInBackgroundWithBlock:completion];
+        }];
+    }
+    else{
+        [SharedEquationSnip deleteSharedEquationSnip:equationSnip withCompletion:completion];
+    }
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {

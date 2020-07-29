@@ -12,8 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol NoteCellDelegate
 
-- (void) didTapRename:(Note *)note;
-- (void) didTapShare:(Note *)note;
+- (void) didTapRename:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (void) didTapShare:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

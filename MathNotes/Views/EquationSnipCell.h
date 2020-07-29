@@ -12,7 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol EquationSnipCellDelegate
 
-- (void) didTapRename:(EquationSnip *)equationSnip;
+- (void) didTapRename:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (void) didTapShare:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

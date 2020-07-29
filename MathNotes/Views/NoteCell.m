@@ -41,12 +41,20 @@
     }
 }
 - (IBAction)renameNote:(id)sender {
-    [self.delegate didTapRename:self.note];
-    [self updateCell];
+    [self.delegate didTapRename:self.note withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self updateCell];
+        }
+    }];
+    
 }
 - (IBAction)shareNote:(id)sender {
-    [self.delegate didTapShare:self.note];
-    [self updateCell];
+    [self.delegate didTapShare:self.note withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self updateCell];
+        }
+    }];
+    
 }
 
 

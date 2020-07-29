@@ -47,17 +47,17 @@
 
 + (void)deleteNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     if ([note.author.username isEqualToString:[PFUser currentUser].username]){
-        [note deleteInBackground];
-    }
-    else{
         PFQuery *query = [PFQuery queryWithClassName:@"SharedNotes"];
         [query whereKey:@"sharedNote" equalTo:note];
-        [query whereKey:@"sharedUser" equalTo:[PFUser currentUser]];
         [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable sharedNotes, NSError * _Nullable error) {
-            if (sharedNotes.count==1) {
-                [sharedNotes[0] deleteInBackground];
+            for (SharedNote *sharedNote in sharedNotes){
+                [sharedNote deleteInBackground];
             }
+            [note deleteInBackgroundWithBlock:completion];
         }];
+    }
+    else{
+        [SharedNote deleteSharedNote:note withCompletion:completion];
     }
 }
 

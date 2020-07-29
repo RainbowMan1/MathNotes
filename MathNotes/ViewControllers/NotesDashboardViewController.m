@@ -155,7 +155,7 @@
 }
 
 #pragma mark - NoteCell Delegate
-- (void) didTapRename:(Note *)note{
+- (void) didTapRename:(Note *)note withCompletion:(PFBooleanResultBlock _Nullable)completion{
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle: [@"Rename " stringByAppendingString:note.noteName]
                                                                                   message: @"Type new name for the note"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
@@ -170,7 +170,7 @@
         UITextField * namefield = textfields[0];
         NSLog(@"%@",namefield.text);
         note.noteName = namefield.text;
-        [Note updateNote:note withCompletion:nil];
+        [Note updateNote:note withCompletion:completion];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -199,7 +199,7 @@
         [self presentViewController:alert animated:YES completion:^{}];
 }
 
-- (void)didTapShare:(Note *)note{
+- (void) didTapShare:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Share Note"
                                                                                   message: @"Type username of user to share note with them"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
@@ -211,7 +211,7 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         NSArray * textfields = alertController.textFields;
         UITextField * namefield = textfields[0];
-        [SharedNote shareNote:note withUsername:namefield.text withCompletion:nil];
+        [SharedNote shareNote:note withUsername:namefield.text withCompletion:completion];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
     

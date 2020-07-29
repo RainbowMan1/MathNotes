@@ -8,6 +8,7 @@
 
 #import "EquationSnipDashboardViewController.h"
 #import "EquationSnip.h"
+#import "SharedEquationSnip.h"
 #import "EquationSnipCell.h"
 #import "EquationSnipsDetailViewController.h"
 
@@ -53,20 +54,33 @@
 
 #pragma mark - fetch from database
 - (void)fetchEquationSnips{
-    PFQuery *query = [PFQuery queryWithClassName:@"EquationSnips"];
-       [query orderByDescending:@"updatedAt"];
-       [query whereKey:@"author" equalTo:[PFUser currentUser]];
-           // fetch data asynchronously
-           [query findObjectsInBackgroundWithBlock:^(NSArray *equationsArray, NSError *error) {
-               if (equationsArray != nil) {
-                   self.equationSnips = [equationsArray mutableCopy];
-                   self.currentEquationSnips = [equationsArray mutableCopy];
-                   [self textFieldDidChange:self.searchField];
-                   [self.tableView reloadData];
-                   [self.refreshControl endRefreshing];
-               } else {
-               }
-           }];
+    [self.equationSnips removeAllObjects];
+    PFQuery *equationSnipsQuery = [PFQuery queryWithClassName:@"EquationSnips"];
+    [equationSnipsQuery includeKey:@"author"];
+    [equationSnipsQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+        // fetch data asynchronously
+        [equationSnipsQuery findObjectsInBackgroundWithBlock:^(NSArray *equationSnipsArray, NSError *error) {
+            if (equationSnipsArray != nil) {
+                self.equationSnips = [equationSnipsArray mutableCopy];
+                PFQuery *sharedEquationSnipsQuery = [PFQuery queryWithClassName:@"SharedEquationSnips"];
+                [sharedEquationSnipsQuery includeKey:@"sharedEquationSnip"];
+                [sharedEquationSnipsQuery includeKey:@"sharedEquationSnip.author"];
+                [sharedEquationSnipsQuery includeKey:@"sharedUser"];
+                [sharedEquationSnipsQuery whereKey:@"sharedUser" equalTo:[PFUser currentUser]];
+                [sharedEquationSnipsQuery findObjectsInBackgroundWithBlock:^(NSArray *sharedEquationSnipsArray, NSError *error) {
+                if (sharedEquationSnipsArray != nil) {
+                    for (SharedEquationSnip *sharedEquationSnip in sharedEquationSnipsArray){
+                        [self.equationSnips addObject:sharedEquationSnip.sharedEquationSnip];
+                    }
+                }
+                    [self.equationSnips sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:NO]]];
+                    self.currentEquationSnips = [[NSMutableArray alloc] initWithArray:self.equationSnips];
+                    [self textFieldDidChange:self.searchField];
+                    [self.refreshControl endRefreshing];
+                }];
+            } else {
+            }
+        }];
 }
 
 
@@ -123,7 +137,7 @@
                                                              handler:^(UIAlertAction * _Nonnull action) {
                 [self.tableView beginUpdates];
                 [self.equationSnips removeObject:self.currentEquationSnips[indexPath.row]];
-                [self.currentEquationSnips[indexPath.row] deleteInBackground];
+                [EquationSnip deleteEquationSnip:self.currentEquationSnips[indexPath.row] withCompletion:nil];
                 [self.currentEquationSnips removeObjectAtIndex:indexPath.row];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray<NSIndexPath *> arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 [self.tableView endUpdates];
@@ -141,7 +155,7 @@
     }
 }
 #pragma mark - EquationSnipCell delegate
--(void)didTapRename:(EquationSnip *)equationSnip {
+-(void) didTapRename:(EquationSnip *)equationSnip withCompletion:(PFBooleanResultBlock _Nullable)completion{
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle: [@"Rename " stringByAppendingString:equationSnip.equationSnipName]
                                                                                   message: @"Type new name for the note"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
@@ -156,9 +170,27 @@
         UITextField * namefield = textfields[0];
         NSLog(@"%@",namefield.text);
         equationSnip.equationSnipName = namefield.text;
-        [EquationSnip updateEquationSnip:equationSnip withCompletion:nil];
+        [EquationSnip updateEquationSnip:equationSnip withCompletion:completion];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
+}
+- (void) didTapShare:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Share Note"
+                                                                                  message: @"Type username of user to share note with them"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"username";
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.clearsOnInsertion =YES;
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSArray * textfields = alertController.textFields;
+        UITextField * namefield = textfields[0];
+        [SharedEquationSnip shareEquationSnip:equationSnip withUsername:namefield.text withCompletion:completion];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
 }
 
 #pragma mark - Navigation

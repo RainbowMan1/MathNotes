@@ -31,8 +31,18 @@
     self.lastUpdatedTimeLabel.text = [@"Modified: " stringByAppendingString:[self.equationSnip.updatedAt timeAgoSinceNow]];
 }
 - (IBAction)renameEquationSnip:(id)sender {
-    [self.delegate didTapRename:self.equationSnip];
-    [self updateCell];
+    [self.delegate didTapRename:self.equationSnip withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self updateCell];
+        }
+    }];
+}
+- (IBAction)shareEquationSnip:(id)sender {
+    [self.delegate didTapShare:self.equationSnip withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self updateCell];
+        }
+    }];
 }
 
 @end

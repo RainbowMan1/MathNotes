@@ -57,6 +57,7 @@
            UITextField * namefield = textfields[0];
            NSLog(@"%@",namefield.text);
            self.note.noteName = namefield.text;
+           [Note updateNote:self.note withCompletion:nil];
            [self.noteNameButton setTitle:self.note.noteName forState:UIControlStateNormal];
        }]];
        [self presentViewController:alertController animated:YES completion:nil];

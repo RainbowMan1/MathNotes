@@ -107,13 +107,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03/11/2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQC-Fe-rre">
-                                                    <rect key="frame" x="322" y="27.5" width="67" height="16"/>
+                                                    <rect key="frame" x="317" y="27.5" width="67" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXN-yc-e6I">
-                                                    <rect key="frame" x="239" y="68.5" width="78" height="30"/>
+                                                    <rect key="frame" x="239" y="68.5" width="90" height="30"/>
                                                     <state key="normal" title="Rename">
                                                         <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
@@ -122,10 +122,13 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0d-4g-fDh">
-                                                    <rect key="frame" x="332" y="67.5" width="40" height="32.5"/>
+                                                    <rect key="frame" x="344" y="67.5" width="40" height="32.5"/>
                                                     <state key="normal" title="Share">
                                                         <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="shareEquationSnip:" destination="nnd-7W-VoA" eventType="touchUpInside" id="Rsa-JW-VwM"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owned By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcN-Al-DpS">
                                                     <rect key="frame" x="20" y="76" width="70" height="15.5"/>
@@ -135,11 +138,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="NQC-Fe-rre" secondAttribute="trailing" constant="5" id="8dU-uq-Zf2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="NQC-Fe-rre" secondAttribute="trailing" constant="10" id="8dU-uq-Zf2"/>
                                                 <constraint firstItem="NQC-Fe-rre" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ABJ-WF-iC1" secondAttribute="trailing" constant="20" id="9l5-vs-kUV"/>
                                                 <constraint firstItem="NQC-Fe-rre" firstAttribute="centerY" secondItem="ABJ-WF-iC1" secondAttribute="centerY" id="DRR-45-UG3"/>
                                                 <constraint firstItem="T0d-4g-fDh" firstAttribute="bottom" secondItem="PTx-0p-I4q" secondAttribute="bottomMargin" id="EJh-gt-b4r"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="T0d-4g-fDh" secondAttribute="trailing" constant="22" id="N7D-FC-Sdy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="T0d-4g-fDh" secondAttribute="trailing" constant="10" id="N7D-FC-Sdy"/>
                                                 <constraint firstItem="T0d-4g-fDh" firstAttribute="leading" secondItem="lXN-yc-e6I" secondAttribute="trailing" constant="15" id="UdL-5a-dNn"/>
                                                 <constraint firstItem="lXN-yc-e6I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AcN-Al-DpS" secondAttribute="trailing" constant="10" id="Vz9-TA-V0M"/>
                                                 <constraint firstItem="T0d-4g-fDh" firstAttribute="top" secondItem="NQC-Fe-rre" secondAttribute="bottom" constant="24" id="YzR-e8-2Bf"/>
@@ -152,6 +155,11 @@
                                                 <constraint firstItem="lXN-yc-e6I" firstAttribute="centerY" secondItem="AcN-Al-DpS" secondAttribute="centerY" id="v4p-Ha-alt"/>
                                                 <constraint firstItem="AcN-Al-DpS" firstAttribute="leading" secondItem="PTx-0p-I4q" secondAttribute="leadingMargin" id="yPI-Kh-TAp"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Zrv-jt-Dl5"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="equationSnipName" destination="ABJ-WF-iC1" id="LP8-mP-o30"/>

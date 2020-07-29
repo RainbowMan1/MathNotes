@@ -20,7 +20,7 @@
 @property (nonatomic, strong, readonly) NSDate * _Nonnull updatedAt;
 
 + (void) shareNote:(Note * _Nonnull)note withUsername:(NSString * _Nonnull)name withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
++ (void) deleteSharedNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion ;
 @end
 
 #endif /* SharedNotes_h */
