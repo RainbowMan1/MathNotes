@@ -12,6 +12,7 @@ target 'MathNotes' do
   pod 'TOCropViewController'
   pod 'iosMath'  
   pod 'DateTools'
+  pod 'Parse/FacebookUtils'
   target 'MathNotesTests' do
     inherit! :search_paths
     # Pods for testing

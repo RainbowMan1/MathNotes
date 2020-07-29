@@ -16,11 +16,25 @@ PODS:
     - AFNetworking/NSURLSession
   - Bolts/Tasks (1.9.1)
   - DateTools (2.0.0)
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.15.1):
+    - FBSDKLoginKit/Login (= 5.15.1)
+  - FBSDKLoginKit/Login (5.15.1):
+    - FBSDKCoreKit (~> 5.0)
   - iosMath (0.9.4)
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
     - Bolts/Tasks (= 1.9.1)
+  - Parse/FacebookUtils (1.18.0):
+    - Bolts/Tasks (= 1.9.1)
+    - FBSDKLoginKit (~> 5.x)
+    - Parse/Core
   - Parse/UI (1.18.0):
     - Parse/Core
   - TOCropViewController (2.5.4)
@@ -30,6 +44,7 @@ DEPENDENCIES:
   - DateTools
   - iosMath
   - Parse
+  - Parse/FacebookUtils
   - Parse/UI
   - TOCropViewController
 
@@ -38,6 +53,8 @@ SPEC REPOS:
     - AFNetworking
     - Bolts
     - DateTools
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - iosMath
     - Parse
     - TOCropViewController
@@ -46,10 +63,12 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   iosMath: f7a6cbadf9d836d2149c2a84c435b1effc244cba
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
   TOCropViewController: 2a1ae1242600b1f2d996fd91a5268b2309a33b5c
 
-PODFILE CHECKSUM: c53fab7d0d966cdb565b052d0d928cfd8268de69
+PODFILE CHECKSUM: 37bd395379dd72d549812baf7165b56dc323b0aa
 
 COCOAPODS: 1.9.3

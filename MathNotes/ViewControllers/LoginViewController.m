@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import <PFFacebookUtils.h>
+
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -97,6 +99,35 @@
         return NO;
     }
     return YES;
+}
+- (IBAction)loginWithFacebook:(id)sender {
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"public_profile", @"email"] block:^(PFUser *user, NSError *error) {
+      if (!user) {
+        NSLog(@"Uh oh. The user cancelled the Facebook login.");
+      } else if (user.isNew) {
+        NSLog(@"User signed up and logged in through Facebook!");
+          [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,email" parameters:nil]
+            startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+              if (!error) {
+                  NSLog(@"%@", result[@"id"]);
+                  user[@"FBID"] = result[@"id"];
+                  user[@"email"] = result[@"email"];
+                  user[@"username"] = [[[[result[@"email"] componentsSeparatedByString:@"@"][1] substringToIndex:1] stringByAppendingString:@"_"] stringByAppendingString:[result[@"email"] componentsSeparatedByString:@"@"][0]];
+                
+                  [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                      if (!error)
+                          NSLog(@"Save was complete");
+                  }];
+
+                  [self performSegueWithIdentifier:@"firstSegue" sender:nil];
+              }
+          }];
+          
+      } else {
+        NSLog(@"User logged in through Facebook!");
+          [self performSegueWithIdentifier:@"firstSegue" sender:nil];
+      }
+    }];
 }
 
 @end

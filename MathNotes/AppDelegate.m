@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
-
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <PFFacebookUtils.h>
+ 
 @interface AppDelegate ()
 
 @end
@@ -16,17 +18,34 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {        ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
             
             configuration.applicationId = @"mathsnote";
             configuration.server = @"https://mathsnote.herokuapp.com/parse";
         }];
-        
+    
         [Parse initializeWithConfiguration:config];
+        [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
     return YES;
         
 }
+
+#pragma mark - Facebook Login
+- (BOOL) application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    NSString *sourceApplication = options[UIApplicationOpenURLOptionsSourceApplicationKey];
+    return [[FBSDKApplicationDelegate sharedInstance] application:app
+                                                              openURL:url
+                                                    sourceApplication:sourceApplication
+                                                           annotation:nil];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
+}
+
 
 
 #pragma mark - UISceneSession lifecycle
