@@ -13,6 +13,7 @@ target 'MathNotes' do
   pod 'iosMath'  
   pod 'DateTools'
   pod 'Parse/FacebookUtils'
+  pod 'TZImagePickerController'
   target 'MathNotesTests' do
     inherit! :search_paths
     # Pods for testing

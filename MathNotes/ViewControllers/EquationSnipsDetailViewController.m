@@ -81,7 +81,14 @@
     }];
     
     [self.imageView setFile:self.equationSnip.equationImage];
-    [self.imageView loadInBackground];
+    [self.imageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        NSLog(@"%lf",image.size.height);
+        //NSLog(@"%lf",self.equationLabel.frame.size.height);
+        CGRect newFrame = self.equationLabel.frame;
+        newFrame.size.height = image.size.height/9;
+        [self.equationLabel setFrame:newFrame];
+        NSLog(@"%lf",self.equationLabel.frame.size.height);
+    }];
     
     self.laTexCodeView.text = self.equationSnip.laTeXcode;
     frame = self.laTexCodeView.frame;
@@ -95,6 +102,8 @@
         self.laTexCodeView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
     }
     completion:nil];
+    
+    
 }
 
 -(void)alertPreviewMessage {

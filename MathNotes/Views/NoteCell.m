@@ -32,12 +32,12 @@
 - (void)updateCell {
     self.noteNameLabel.text =  self.note.noteName;
     
-    self.lastUpdatedTimeLabel.text = [@"Modified: " stringByAppendingString:[self.note.updatedAt timeAgoSinceNow]];
+    self.lastUpdatedTimeLabel.text = [self.note.updatedAt timeAgoSinceNow];
     if ([self.note.author.username isEqualToString:[PFUser currentUser].username]){
         self.ownedByLabel.text =   @"Owned by: Me";
     }
     else{
-         self.ownedByLabel.text =[@"Owned by: " stringByAppendingString:self.note.author.username];
+         self.ownedByLabel.text = self.note.author.username;
     }
 }
 - (IBAction)renameNote:(id)sender {

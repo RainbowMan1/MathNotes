@@ -101,13 +101,16 @@
     return YES;
 }
 - (IBAction)loginWithFacebook:(id)sender {
-    [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"public_profile", @"email"] block:^(PFUser *user, NSError *error) {
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"public_profile", @"email", @"user_friends"] block:^(PFUser *user, NSError *error) {
       if (!user) {
         NSLog(@"Uh oh. The user cancelled the Facebook login.");
       } else if (user.isNew) {
         NSLog(@"User signed up and logged in through Facebook!");
-          [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,email" parameters:nil]
-            startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+          FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+              initWithGraphPath:@"/me"
+                     parameters:@{ @"fields": @"id,email",}
+                     HTTPMethod:@"GET"];
+          [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
               if (!error) {
                   NSLog(@"%@", result[@"id"]);
                   user[@"FBID"] = result[@"id"];

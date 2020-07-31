@@ -38,6 +38,7 @@ PODS:
   - Parse/UI (1.18.0):
     - Parse/Core
   - TOCropViewController (2.5.4)
+  - TZImagePickerController (3.4.1)
 
 DEPENDENCIES:
   - AFNetworking
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - Parse/FacebookUtils
   - Parse/UI
   - TOCropViewController
+  - TZImagePickerController
 
 SPEC REPOS:
   trunk:
@@ -58,6 +60,7 @@ SPEC REPOS:
     - iosMath
     - Parse
     - TOCropViewController
+    - TZImagePickerController
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -68,7 +71,8 @@ SPEC CHECKSUMS:
   iosMath: f7a6cbadf9d836d2149c2a84c435b1effc244cba
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
   TOCropViewController: 2a1ae1242600b1f2d996fd91a5268b2309a33b5c
+  TZImagePickerController: 4e7a7b3d314f8a75f11042931dfd9d34c270c7db
 
-PODFILE CHECKSUM: 37bd395379dd72d549812baf7165b56dc323b0aa
+PODFILE CHECKSUM: be6ce1e0802a01d62bd636883afe23623818ebd2
 
 COCOAPODS: 1.9.3

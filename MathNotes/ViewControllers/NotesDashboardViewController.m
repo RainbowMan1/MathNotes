@@ -12,14 +12,16 @@
 #import "NoteCell.h"
 #import "SceneDelegate.h"
 #import "NotesEditorViewController.h"
+#import "ShareViewController.h"
+#import <PFFacebookUtils.h>
 
-@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCellDelegate>
+@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCellDelegate, ShareDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *notes;
 @property (strong, nonatomic) NSMutableArray *currentNotes;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
-
+@property (strong, nonatomic) Note *noteToBeShared;
 @end
 
 @implementation NotesDashboardViewController
@@ -57,7 +59,6 @@
 #pragma mark - fetch from database
 
 - (void)fetchNotes {
-    [self.notes removeAllObjects];
     PFQuery *notesQuery = [PFQuery queryWithClassName:@"Notes"];
     [notesQuery includeKey:@"author"];
     [notesQuery whereKey:@"author" equalTo:[PFUser currentUser]];
@@ -199,7 +200,7 @@
         [self presentViewController:alert animated:YES completion:^{}];
 }
 
-- (void) didTapShare:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion{
+- (void)shareAlertForNote:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Share Note"
                                                                                   message: @"Type username of user to share note with them"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
@@ -213,9 +214,31 @@
         UITextField * namefield = textfields[0];
         [SharedNote shareNote:note withUsername:namefield.text withCompletion:completion];
     }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alertController animated:YES completion:nil];
-    
-    
+}
+
+- (void) didTapShare:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion{
+    if (![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]){
+        [self shareAlertForNote:note withCompletion:nil];
+    }
+    else{
+        self.noteToBeShared = note;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ShareViewController *shareController = [storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
+        shareController.delegate = self;
+        [self presentViewController:shareController animated:YES completion:nil];
+    }
+}
+
+#pragma mark - Share Delegate
+
+- (void)didShareToFBID:(NSString *)FBID{
+    [SharedNote shareNote:self.noteToBeShared withFBID:FBID withCompletion:nil];
+}
+
+- (void)didShareToUsername{
+    [self shareAlertForNote:self.noteToBeShared withCompletion:nil];
 }
 
 #pragma mark - Navigation
@@ -231,6 +254,10 @@
         NoteCell *selectedcell = (NoteCell*) sender;
         //NSLog(@"%@",selectedcell.note.htmlText);
         noteEditor.note = selectedcell.note;
+    }
+    else if ([segue.identifier isEqualToString:@"ShareNote"]){
+        ShareViewController *shareController = [segue destinationViewController];
+        shareController.delegate = self;
     }
 }
 

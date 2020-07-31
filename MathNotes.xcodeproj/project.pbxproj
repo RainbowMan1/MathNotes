@@ -105,7 +105,6 @@
 		DB759C4624BE352A007932E9 /* ZSSredo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB759BDE24BE1CC0007932E9 /* ZSSredo@2x.png */; };
 		DB759C4724BE352A007932E9 /* ZSSimage.png in Resources */ = {isa = PBXBuildFile; fileRef = DB759BDF24BE1CC0007932E9 /* ZSSimage.png */; };
 		DB759C4824BE353F007932E9 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = DB759B9124BE1CBF007932E9 /* editor.html */; };
-		DB9C101F24C744BC0093F66C /* CreateNewEquationSnipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9C101E24C744BC0093F66C /* CreateNewEquationSnipViewController.m */; };
 		DBA65ECD24BFA42D00429B7D /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759B8F24BE1CBF007932E9 /* ZSSRichTextEditor.js */; };
 		DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */; };
 		DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */; };
@@ -123,6 +122,9 @@
 		DBAB6F5424BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */; };
 		DBAB6F5724BCFF1700AEE9B0 /* EquationSnipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */; };
 		DBAB6F5A24BD060000AEE9B0 /* NotesEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */; };
+		DBAC7F1424D3558800B5B550 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1324D3558800B5B550 /* ShareViewController.m */; };
+		DBAC7F1724D359BF00B5B550 /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1624D359BF00B5B550 /* ShareCell.m */; };
+		DBAC7F1A24D35CC800B5B550 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1924D35CC800B5B550 /* Friend.m */; };
 		DBE2CD8024C2021F0028EFDE /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD7F24C2021F0028EFDE /* APIManager.m */; };
 		DBE2CD8324C20E640028EFDE /* EquationSnipsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */; };
 		DBF3270024C5F2960087F542 /* APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF326FF24C5F2960087F542 /* APIKeys.m */; };
@@ -270,8 +272,6 @@
 		DB759BE424BE1CC0007932E9 /* ZSSRichTextEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZSSRichTextEditor.m; sourceTree = "<group>"; };
 		DB759BE524BE1CC0007932E9 /* ZSSBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZSSBarButtonItem.h; sourceTree = "<group>"; };
 		DB759BE624BE1CC0007932E9 /* JSBeautifier.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JSBeautifier.js; sourceTree = "<group>"; };
-		DB9C101D24C744BC0093F66C /* CreateNewEquationSnipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateNewEquationSnipViewController.h; sourceTree = "<group>"; };
-		DB9C101E24C744BC0093F66C /* CreateNewEquationSnipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateNewEquationSnipViewController.m; sourceTree = "<group>"; };
 		DBAB6F0B24BCBD2C00AEE9B0 /* MathNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBAB6F0E24BCBD2C00AEE9B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -304,6 +304,12 @@
 		DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnipCell.m; sourceTree = "<group>"; };
 		DBAB6F5824BD060000AEE9B0 /* NotesEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotesEditorViewController.h; sourceTree = "<group>"; };
 		DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotesEditorViewController.m; sourceTree = "<group>"; };
+		DBAC7F1224D3558800B5B550 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		DBAC7F1324D3558800B5B550 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		DBAC7F1524D359BF00B5B550 /* ShareCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
+		DBAC7F1624D359BF00B5B550 /* ShareCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
+		DBAC7F1824D35CBA00B5B550 /* Friend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		DBAC7F1924D35CC800B5B550 /* Friend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		DBE2CD7E24C202110028EFDE /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		DBE2CD7F24C2021F0028EFDE /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		DBE2CD8124C20E640028EFDE /* EquationSnipsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquationSnipsDetailViewController.h; sourceTree = "<group>"; };
@@ -501,13 +507,6 @@
 			name = EquationSnips;
 			sourceTree = "<group>";
 		};
-		DB9C102324C7577C0093F66C /* Notes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notes;
-			sourceTree = "<group>";
-		};
 		DBAB6F0224BCBD2C00AEE9B0 = {
 			isa = PBXGroup;
 			children = (
@@ -575,9 +574,10 @@
 		DBAB6F4324BCCE3500AEE9B0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DB9C102324C7577C0093F66C /* Notes */,
 				DBAB6F4F24BCEFE200AEE9B0 /* NotesDashboardViewController.h */,
 				DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */,
+				DBAC7F1224D3558800B5B550 /* ShareViewController.h */,
+				DBAC7F1324D3558800B5B550 /* ShareViewController.m */,
 				DBAB6F5824BD060000AEE9B0 /* NotesEditorViewController.h */,
 				DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */,
 				DB388CA124C0BC6C009F0046 /* EquationPickerViewController.h */,
@@ -587,8 +587,6 @@
 				DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */,
 				DBE2CD8124C20E640028EFDE /* EquationSnipsDetailViewController.h */,
 				DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */,
-				DB9C101D24C744BC0093F66C /* CreateNewEquationSnipViewController.h */,
-				DB9C101E24C744BC0093F66C /* CreateNewEquationSnipViewController.m */,
 				DBAB6F1424BCBD2C00AEE9B0 /* LoginViewController.h */,
 				DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */,
 			);
@@ -602,6 +600,8 @@
 				DBAB6F4D24BCE7A800AEE9B0 /* NoteCell.m */,
 				DBAB6F5524BCFF1700AEE9B0 /* EquationSnipCell.h */,
 				DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */,
+				DBAC7F1524D359BF00B5B550 /* ShareCell.h */,
+				DBAC7F1624D359BF00B5B550 /* ShareCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -617,6 +617,8 @@
 				DB0CE49D24D07DBB00FFBA2D /* SharedNote.m */,
 				DB0CE49F24D0AC2700FFBA2D /* SharedEquationSnip.h */,
 				DB0CE4A024D0AC3400FFBA2D /* SharedEquationSnip.m */,
+				DBAC7F1824D35CBA00B5B550 /* Friend.h */,
+				DBAC7F1924D35CC800B5B550 /* Friend.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -971,14 +973,16 @@
 				DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */,
 				DB759BEF24BE1E14007932E9 /* CYRTextStorage.m in Sources */,
 				DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */,
+				DBAC7F1724D359BF00B5B550 /* ShareCell.m in Sources */,
 				DB759BF324BE1E14007932E9 /* HRColorPickerView.m in Sources */,
 				DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */,
 				DBAB6F5724BCFF1700AEE9B0 /* EquationSnipCell.m in Sources */,
 				DBE2CD8324C20E640028EFDE /* EquationSnipsDetailViewController.m in Sources */,
 				DBAB6F2124BCBD2D00AEE9B0 /* main.m in Sources */,
 				DB759BE724BE1CC0007932E9 /* ZSSTextView.m in Sources */,
+				DBAC7F1A24D35CC800B5B550 /* Friend.m in Sources */,
+				DBAC7F1424D3558800B5B550 /* ShareViewController.m in Sources */,
 				DB759BED24BE1CC0007932E9 /* ZSSBarButtonItem.m in Sources */,
-				DB9C101F24C744BC0093F66C /* CreateNewEquationSnipViewController.m in Sources */,
 				DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */,
 				DBAB6F5A24BD060000AEE9B0 /* NotesEditorViewController.m in Sources */,
 			);
@@ -1157,7 +1161,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nikeshsubedi.MathNotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikeshsubedi.mathnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1175,7 +1179,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nikeshsubedi.MathNotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikeshsubedi.mathnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
