@@ -64,13 +64,30 @@
     
 }
 
-- (void)didPickEquationSnip:(nonnull EquationSnip *)equationSnip {
-    NSLog(@"%@",[equationSnip.equationImage url]);
-    [self prepareInsertWithCompletion:^(NSString *result, NSError *error) {
-        if (error==nil){
-            [self insertText:equationSnip.htmlcode];
-        }
-    }];
+- (void)didPickEquationSnip:(nonnull EquationSnip *)equationSnip withMode:(nonnull NSString *)mode{
+    if ([mode isEqualToString:@"Inline"]){
+        [self prepareInsertWithCompletion:^(NSString *result, NSError *error) {
+            if (error==nil){
+                [self insertText:equationSnip.htmlcode];
+            }
+        }];
+    }
+    else if ([mode isEqualToString:@"Display"]){
+        [self prepareInsertWithCompletion:^(NSString *result, NSError *error) {
+            if (error==nil){
+                NSString *html = [[@"\\[" stringByAppendingString:equationSnip.laTeXcode] stringByAppendingString:@"\\]"];
+                [self insertText:html];
+            }
+        }];
+    }
+    else if ([mode isEqualToString:@"Equation"]){
+        [self prepareInsertWithCompletion:^(NSString *result, NSError *error) {
+            if (error==nil){
+                NSString *html = [[@"\\begin{equation}" stringByAppendingString:equationSnip.laTeXcode] stringByAppendingString:@"\\end{equation}"];
+                [self insertText:html];
+            }
+        }];
+    }
 }
 
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html{

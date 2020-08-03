@@ -35,9 +35,11 @@
     self.lastUpdatedTimeLabel.text = [self.note.updatedAt timeAgoSinceNow];
     if ([self.note.author.username isEqualToString:[PFUser currentUser].username]){
         self.ownedByLabel.text =   @"Owned by: Me";
+        [self.ownerColorView setBackgroundColor:[UIColor systemBlueColor]];
     }
     else{
          self.ownedByLabel.text = self.note.author.username;
+        [self.ownerColorView setBackgroundColor:[UIColor systemOrangeColor]];
     }
 }
 - (IBAction)renameNote:(id)sender {

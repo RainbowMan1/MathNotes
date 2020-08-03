@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EquationPickerDelegate
 
-- (void)didPickEquationSnip:(EquationSnip *)equationSnip;
+- (void)didPickEquationSnip:(EquationSnip *)equationSnip withMode:(NSString *) mode;
 
 @end
 

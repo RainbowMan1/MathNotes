@@ -38,7 +38,7 @@
     NSString *latex = self.equationSnip.laTeXcode;
     self.equationLabel.latex= [self preparedPreview:latex];
     self.equationLabel.textAlignment = kMTTextAlignmentCenter;
-    self.equationLabel.font = [[MTFontManager fontManager] termesFontWithSize:15];
+    self.equationLabel.font = [[MTFontManager fontManager] termesFontWithSize:18];
     if (self.equationLabel.error!=nil){
         self.equationLabel.latex = @"\\text{ Preview Unavailable. Tap to learn more. }";
         self.equationLabel.font = [[MTFontManager fontManager] termesFontWithSize:15];
@@ -82,12 +82,12 @@
     
     [self.imageView setFile:self.equationSnip.equationImage];
     [self.imageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
-        NSLog(@"%lf",image.size.height);
+        //NSLog(@"%lf",image.size.height);
         //NSLog(@"%lf",self.equationLabel.frame.size.height);
-        CGRect newFrame = self.equationLabel.frame;
-        newFrame.size.height = image.size.height/9;
-        [self.equationLabel setFrame:newFrame];
-        NSLog(@"%lf",self.equationLabel.frame.size.height);
+        //CGRect newFrame = self.equationLabel.frame;
+        //newFrame.size.height = image.size.height/9;
+        //[self.equationLabel setFrame:newFrame];
+        //NSLog(@"%lf",self.equationLabel.frame.size.height);
     }];
     
     self.laTexCodeView.text = self.equationSnip.laTeXcode;
@@ -136,6 +136,8 @@
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+
 /*
 #pragma mark - Navigation
 

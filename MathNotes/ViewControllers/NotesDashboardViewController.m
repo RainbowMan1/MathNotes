@@ -15,6 +15,8 @@
 #import "ShareViewController.h"
 #import <PFFacebookUtils.h>
 
+
+
 @interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCellDelegate, ShareDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *notes;
@@ -53,7 +55,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
-    [self fetchNotes];
+    if (self.isViewLoaded){
+        [self fetchNotes];
+    }
 }
 
 #pragma mark - fetch from database

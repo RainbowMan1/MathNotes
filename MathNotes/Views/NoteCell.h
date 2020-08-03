@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface NoteCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *ownerColorView;
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedTimeLabel;
 @property (strong, nonatomic) Note *note;
