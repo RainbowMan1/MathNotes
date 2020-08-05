@@ -14,6 +14,7 @@ target 'MathNotes' do
   pod 'DateTools'
   pod 'Parse/FacebookUtils'
   pod 'PopOverMenu'
+  pod 'InAppSettingsKit'
   target 'MathNotesTests' do
     inherit! :search_paths
     # Pods for testing
