@@ -229,7 +229,7 @@
                         <viewLayoutGuide key="safeArea" id="88P-nN-6P0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Equation Snips" id="hyl-vn-dia">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="ugF-hT-2xI">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" image="icons8-settings-32" id="ugF-hT-2xI">
                             <connections>
                                 <segue destination="AM0-ok-eWe" kind="show" id="UbN-8b-lHL"/>
                             </connections>
@@ -284,6 +284,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="neverShowPrivacySettings" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="logOutButton" destination="Gsk-S7-FDn" id="7HW-nn-iWw"/>
                         <segue destination="6YE-24-e9Y" kind="show" identifier="EnableToolbar" id="NVf-Al-ErZ"/>
                     </connections>
                 </tableViewController>
@@ -556,10 +557,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="111"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heh-9y-YCZ" userLabel="EquationContentView">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="422.5" height="111"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="111"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5b-mf-moq" customClass="MTMathUILabel">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="422.5" height="103"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="103"/>
                                                                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="latex" value="x=5ksdgaksgfkasjgfhkasgfkasgfkajsgfkjasgf"/>
@@ -653,7 +654,7 @@
                         <viewLayoutGuide key="safeArea" id="QOY-cb-gbS"/>
                     </view>
                     <navigationItem key="navigationItem" id="wg8-aX-Lk1">
-                        <barButtonItem key="rightBarButtonItem" title="Fn" id="db3-PA-TpC">
+                        <barButtonItem key="rightBarButtonItem" title="Fn" image="icons8-insert-equation-30" id="db3-PA-TpC">
                             <connections>
                                 <segue destination="v4h-EQ-AQv" kind="presentation" id="BEQ-Oh-1BF"/>
                             </connections>
@@ -685,7 +686,7 @@
             </objects>
             <point key="canvasLocation" x="1184" y="117"/>
         </scene>
-        <!--Your Notes-->
+        <!--Notes-->
         <scene sceneID="6hc-Rf-HsJ">
             <objects>
                 <viewController id="oXO-tj-qTe" customClass="NotesDashboardViewController" sceneMemberID="viewController">
@@ -809,7 +810,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fwM-Ik-lPC" firstAttribute="leading" secondItem="sKu-4j-d0G" secondAttribute="leading" id="5CV-av-fv9"/>
@@ -823,8 +824,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sKu-4j-d0G"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Notes" id="NeO-gg-gDV">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="AkK-Tj-6Td">
+                    <navigationItem key="navigationItem" title="Notes" id="NeO-gg-gDV">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" image="icons8-settings-32" id="AkK-Tj-6Td">
                             <connections>
                                 <segue destination="AM0-ok-eWe" kind="show" id="tj1-I1-Zxk"/>
                             </connections>
@@ -864,12 +865,14 @@
         <scene sceneID="Yh2-DJ-MHJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yJ3-6U-PKo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notes" id="WKt-9T-1V8"/>
+                    <tabBarItem key="tabBarItem" title="Notes" image="math-book-50" selectedImage="math-book-50-filled" id="WKt-9T-1V8">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fur-eq-ztl">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -885,7 +888,9 @@
         <scene sceneID="6HP-gm-qd6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WnX-sf-yuB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Equation Snips" id="fLK-3g-Fog"/>
+                    <tabBarItem key="tabBarItem" title="Equation Snips" image="ZSSviewsource.png" id="fLK-3g-Fog">
+                        <color key="badgeColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5av-hU-0Uf">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -908,9 +913,14 @@
         <segue reference="UbN-8b-lHL"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ZSSviewsource.png" width="28" height="28"/>
         <image name="icons8-edit-50" width="50" height="50"/>
         <image name="icons8-group-100" width="50" height="50"/>
+        <image name="icons8-insert-equation-30" width="21" height="21"/>
+        <image name="icons8-settings-32" width="32" height="32"/>
         <image name="icons8-share-3-24" width="24" height="24"/>
+        <image name="math-book-50" width="25" height="25"/>
+        <image name="math-book-50-filled" width="25" height="25"/>
         <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>
