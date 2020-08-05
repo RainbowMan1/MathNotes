@@ -38,6 +38,10 @@
         
         newEquationSnip.htmlcode = [responseObject[@"text"] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
         newEquationSnip.laTeXcode =[responseObject[@"latex_styled"] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+        if (newEquationSnip.laTeXcode == nil){
+            newEquationSnip.laTeXcode =  [[[[[[@"\\text{" stringByAppendingString:newEquationSnip.htmlcode] stringByReplacingOccurrencesOfString:@"\\(" withString:@"} $"] stringByReplacingOccurrencesOfString:@"\\)" withString:@"$ \\text{"] stringByReplacingOccurrencesOfString:@"\\[" withString:@"} $$"] stringByReplacingOccurrencesOfString:@"\\]" withString:@"$$ \\text{"]stringByAppendingString:@"}"];
+            NSLog(@"%@",newEquationSnip.laTeXcode);
+        }
         newEquationSnip.confidence = responseObject[@"confidence"];
         [newEquationSnip saveInBackgroundWithBlock: completion];
     }];
