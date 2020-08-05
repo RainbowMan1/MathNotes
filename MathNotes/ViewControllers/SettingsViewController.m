@@ -11,6 +11,7 @@
 @import Parse;
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
 
 @end
 
@@ -48,7 +49,12 @@
         
         [alert addAction:cancelAction];
     [alert addAction:yesAction];
-        [self presentViewController:alert animated:YES completion:^{}];
+    [alert setModalPresentationStyle:UIModalPresentationPopover];
+
+    alert.popoverPresentationController.sourceView = self.view;
+    alert.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width *0.95, 0, 1.0, 1.0);
+   
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
