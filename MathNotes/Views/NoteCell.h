@@ -23,7 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedTimeLabel;
 @property (strong, nonatomic) Note *note;
-@property (weak, nonatomic) IBOutlet UILabel *ownedByLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *ownedImage;
+@property (weak, nonatomic) IBOutlet UIView *renameNoteView;
+@property (weak, nonatomic) IBOutlet UILabel *ownerName;
 @property (weak, nonatomic) id<NoteCellDelegate> delegate;
 @end
 

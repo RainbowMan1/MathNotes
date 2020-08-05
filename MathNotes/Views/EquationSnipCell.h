@@ -18,8 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface EquationSnipCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *renameView;
 @property (weak, nonatomic) IBOutlet UILabel *equationSnipName;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedTimeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *ownedImage;
+@property (weak, nonatomic) IBOutlet UIView *ownerColorView;
+@property (weak, nonatomic) IBOutlet UILabel *ownerName;
 @property (strong, nonatomic) EquationSnip *equationSnip;
 @property (weak, nonatomic) id<EquationSnipCellDelegate> delegate;
 @end

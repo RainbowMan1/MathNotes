@@ -17,13 +17,13 @@
 #import <Vision/Vision.h>
 
 @interface EquationSnipDashboardViewController ()<UITableViewDelegate, UITableViewDataSource, EquationSnipCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TOCropViewControllerDelegate, ShareDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *equationSnips;
-@property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (strong, nonatomic) NSMutableArray *currentEquationSnips;
 @property (strong, nonatomic) NSString *nameForEquationSnip;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (strong, nonatomic) EquationSnip *equationSnipToBeShared;
 @end
 
@@ -52,6 +52,7 @@
     [self.tableView addGestureRecognizer:gestureRecognizer];
     gestureRecognizer.cancelsTouchesInView = NO;
     
+    
     [self.searchField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 
 }
@@ -59,6 +60,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
 }
+
 
 #pragma mark - fetch from database
 - (void)fetchEquationSnips{
@@ -202,7 +204,11 @@
 
 - (void) didTapShare:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     if (![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]){
-        [self shareAlertForEquationSnip:equationSnip withCompletion:nil];
+        [self shareAlertForEquationSnip:equationSnip withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded){
+                
+            }
+        }];
     }
     else{
         self.equationSnipToBeShared = equationSnip;
@@ -214,30 +220,32 @@
     
 }
 #pragma mark - New EquationSnip
+
 - (IBAction)newEquationSnip:(id)sender {
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"New Equation Snip"
-                                                                                  message: @"Add name for equation snip and choose image from camera or library"
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"name";
-        textField.clearsOnInsertion =YES;
-    }];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                                                                                     message: @"Add name for equation snip and choose image from camera or library"
+                                                                                 preferredStyle:UIAlertControllerStyleAlert];
+       [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+           textField.placeholder = @"name";
+           textField.clearsOnInsertion =YES;
+       }];
+       
+       [alertController addAction:[UIAlertAction actionWithTitle:@"Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+              NSArray * textfields = alertController.textFields;
+              UITextField * namefield = textfields[0];
+              self.nameForEquationSnip = namefield.text;
+           [self equationFromLibrary];
+          }]];
+       [alertController addAction:[UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
            NSArray * textfields = alertController.textFields;
            UITextField * namefield = textfields[0];
            self.nameForEquationSnip = namefield.text;
-        [self equationFromLibrary];
+           [self equationFromCamera];
        }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSArray * textfields = alertController.textFields;
-        UITextField * namefield = textfields[0];
-        self.nameForEquationSnip = namefield.text;
-        [self equationFromCamera];
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alertController animated:YES completion:nil];
+       [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+       [self presentViewController:alertController animated:YES completion:nil];
 }
+
 
 
 - (void)equationFromLibrary{

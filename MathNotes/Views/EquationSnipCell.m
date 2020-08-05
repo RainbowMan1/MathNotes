@@ -28,7 +28,19 @@
 
 - (void)updateCell {
     self.equationSnipName.text =  self.equationSnip.equationSnipName;
-    self.lastUpdatedTimeLabel.text = [@"Modified: " stringByAppendingString:[self.equationSnip.updatedAt timeAgoSinceNow]];
+    self.lastUpdatedTimeLabel.text = [self.equationSnip.updatedAt timeAgoSinceNow];
+    if ([self.equationSnip.author.username isEqualToString:[PFUser currentUser].username]){
+        [self.ownedImage setHidden:YES];
+        [self.renameView setHidden:NO];
+        [self.ownerName setHidden:YES];
+        [self.ownerColorView setBackgroundColor:[UIColor systemOrangeColor]];
+    }
+    else{
+        self.ownerName.text = [@"Shared By: " stringByAppendingString:self.equationSnip.author.username];
+        [self.ownedImage setHidden:NO];
+        [self.renameView setHidden:YES];
+        [self.ownerColorView setBackgroundColor:[UIColor systemBlueColor]];
+    }
 }
 - (IBAction)renameEquationSnip:(id)sender {
     [self.delegate didTapRename:self.equationSnip withCompletion:^(BOOL succeeded, NSError * _Nullable error) {

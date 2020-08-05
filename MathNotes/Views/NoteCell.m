@@ -34,11 +34,15 @@
     
     self.lastUpdatedTimeLabel.text = [self.note.updatedAt timeAgoSinceNow];
     if ([self.note.author.username isEqualToString:[PFUser currentUser].username]){
-        self.ownedByLabel.text =   @"Owned by: Me";
+        [self.ownedImage setHidden:YES];
+        [self.renameNoteView setHidden:NO];
+        [self.ownerName setHidden:YES];
         [self.ownerColorView setBackgroundColor:[UIColor systemBlueColor]];
     }
     else{
-         self.ownedByLabel.text = self.note.author.username;
+        self.ownerName.text = [@"Shared By: " stringByAppendingString:self.note.author.username];
+        [self.ownedImage setHidden:NO];
+        [self.renameNoteView setHidden:YES];
         [self.ownerColorView setBackgroundColor:[UIColor systemOrangeColor]];
     }
 }
