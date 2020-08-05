@@ -28,7 +28,6 @@ static NSString  const *baseURLString = @"https://api.mathpix.com/";
     [requestBody setValue:[@"data:image/jpeg;base64," stringByAppendingString:base] forKey:@"src"];
     NSMutableDictionary *dataOptions = [[NSMutableDictionary alloc] init];
     [dataOptions setValue:@YES forKey:@"include_latex"];
-    [dataOptions setValue:@YES forKey:@"include_svg"];
     [requestBody setValue:dataOptions forKey:@"data_options"];
     NSMutableDictionary *header = [[NSMutableDictionary alloc] init];
     [header setValue:@"application/json" forKey:@"content-type"];
