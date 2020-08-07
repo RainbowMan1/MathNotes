@@ -17,6 +17,6 @@ InAppSettingsKit
 
 Icons from icon8 - https://icons8.com/
 
-ambi from logopond whose icon I have used as the app icon - https://logopond.com/ambi/showcase/detail/293606
+ambi from logopond whose logo desgin I have used as the app icon - https://logopond.com/ambi/
 
 Background texture for editor from https://leaverou.github.io/css3patterns/
