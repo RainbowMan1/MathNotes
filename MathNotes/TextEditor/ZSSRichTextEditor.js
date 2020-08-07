@@ -82,20 +82,33 @@ zss_editor.disableEditing = function(){
 
 zss_editor.updateEnd = function() {
     
-    var editor =document.getElementById("zss_editor_content");
+    var editor = document.getElementById("zss_editor_content");
     var selection = window.getSelection();
     var range = selection.getRangeAt(0);
     var debug = "";
-    debug += range.startContainer.parentElement.parentElement.parentElementtagName + " | " + range.startContainer.parentElement.parentElement.parentElementclassName;
-//    if ((editor.lastChild.tagName === undefined) || (editor.lastChild.tagName != "DIV" && editor.lastChild.lastChild.tagName != "BR")){
-//    const possibleClassNames = ["mi", "mo", "mn", "math"];
-//        if (possibleClassNames.includes(range.startContainer.parentElement.className)){
-//            var div =document.createElement("div");
-//            var breakLine = document.createElement("BR");
-//            div.appendChild(breakLine);
-//            editor.appendChild(div);
-//        }
-//    }
+    debug += $(range.startContainer).closest('.MathJax').attr('id') + " | ";
+    if ($(range.startContainer).closest('.MathJax').attr('id')!== undefined){
+        debug += $(range.startContainer).closest('.MathJax').attr('id') + " | ";
+        if ((editor.lastChild.tagName === undefined) || (editor.lastChild.tagName != "DIV" && editor.lastChild.lastChild.tagName != "BR")){
+            var div = document.createElement("div");
+            var breakLine = document.createElement("BR");
+            div.appendChild(breakLine);
+            editor.appendChild(div);
+            selection.removeAllRanges();
+            var newrange = document.createRange();
+            newrange.setStart(div,0);
+            newrange.setEnd(div,0);
+            selection.addRange(newrange);
+        }
+        else{
+            selection.removeAllRanges();
+            var newrange = document.createRange();
+            
+            newrange.setStart($(range.startContainer).closest('.MathJax').get(0),0);
+            newrange.setEnd($(range.startContainer).closest('.MathJax').get(0),0);
+            selection.addRange(newrange);
+        }
+    }
     zss_editor.debug(debug);
 }
 

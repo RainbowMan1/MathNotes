@@ -77,8 +77,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (void)tapOnMenu:(UIButton *)button forEquationSnip:(EquationSnip *) equationSnip {
     
-    NSArray *titles = @[@"Inline", @"Display", @"Equation"];
-    NSArray *descriptions = @[@"Insert the equation inline", @"Insert the equation in a new line aligned to the center", @"Insert the equation in Display mode and number it"];
+    NSArray *titles = @[@"Inline", @"Display"];
+    NSArray *descriptions = @[@"Insert the equation inline", @"Insert the equation in a new line aligned to the center"];
     
     PopOverViewController *popOverViewController = [PopOverViewController instantiate];
     
@@ -86,7 +86,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [popOverViewController setWithDescriptions:descriptions];
     
     popOverViewController.popoverPresentationController.sourceView = button;
-    popOverViewController.preferredContentSize = CGSizeMake(400, 135);
+    popOverViewController.preferredContentSize = CGSizeMake(400, 90);
     popOverViewController.presentationController.delegate = self;
     
     [popOverViewController setCompletionHandler:^(NSInteger selectRow) {
@@ -94,12 +94,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             case 0:
                 [self.delegate didPickEquationSnip:equationSnip withMode:@"Inline"];
                 [self dismissViewControllerAnimated:YES completion:nil];
+                break;
             case 1:
                 [self.delegate didPickEquationSnip:equationSnip withMode:@"Display"];
                 [self dismissViewControllerAnimated:YES completion:nil];
-            case 2:
-                [self.delegate didPickEquationSnip:equationSnip withMode:@"Equation"];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                break;
             default:
                 break;
         }

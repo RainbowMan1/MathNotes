@@ -80,14 +80,6 @@
             }
         }];
     }
-    else if ([mode isEqualToString:@"Equation"]){
-        [self prepareInsertWithCompletion:^(NSString *result, NSError *error) {
-            if (error==nil){
-                NSString *html = [[@"\\begin{equation}" stringByAppendingString:equationSnip.laTeXcode] stringByAppendingString:@"\\end{equation}"];
-                [self insertText:html];
-            }
-        }];
-    }
 }
 
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html{
