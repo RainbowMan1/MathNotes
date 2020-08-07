@@ -27,6 +27,7 @@
 @dynamic htmlText;
 @dynamic createdAt;
 @dynamic updatedAt;
+@dynamic shared;
 
 + (nonnull NSString *)parseClassName {
     return @"Notes";

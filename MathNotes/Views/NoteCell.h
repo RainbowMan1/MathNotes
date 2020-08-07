@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) didTapRename:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 - (void) didTapShare:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (void) presentSharedUserControllerWithNote:(Note *) note;
 
 @end
 

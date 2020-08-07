@@ -22,7 +22,7 @@
 + (void) shareEquationSnip:(EquationSnip * _Nonnull)equationSnip withUsername:(NSString * _Nonnull)name withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (void) deleteSharedEquationSnip:(EquationSnip * _Nonnull)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion ;
 + (void) shareEquationSnip:(EquationSnip * _Nonnull)equationSnip withFBID:(NSString * _Nonnull)FBID withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
++ (void)deleteSharedEquationSnip:(EquationSnip * _Nonnull)equationSnip forUser:(PFUser * _Nonnull)user withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

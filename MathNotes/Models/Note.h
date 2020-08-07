@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString * _Nullable htmlText;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull createdAt;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull updatedAt;
+@property (nonatomic) BOOL shared;
 
 + (void) postNote: (NSString * _Nonnull)name withText: (NSString * _Nullable)html withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (void) updateNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion;

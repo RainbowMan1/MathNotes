@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) didTapRename:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 - (void) didTapShare:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (void) presentSharedUserControllerWithEquationSnip:(EquationSnip *) equationSnip;
 
 @end
 

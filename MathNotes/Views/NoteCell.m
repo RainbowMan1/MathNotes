@@ -11,6 +11,13 @@
 #import "NSDate+DateTools.h"
 #import "Parse/Parse.h"
 
+
+@interface NoteCell()
+
+@property UILongPressGestureRecognizer *gestureRecognizer;
+
+@end
+
 @implementation NoteCell
 
 - (void)awakeFromNib {
@@ -26,15 +33,34 @@
 
 - (void)setNote:(Note *)note {
     _note = note;
+    self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"texture"]];
+    [self setupGesture];
     [self updateCell];
+}
+
+- (void)showSharedUsers{
+    if (self.gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        if ([self.note.author.username isEqualToString:[PFUser currentUser].username] && self.note.shared) {
+        [self.delegate presentSharedUserControllerWithNote:self.note];
+        }
+    }
+}
+
+- (void) setupGesture{
+    self.gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showSharedUsers)];
+    [self addGestureRecognizer:self.gestureRecognizer];
 }
 
 - (void)updateCell {
     self.noteNameLabel.text =  self.note.noteName;
-    
     self.lastUpdatedTimeLabel.text = [self.note.updatedAt timeAgoSinceNow];
     if ([self.note.author.username isEqualToString:[PFUser currentUser].username]){
-        [self.ownedImage setHidden:YES];
+        if (self.note.shared){
+            [self.ownedImage setHidden:NO];
+        }
+        else{
+            [self.ownedImage setHidden:YES];
+        }
         [self.renameNoteView setHidden:NO];
         [self.ownerName setHidden:YES];
         [self.ownerColorView setBackgroundColor:[UIColor systemBlueColor]];
@@ -52,7 +78,6 @@
             [self updateCell];
         }
     }];
-    
 }
 - (IBAction)shareNote:(id)sender {
     [self.delegate didTapShare:self.note withCompletion:^(BOOL succeeded, NSError * _Nullable error) {

@@ -22,6 +22,7 @@
 + (void) shareNote:(Note * _Nonnull)note withUsername:(NSString * _Nonnull)name withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (void) deleteSharedNote:(Note * _Nonnull)note withCompletion: (PFBooleanResultBlock  _Nullable)completion ;
 + (void) shareNote:(Note * _Nonnull)note withFBID:(NSString * _Nonnull)FBID withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void)deleteSharedNote:(Note * _Nonnull)note forUser:(PFUser * _Nonnull)user withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

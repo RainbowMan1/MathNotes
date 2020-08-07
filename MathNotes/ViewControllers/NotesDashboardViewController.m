@@ -12,12 +12,13 @@
 #import "NoteCell.h"
 #import "SceneDelegate.h"
 #import "NotesEditorViewController.h"
-#import "ShareViewController.h"
+#import "FBShareViewController.h"
+#import "SharedUserViewController.h"
 #import <PFFacebookUtils.h>
 
 
 
-@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCellDelegate, ShareDelegate>
+@interface NotesDashboardViewController ()<UITableViewDataSource, UITableViewDelegate, NoteCellDelegate, FBShareDelegate, SharedUserViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *notes;
 @property (strong, nonatomic) NSMutableArray *currentNotes;
@@ -33,8 +34,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"texture"]];
+    self.view.backgroundColor =[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"texture"]];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [self fetchNotes];
     
@@ -42,8 +47,6 @@
     [self.refreshControl addTarget:self action:@selector(fetchNotes) forControlEvents:UIControlEventValueChanged];
     
     [self.tableView addSubview:self.refreshControl];
-    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-    [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.tableView addGestureRecognizer:gestureRecognizer];
@@ -55,9 +58,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
-    if (self.isViewLoaded){
-        [self fetchNotes];
-    }
+    self.tabBarController.tabBar.tintColor = [UIColor systemBlueColor];
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 #pragma mark - fetch from database
@@ -200,25 +203,52 @@
 
 - (void) didTapShare:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     if (![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]){
-        [self shareAlertForNote:note withCompletion:nil];
+        [self shareAlertForNote:note withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded){
+                [self fetchNotes];
+            }
+        }];
     }
     else{
         self.noteToBeShared = note;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ShareViewController *shareController = [storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
+        FBShareViewController *shareController = [storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
         shareController.delegate = self;
+        shareController.titleLabel.text = @"Share Note";
         [self presentViewController:shareController animated:YES completion:nil];
     }
+}
+
+- (void)presentSharedUserControllerWithNote:(Note *)note{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SharedUserViewController *shareController = [storyboard instantiateViewControllerWithIdentifier:@"SharedUserViewController"];
+    shareController.sharedObject = note;
+    shareController.delegate = self; 
+    [self presentViewController:shareController animated:YES completion:nil];
 }
 
 #pragma mark - Share Delegate
 
 - (void)didShareToFBID:(NSString *)FBID{
-    [SharedNote shareNote:self.noteToBeShared withFBID:FBID withCompletion:nil];
+    [SharedNote shareNote:self.noteToBeShared withFBID:FBID withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self fetchNotes];
+        }
+    }];
 }
 
 - (void)didShareToUsername{
-    [self shareAlertForNote:self.noteToBeShared withCompletion:nil];
+    [self shareAlertForNote:self.noteToBeShared withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self fetchNotes];
+        }
+    }];
+}
+
+#pragma mark - ShareViewControllerDelegate
+
+- (void)updateTable{
+    [self fetchNotes];
 }
 
 #pragma mark - Navigation
@@ -234,10 +264,6 @@
         NoteCell *selectedcell = (NoteCell*) sender;
         //NSLog(@"%@",selectedcell.note.htmlText);
         noteEditor.note = selectedcell.note;
-    }
-    else if ([segue.identifier isEqualToString:@"ShareNote"]){
-        ShareViewController *shareController = [segue destinationViewController];
-        shareController.delegate = self;
     }
 }
 

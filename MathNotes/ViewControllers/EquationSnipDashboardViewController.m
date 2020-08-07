@@ -13,10 +13,11 @@
 #import "EquationSnipsDetailViewController.h"
 #import "TOCropViewController.h"
 #import "PFFacebookUtils.h"
-#import "ShareViewController.h"
+#import "SharedUserViewController.h"
+#import "FBShareViewController.h"
 #import <Vision/Vision.h>
 
-@interface EquationSnipDashboardViewController ()<UITableViewDelegate, UITableViewDataSource, EquationSnipCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TOCropViewControllerDelegate, ShareDelegate>
+@interface EquationSnipDashboardViewController ()<UITableViewDelegate, UITableViewDataSource, EquationSnipCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TOCropViewControllerDelegate, FBShareDelegate, SharedUserViewControllerDelegate>
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) NSMutableArray *currentEquationSnips;
 @property (strong, nonatomic) NSString *nameForEquationSnip;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) EquationSnip *equationSnipToBeShared;
 @end
 
@@ -33,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"texture"]];
+    
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = NO;
     [self.imagePicker setDelegate:self];
@@ -40,11 +44,12 @@
     self.refreshControl =[[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchEquationSnips) forControlEvents:UIControlEventValueChanged];
     
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"texture"]];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     [self.tableView addSubview:self.refreshControl];
-       NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-    [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
     
     [self fetchEquationSnips];
     
@@ -58,7 +63,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.tintColor = [UIColor systemOrangeColor];
     [self.tabBarController.tabBar setHidden:NO];
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 
@@ -185,7 +193,7 @@
 }
 
 - (void) shareAlertForEquationSnip:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Share EquationSnip"
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Share Equation Snip"
                                                                                   message: @"Type username of user to share equation snip with them"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
@@ -203,21 +211,36 @@
 }
 
 - (void) didTapShare:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
+    
     if (![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]){
         [self shareAlertForEquationSnip:equationSnip withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded){
-                
+                [self fetchEquationSnips];
             }
         }];
     }
     else{
         self.equationSnipToBeShared = equationSnip;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ShareViewController *shareController = [storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
+        FBShareViewController *shareController = [storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
         shareController.delegate = self;
+        shareController.titleLabel.text = @"Share Equation Snip";
         [self presentViewController:shareController animated:YES completion:nil];
     }
-    
+}
+
+- (void) presentSharedUserControllerWithEquationSnip:(EquationSnip *) equationSnip{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SharedUserViewController *shareController = [storyboard instantiateViewControllerWithIdentifier:@"SharedUserViewController"];
+    shareController.sharedObject = equationSnip;
+    shareController.delegate = self;
+    [self presentViewController:shareController animated:YES completion:nil];
+}
+
+#pragma mark - ShareViewControllerDelegate
+
+- (void)updateTable{
+    [self fetchEquationSnips];
 }
 #pragma mark - New EquationSnip
 
@@ -313,10 +336,22 @@
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
 {
     if ( [self.nameForEquationSnip isEqualToString:@"" ]) {
-    [EquationSnip postEquationSnip:@"Untitled Snip" withImage:image withCompletion:nil];
+    [self.activityIndicator startAnimating];
+        [EquationSnip postEquationSnip:@"Untitled Snip" withImage:image withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded){
+                [self fetchEquationSnips];
+                [self.activityIndicator stopAnimating];
+            }
+        }];
     }
     else {
-        [EquationSnip postEquationSnip:self.nameForEquationSnip withImage:image withCompletion:nil];
+        [self.activityIndicator startAnimating];
+        [EquationSnip postEquationSnip:self.nameForEquationSnip withImage:image withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded){
+                [self fetchEquationSnips];
+                [self.activityIndicator stopAnimating];
+            }
+        }];
     }
     [self dismissViewControllerAnimated:YES completion:^{
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -327,11 +362,19 @@
 #pragma mark - Share Delegate
 
 - (void)didShareToFBID:(NSString *)FBID{
-    [SharedEquationSnip shareEquationSnip:self.equationSnipToBeShared withFBID:FBID withCompletion:nil];
+    [SharedEquationSnip shareEquationSnip:self.equationSnipToBeShared withFBID:FBID withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self fetchEquationSnips];
+        }
+    }];
 }
 
 - (void)didShareToUsername{
-    [self shareAlertForEquationSnip:self.equationSnipToBeShared withCompletion:nil];
+    [self shareAlertForEquationSnip:self.equationSnipToBeShared withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded){
+            [self fetchEquationSnips];
+        }
+    }];
 }
 
 #pragma mark - Navigation

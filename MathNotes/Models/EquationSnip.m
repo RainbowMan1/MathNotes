@@ -21,6 +21,7 @@
 @dynamic confidence;
 @dynamic createdAt;
 @dynamic updatedAt;
+@dynamic shared;
 
 + (nonnull NSString *)parseClassName {
     return @"EquationSnips";
@@ -38,7 +39,7 @@
         
         newEquationSnip.htmlcode = [responseObject[@"text"] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
         newEquationSnip.laTeXcode =[responseObject[@"latex_styled"] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-        if (newEquationSnip.laTeXcode == nil){
+        if (newEquationSnip.laTeXcode == nil && newEquationSnip.htmlcode!= nil){
             newEquationSnip.laTeXcode =  [[[[[[@"\\text{" stringByAppendingString:newEquationSnip.htmlcode] stringByReplacingOccurrencesOfString:@"\\(" withString:@"} $"] stringByReplacingOccurrencesOfString:@"\\)" withString:@"$ \\text{"] stringByReplacingOccurrencesOfString:@"\\[" withString:@"} $$"] stringByReplacingOccurrencesOfString:@"\\]" withString:@"$$ \\text{"]stringByAppendingString:@"}"];
             NSLog(@"%@",newEquationSnip.laTeXcode);
         }

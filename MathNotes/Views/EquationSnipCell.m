@@ -9,6 +9,12 @@
 #import "EquationSnipCell.h"
 #import "NSDate+DateTools.h"
 
+@interface EquationSnipCell()
+
+@property UILongPressGestureRecognizer *gestureRecognizer;
+
+@end
+
 @implementation EquationSnipCell
 
 - (void)awakeFromNib {
@@ -23,14 +29,34 @@
 }
 - (void)setEquationSnip:(EquationSnip *)equationSnip {
     (_equationSnip) = equationSnip;
+    self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"texture"]];
+    [self setupGesture];
     [self updateCell];
+}
+
+- (void)showSharedUsers{
+    if (self.gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        if ([self.equationSnip.author.username isEqualToString:[PFUser currentUser].username] && self.equationSnip.shared) {
+        [self.delegate presentSharedUserControllerWithEquationSnip:self.equationSnip];
+        }
+    }
+}
+
+- (void) setupGesture{
+    self.gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showSharedUsers)];
+    [self addGestureRecognizer:self.gestureRecognizer];
 }
 
 - (void)updateCell {
     self.equationSnipName.text =  self.equationSnip.equationSnipName;
     self.lastUpdatedTimeLabel.text = [self.equationSnip.updatedAt timeAgoSinceNow];
     if ([self.equationSnip.author.username isEqualToString:[PFUser currentUser].username]){
-        [self.ownedImage setHidden:YES];
+        if (self.equationSnip.shared){
+            [self.ownedImage setHidden:NO];
+        }
+        else{
+            [self.ownedImage setHidden:YES];
+        }
         [self.renameView setHidden:NO];
         [self.ownerName setHidden:YES];
         [self.ownerColorView setBackgroundColor:[UIColor systemOrangeColor]];

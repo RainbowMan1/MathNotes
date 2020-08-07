@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSNumber * _Nullable confidence;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull createdAt;
 @property (nonatomic, strong, readonly) NSDate * _Nonnull updatedAt;
+@property (nonatomic) BOOL shared;
 
 + (void) postEquationSnip:(NSString * _Nonnull)name withImage:(UIImage * _Nonnull) image withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (void) updateEquationSnip:(EquationSnip * _Nonnull)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion;

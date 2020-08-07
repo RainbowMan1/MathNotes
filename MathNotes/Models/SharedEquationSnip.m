@@ -38,6 +38,8 @@
                         share.sharedEquationSnip =equationSnip;
                         share.sharedUser = users[0];
                         [share saveInBackgroundWithBlock: completion];
+                        equationSnip.shared = YES;
+                        [equationSnip saveInBackground];
                     }
                     else{
                         NSLog(@"%@",@"equation snip already shared to the user");
@@ -65,6 +67,8 @@
                     share.sharedEquationSnip =equationSnip;
                     share.sharedUser = users[0];
                     [share saveInBackgroundWithBlock: completion];
+                    equationSnip.shared = YES;
+                    [equationSnip saveInBackground];
                 }
                 else{
                     NSLog(@"%@",@"note already shared to the user");
@@ -80,12 +84,49 @@
 + (void)deleteSharedEquationSnip:(EquationSnip *)equationSnip withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     PFQuery *query = [PFQuery queryWithClassName:@"SharedEquationSnips"];
     [query whereKey:@"sharedEquationSnip" equalTo:equationSnip];
-    [query whereKey:@"sharedUser" equalTo:[PFUser currentUser]];
+    [query includeKey:@"sharedUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable sharedEquationSnips, NSError * _Nullable error) {
-        if (sharedEquationSnips.count==1) {
-            [sharedEquationSnips[0] deleteInBackgroundWithBlock:completion];
+        if (sharedEquationSnips.count == 1){
+            equationSnip.shared = NO;
+            [equationSnip saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded){
+                    [sharedEquationSnips[0] deleteInBackgroundWithBlock:completion];
+                }
+            }];
+        }
+        else{
+            for (SharedEquationSnip *sharedSnip in sharedEquationSnips){
+                if ([sharedSnip.sharedUser.username isEqualToString:[PFUser currentUser].username]){
+                    [sharedSnip deleteInBackgroundWithBlock:completion];
+                }
+            }
         }
     }];
+}
+
++ (void)deleteSharedEquationSnip:(EquationSnip *)equationSnip forUser:(PFUser *)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    if ([equationSnip.author.username isEqualToString:[PFUser currentUser].username]){
+        PFQuery *query = [PFQuery queryWithClassName:@"SharedEquationSnips"];
+        [query whereKey:@"sharedEquationSnip" equalTo:equationSnip];
+        [query includeKey:@"sharedUser"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable sharedEquationSnips, NSError * _Nullable error) {
+             if (sharedEquationSnips.count == 1){
+                       equationSnip.shared = NO;
+                       [equationSnip saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                           if (succeeded){
+                               [sharedEquationSnips[0] deleteInBackgroundWithBlock:completion];
+                           }
+                       }];
+                   }
+             else if (sharedEquationSnips.count>1){
+               for (SharedEquationSnip *sharedEquationSnip in sharedEquationSnips){
+                   if ([sharedEquationSnip.sharedUser.username isEqualToString:user.username]){
+                       [sharedEquationSnip deleteInBackgroundWithBlock:completion];
+                   }
+               }
+           }
+        }];
+    }
 }
 
 @end

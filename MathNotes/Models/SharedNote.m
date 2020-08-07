@@ -35,6 +35,8 @@
                         share.sharedNote =note;
                         share.sharedUser = users[0];
                         [share saveInBackgroundWithBlock: completion];
+                        note.shared = YES;
+                        [note saveInBackground];
                     }
                     else{
                         NSLog(@"%@",@"note already shared to the user");
@@ -63,6 +65,8 @@
                     share.sharedNote =note;
                     share.sharedUser = users[0];
                     [share saveInBackgroundWithBlock: completion];
+                    note.shared = YES;
+                    [note saveInBackground];
                 }
                 else{
                     NSLog(@"%@",@"note already shared to the user");
@@ -78,12 +82,49 @@
 + (void)deleteSharedNote:(Note *)note withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     PFQuery *query = [PFQuery queryWithClassName:@"SharedNotes"];
     [query whereKey:@"sharedNote" equalTo:note];
-    [query whereKey:@"sharedUser" equalTo:[PFUser currentUser]];
+    [query includeKey:@"sharedUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable sharedNotes, NSError * _Nullable error) {
-        if (sharedNotes.count==1) {
-            [sharedNotes[0] deleteInBackgroundWithBlock:completion];
-        }
+         if (sharedNotes.count == 1){
+                   note.shared = NO;
+                   [note saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                       if (succeeded){
+                           [sharedNotes[0] deleteInBackgroundWithBlock:completion];
+                       }
+                   }];
+               }
+         else if (sharedNotes.count>1){
+           for (SharedNote *sharedNote in sharedNotes){
+               if ([sharedNote.sharedUser.username isEqualToString:[PFUser currentUser].username]){
+                   [sharedNote deleteInBackgroundWithBlock:completion];
+               }
+           }
+       }
     }];
+}
+
++ (void)deleteSharedNote:(Note *)note forUser:(PFUser *)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    if ([note.author.username isEqualToString:[PFUser currentUser].username]){
+        PFQuery *query = [PFQuery queryWithClassName:@"SharedNotes"];
+        [query whereKey:@"sharedNote" equalTo:note];
+        [query includeKey:@"sharedUser"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable sharedNotes, NSError * _Nullable error) {
+             if (sharedNotes.count == 1){
+                       note.shared = NO;
+                       [note saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                           if (succeeded){
+                               [sharedNotes[0] deleteInBackgroundWithBlock:completion];
+                           }
+                       }];
+                   }
+             else if (sharedNotes.count>1){
+               for (SharedNote *sharedNote in sharedNotes){
+                   if ([sharedNote.sharedUser.username isEqualToString:user.username]){
+                       [sharedNote deleteInBackgroundWithBlock:completion];
+                   }
+               }
+           }
+        }];
+    }
 }
 
 
