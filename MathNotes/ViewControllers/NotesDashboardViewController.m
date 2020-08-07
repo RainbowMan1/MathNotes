@@ -61,6 +61,9 @@
     self.tabBarController.tabBar.tintColor = [UIColor systemBlueColor];
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
+    if (self.isViewLoaded){
+        [self fetchNotes];
+    }
 }
 
 #pragma mark - fetch from database
