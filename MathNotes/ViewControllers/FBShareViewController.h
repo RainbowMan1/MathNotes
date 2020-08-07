@@ -10,15 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ShareDelegate
+@protocol FBShareDelegate
 
 - (void) didShareToFBID:(NSString *)FBID;
 - (void) didShareToUsername;
  
 @end
 
-@interface ShareViewController : UIViewController
-@property (weak, nonatomic) id<ShareDelegate> delegate;
+@interface FBShareViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) id<FBShareDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

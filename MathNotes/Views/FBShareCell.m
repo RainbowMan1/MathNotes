@@ -6,10 +6,10 @@
 //  Copyright © 2020 Nikesh Subedi. All rights reserved.
 //
 
-#import "ShareCell.h"
+#import "FBShareCell.h"
 #import "UIImageView+AFNetworking.h"
 
-@implementation ShareCell
+@implementation FBShareCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

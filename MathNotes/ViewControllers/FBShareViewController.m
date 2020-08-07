@@ -6,19 +6,19 @@
 //  Copyright © 2020 Nikesh Subedi. All rights reserved.
 //
 
-#import "ShareViewController.h"
+#import "FBShareViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "UIImageView+AFNetworking.h"
-#import "ShareCell.h"
+#import "FBShareCell.h"
 #import "Friend.h"
 
-@interface ShareViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface FBShareViewController()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *friends;
 @property (strong, nonatomic) NSMutableArray *currentFriends;
 @end
 
-@implementation ShareViewController
+@implementation FBShareViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,7 +70,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ShareCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShareCell" forIndexPath:indexPath];
+    FBShareCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FBShareCell" forIndexPath:indexPath];
     cell.shareFriend = self.currentFriends[indexPath.row];
     
     return cell;
