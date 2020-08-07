@@ -1,0 +1,22 @@
+Here are the credits to all the works that I have used in this project. (sorry if I miss them, I did not intend to use them without crediting)
+
+ZSSRichTextEditor - https://github.com/nnhubbard/ZSSRichTextEditor - This is the foundation of the app so can't thank the creator enough
+
+Pods used:
+
+Parse
+Parse/UI
+AFNetworking
+TOCropViewController
+iosMath
+DateTools
+Parse/FacebookUtils
+PopOverMenu
+InAppSettingsKit
+
+
+Icons from icon8 - https://icons8.com/
+
+ambi from logopond whose icon I have used as the app icon - https://logopond.com/ambi/showcase/detail/293606
+
+Background texture for editor from https://leaverou.github.io/css3patterns/
