@@ -52,7 +52,6 @@ zss_editor.init = function() {
                     zss_editor.enabledEditingItems(e);
                     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                     MathJax.Hub.Queue(zss_editor.updateEnd());
-        
                    });
     
     $(window).on('scroll', function(e) {
@@ -566,6 +565,9 @@ zss_editor.getHTML = function() {
     clonedContent.find(".MathJax_Preview").remove();
     clonedContent.find(".MathJax_Display").remove();
     clonedContent.find(".MathJax").remove();
+    clonedContent.find(".mjx-chtml MJXc-processed").remove();
+    clonedContent.find(".mjx-chtml MathJax_CHTML").remove();
+    
     var html = clonedContent.html();
     return html;
 }

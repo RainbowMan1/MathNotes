@@ -107,6 +107,8 @@
 		DB759C4824BE353F007932E9 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = DB759B9124BE1CBF007932E9 /* editor.html */; };
 		DB76630824D9BFA900090A36 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB76630724D9BFA900090A36 /* SettingsViewController.m */; };
 		DB76630E24D9D9F400090A36 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB76630D24D9D9F400090A36 /* Settings.bundle */; };
+		DB7BB60124DC676800DFAFF7 /* SharedUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7BB60024DC676800DFAFF7 /* SharedUserCell.m */; };
+		DB7BB60724DC69F400DFAFF7 /* SharedUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7BB60624DC69F400DFAFF7 /* SharedUserViewController.m */; };
 		DBA65ECD24BFA42D00429B7D /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = DB759B8F24BE1CBF007932E9 /* ZSSRichTextEditor.js */; };
 		DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */; };
 		DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F1224BCBD2C00AEE9B0 /* SceneDelegate.m */; };
@@ -124,8 +126,8 @@
 		DBAB6F5424BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5324BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m */; };
 		DBAB6F5724BCFF1700AEE9B0 /* EquationSnipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */; };
 		DBAB6F5A24BD060000AEE9B0 /* NotesEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */; };
-		DBAC7F1424D3558800B5B550 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1324D3558800B5B550 /* ShareViewController.m */; };
-		DBAC7F1724D359BF00B5B550 /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1624D359BF00B5B550 /* ShareCell.m */; };
+		DBAC7F1424D3558800B5B550 /* FBShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1324D3558800B5B550 /* FBShareViewController.m */; };
+		DBAC7F1724D359BF00B5B550 /* FBShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1624D359BF00B5B550 /* FBShareCell.m */; };
 		DBAC7F1A24D35CC800B5B550 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7F1924D35CC800B5B550 /* Friend.m */; };
 		DBE2CD8024C2021F0028EFDE /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD7F24C2021F0028EFDE /* APIManager.m */; };
 		DBE2CD8324C20E640028EFDE /* EquationSnipsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CD8224C20E640028EFDE /* EquationSnipsDetailViewController.m */; };
@@ -278,6 +280,10 @@
 		DB76630624D9BFA900090A36 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		DB76630724D9BFA900090A36 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DB76630D24D9D9F400090A36 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Models/Settings.bundle; sourceTree = "<group>"; };
+		DB7BB5FF24DC676800DFAFF7 /* SharedUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedUserCell.h; sourceTree = "<group>"; };
+		DB7BB60024DC676800DFAFF7 /* SharedUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedUserCell.m; sourceTree = "<group>"; };
+		DB7BB60524DC69F400DFAFF7 /* SharedUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedUserViewController.h; sourceTree = "<group>"; };
+		DB7BB60624DC69F400DFAFF7 /* SharedUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedUserViewController.m; sourceTree = "<group>"; };
 		DBAB6F0B24BCBD2C00AEE9B0 /* MathNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBAB6F0E24BCBD2C00AEE9B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DBAB6F0F24BCBD2C00AEE9B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -310,10 +316,10 @@
 		DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquationSnipCell.m; sourceTree = "<group>"; };
 		DBAB6F5824BD060000AEE9B0 /* NotesEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotesEditorViewController.h; sourceTree = "<group>"; };
 		DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotesEditorViewController.m; sourceTree = "<group>"; };
-		DBAC7F1224D3558800B5B550 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
-		DBAC7F1324D3558800B5B550 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		DBAC7F1524D359BF00B5B550 /* ShareCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
-		DBAC7F1624D359BF00B5B550 /* ShareCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
+		DBAC7F1224D3558800B5B550 /* FBShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBShareViewController.h; sourceTree = "<group>"; };
+		DBAC7F1324D3558800B5B550 /* FBShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBShareViewController.m; sourceTree = "<group>"; };
+		DBAC7F1524D359BF00B5B550 /* FBShareCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBShareCell.h; sourceTree = "<group>"; };
+		DBAC7F1624D359BF00B5B550 /* FBShareCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBShareCell.m; sourceTree = "<group>"; };
 		DBAC7F1824D35CBA00B5B550 /* Friend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		DBAC7F1924D35CC800B5B550 /* Friend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		DBE2CD7E24C202110028EFDE /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
@@ -585,8 +591,8 @@
 			children = (
 				DBAB6F4F24BCEFE200AEE9B0 /* NotesDashboardViewController.h */,
 				DBAB6F5024BCEFE200AEE9B0 /* NotesDashboardViewController.m */,
-				DBAC7F1224D3558800B5B550 /* ShareViewController.h */,
-				DBAC7F1324D3558800B5B550 /* ShareViewController.m */,
+				DBAC7F1224D3558800B5B550 /* FBShareViewController.h */,
+				DBAC7F1324D3558800B5B550 /* FBShareViewController.m */,
 				DBAB6F5824BD060000AEE9B0 /* NotesEditorViewController.h */,
 				DBAB6F5924BD060000AEE9B0 /* NotesEditorViewController.m */,
 				DB388CA124C0BC6C009F0046 /* EquationPickerViewController.h */,
@@ -600,6 +606,8 @@
 				DBAB6F1524BCBD2C00AEE9B0 /* LoginViewController.m */,
 				DB76630624D9BFA900090A36 /* SettingsViewController.h */,
 				DB76630724D9BFA900090A36 /* SettingsViewController.m */,
+				DB7BB60524DC69F400DFAFF7 /* SharedUserViewController.h */,
+				DB7BB60624DC69F400DFAFF7 /* SharedUserViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -611,10 +619,12 @@
 				DBAB6F4D24BCE7A800AEE9B0 /* NoteCell.m */,
 				DBAB6F5524BCFF1700AEE9B0 /* EquationSnipCell.h */,
 				DBAB6F5624BCFF1700AEE9B0 /* EquationSnipCell.m */,
-				DBAC7F1524D359BF00B5B550 /* ShareCell.h */,
-				DBAC7F1624D359BF00B5B550 /* ShareCell.m */,
+				DBAC7F1524D359BF00B5B550 /* FBShareCell.h */,
+				DBAC7F1624D359BF00B5B550 /* FBShareCell.m */,
 				DBF7117D24D48CF700D14F58 /* EquationPickerCell.h */,
 				DBF7117E24D48CF700D14F58 /* EquationPickerCell.m */,
+				DB7BB5FF24DC676800DFAFF7 /* SharedUserCell.h */,
+				DB7BB60024DC676800DFAFF7 /* SharedUserCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -965,6 +975,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB7BB60724DC69F400DFAFF7 /* SharedUserViewController.m in Sources */,
 				DBF3270024C5F2960087F542 /* APIKeys.m in Sources */,
 				DBAB6F5424BCEFFD00AEE9B0 /* EquationSnipDashboardViewController.m in Sources */,
 				DB759BEA24BE1CC0007932E9 /* ZSSRichTextEditor.m in Sources */,
@@ -988,7 +999,8 @@
 				DBAB6F4A24BCD87000AEE9B0 /* EquationSnip.m in Sources */,
 				DB759BEF24BE1E14007932E9 /* CYRTextStorage.m in Sources */,
 				DBAB6F4724BCD47300AEE9B0 /* Note.m in Sources */,
-				DBAC7F1724D359BF00B5B550 /* ShareCell.m in Sources */,
+				DBAC7F1724D359BF00B5B550 /* FBShareCell.m in Sources */,
+				DB7BB60124DC676800DFAFF7 /* SharedUserCell.m in Sources */,
 				DB759BF324BE1E14007932E9 /* HRColorPickerView.m in Sources */,
 				DBAB6F1024BCBD2C00AEE9B0 /* AppDelegate.m in Sources */,
 				DBAB6F5724BCFF1700AEE9B0 /* EquationSnipCell.m in Sources */,
@@ -997,7 +1009,7 @@
 				DBAB6F2124BCBD2D00AEE9B0 /* main.m in Sources */,
 				DB759BE724BE1CC0007932E9 /* ZSSTextView.m in Sources */,
 				DBAC7F1A24D35CC800B5B550 /* Friend.m in Sources */,
-				DBAC7F1424D3558800B5B550 /* ShareViewController.m in Sources */,
+				DBAC7F1424D3558800B5B550 /* FBShareViewController.m in Sources */,
 				DB759BED24BE1CC0007932E9 /* ZSSBarButtonItem.m in Sources */,
 				DBAB6F1324BCBD2C00AEE9B0 /* SceneDelegate.m in Sources */,
 				DBAB6F5A24BD060000AEE9B0 /* NotesEditorViewController.m in Sources */,
