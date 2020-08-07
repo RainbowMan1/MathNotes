@@ -9,7 +9,9 @@
 #import "EquationPickerCell.h"
 #import "MTFontManager.h"
 
-@interface EquationPickerCell()<UIAdaptivePresentationControllerDelegate>
+@interface EquationPickerCell()
+
+@property UITapGestureRecognizer *gestureRecognizer;
 
 @end
 
@@ -32,7 +34,17 @@
 
 - (void)setEquationSnip:(EquationSnip *)equationSnip {
     (_equationSnip) = equationSnip;
+    [self setupGesture];
     [self updateCell];
+}
+
+- (void) setupGesture{
+    self.gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(insertEquation)];
+    [self addGestureRecognizer:self.gestureRecognizer];
+}
+
+- (void)insertEquation{
+    [self.delegate tapOnEquation:self];
 }
 
 - (void)updateCell {

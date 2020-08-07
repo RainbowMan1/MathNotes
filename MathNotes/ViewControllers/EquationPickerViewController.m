@@ -70,6 +70,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 #pragma mark - EquationPickerCell Delegate
 
+- (void)tapOnEquation:(id)sender{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(EquationPickerCell *)sender];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+}
+
 - (void)tapOnMenu:(UIButton *)button forEquationSnip:(EquationSnip *) equationSnip {
     
     NSArray *titles = @[@"Inline", @"Display", @"Equation"];

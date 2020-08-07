@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PopoverEquationCellDelegate
 
 - (void)tapOnMenu:(UIButton *)button forEquationSnip:(EquationSnip *) equationSnip;
+- (void)tapOnEquation:(id)sender;
 
 @end
 
