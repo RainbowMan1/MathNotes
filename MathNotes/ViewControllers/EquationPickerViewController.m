@@ -8,12 +8,13 @@
 
 #import "EquationPickerViewController.h"
 #import "EquationPickerCell.h"
+#import "SharedEquationSnip.h"
 @import PopOverMenu;
 
 @interface EquationPickerViewController ()<UITableViewDelegate,UITableViewDataSource, PopoverEquationCellDelegate, UIAdaptivePresentationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) NSArray *equationSnips;
+@property (strong, nonatomic) NSMutableArray *equationSnips;
 
 @end
 
@@ -34,18 +35,32 @@
     [self fetchEquationSnips];
 }
 - (void)fetchEquationSnips{
-    PFQuery *query = [PFQuery queryWithClassName:@"EquationSnips"];
-       [query orderByDescending:@"updatedAt"];
-       [query whereKey:@"author" equalTo:[PFUser currentUser]];
-           // fetch data asynchronously
-           [query findObjectsInBackgroundWithBlock:^(NSArray *equationsArray, NSError *error) {
-               if (equationsArray != nil) {
-                   self.equationSnips = equationsArray;
-                   [self.tableView reloadData];
-                   [self.refreshControl endRefreshing];
-               } else {
-               }
-           }];
+    [self.equationSnips removeAllObjects];
+    PFQuery *equationSnipsQuery = [PFQuery queryWithClassName:@"EquationSnips"];
+    [equationSnipsQuery includeKey:@"author"];
+    [equationSnipsQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+        // fetch data asynchronously
+        [equationSnipsQuery findObjectsInBackgroundWithBlock:^(NSArray *equationSnipsArray, NSError *error) {
+            if (equationSnipsArray != nil) {
+                self.equationSnips = [equationSnipsArray mutableCopy];
+                PFQuery *sharedEquationSnipsQuery = [PFQuery queryWithClassName:@"SharedEquationSnips"];
+                [sharedEquationSnipsQuery includeKey:@"sharedEquationSnip"];
+                [sharedEquationSnipsQuery includeKey:@"sharedEquationSnip.author"];
+                [sharedEquationSnipsQuery includeKey:@"sharedUser"];
+                [sharedEquationSnipsQuery whereKey:@"sharedUser" equalTo:[PFUser currentUser]];
+                [sharedEquationSnipsQuery findObjectsInBackgroundWithBlock:^(NSArray *sharedEquationSnipsArray, NSError *error) {
+                if (sharedEquationSnipsArray != nil) {
+                    for (SharedEquationSnip *sharedEquationSnip in sharedEquationSnipsArray){
+                        [self.equationSnips addObject:sharedEquationSnip.sharedEquationSnip];
+                    }
+                }
+                    [self.equationSnips sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:NO]]];
+                    [self.refreshControl endRefreshing];
+                    [self.tableView reloadData];
+                }];
+            } else {
+            }
+        }];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
